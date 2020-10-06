@@ -154,6 +154,7 @@ view.showComponents = async function (name) {
     }
     case 'companyDetail': {
       view.pastScreen = 'companyDetail'
+      let currentUser = firebase.auth().currentUser
       let app = document.getElementById('app')
       app.innerHTML = component.navNoTransf + component.companydetail
       view.nextLink()
@@ -165,8 +166,12 @@ view.showComponents = async function (name) {
       view.showCompanyDetail()
       
       view.showJob()
-
+      let registCompany = document.getElementById('link-employer')
+      if (currentUser) {
+        registCompany.classList.add("disable-employer");
+      }
       view.showJobDetail()
+
       break;
     }
     case 'alljob': {
