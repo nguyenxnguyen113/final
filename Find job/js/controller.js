@@ -97,7 +97,11 @@ controller.registCompany = async function (registerInfo) {
   view.disable('btn-register')
   try {
     await firebase.auth().createUserWithEmailAndPassword(email, password)
-
+    await firebase.auth().currentUser.updateProfile({
+      displayName: displayName,
+      email: email,
+      password: password
+    })
     await firebase.auth().currentUser.sendEmailVerification()
     view.setText('register-success', 'An email verification has been sended to your email address!')
   } catch (err) {

@@ -369,7 +369,6 @@ view.showComponents = async function (name) {
         }
       }
       view.nextLink()
-      view.ShowNav()
     }
   }
 }
