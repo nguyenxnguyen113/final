@@ -461,6 +461,15 @@ component.registCompany = `
         <div class="md-form mb-5">
           <label data-error="wrong" data-success="right" for="form29">Your name company</label>
           <input type="text" id="form29" name="nameCompany" class="form-control validate">
+          <div id="nameCompany-error" class="message-error"></div>
+        </div>
+        <div class="md-form mb-5">
+          <label>address</label>
+          <input type="text" id="form29" name="addressCompany" class="form-control validate">
+        </div>
+        <div class="md-form mb-5">
+          <label>Title company</label>
+          <input type="text" id="form29" name="addressCompany" class="form-control validate">
         </div>
         <div class="md-form mb-5">
           <label>Your name</label>
@@ -496,6 +505,34 @@ component.registCompany = `
   </div>
 </div>
 </form>
+`
+component.employer = `
+<nav id="nav-b" class="navbar navbar-expand-sm fixed-top">
+<a id="logo" href="index.html" ><img src="imgs/img/logotrang.png" alt=""></a>
+<ul id="1" class="navbar-nav justify-content-end">
+    <li class="nav-item">
+        <a class="nav-link" id="link-home">HOME</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link "  id="link-job">ALL JOB</a>
+    </li>
+
+    <li class="nav-item">
+         <a href="formpage.html"><span class="nav-link clw"  id="link-company" >CONTACT US</span></a>
+    </li>
+    <li class="nav-item">
+         <a class="nav-link" id="link-employer">EMPLOYER</a>
+    </li>
+    <div id="dropdown">
+    <div class="dropdown" style="width: 50px; height: 30px;margin: 0px 30px 0px 50px; text-align: center">
+        <div type="button" data-toggle="dropdown">
+            <i style="font-size: 22px" class="fas fa-user-circle"></i><span  id="next-login">login</span>
+        </div>
+      </div>  
+    </div>
+</ul>
+
+</nav>
 `
 component.loading = `
 <section>
