@@ -103,7 +103,7 @@ controller.registCompany = async function (registerInfo) {
       password: password,
       nameCompany: nameCompany,
       addressCompany: addressCompany,
-      titleCompany:titleCompany
+      titleCompany: titleCompany
     })
     addCompany(firebase.auth().currentUser)
 
@@ -118,11 +118,11 @@ controller.registCompany = async function (registerInfo) {
 // function to add company to the database
 const addCompany = async function (user) {
   if (user != null) {
-    db.collection("company").doc(user.name).set({
+    db.collection("company").doc(user.email).set({
       emailCompany: user.email,
       employee: user.displayName,
-      name: user.name,
-      title: user.title,
+      title: user.titleCompany,
+      name: user.nameCompany,
       address: user.address,
       role: 'employer',
       status: 'block'
