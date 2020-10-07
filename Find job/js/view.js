@@ -322,19 +322,49 @@ view.showComponents = async function (name) {
       app.innerHTML = component.navNoTransf + component.registCompany
       let form = document.getElementById('regist-company')
       form.onsubmit = formSubmit
+
+      view.nextLink()
+
+     
+
       function formSubmit(event) {
         event.preventDefault()
 
         let registerInfo = {
-          fullname: form.nameCompany.value,
-          nameEmployer: form.nameE.value,
+          nameCompany: form.nameCompany.value,
+          addressCompany: form.addressCompany.value,
+          titleCompany: form.title.value,
+          fullname: form.nameE.value,
           email: form.email.value,
           password: form.password.value,
           confirmPassword: form.confirmPassword.value,
         }
 
-          controller.registCompany(registerInfo)
-  
+        let validateResult = [
+          view.validate(registerInfo.nameE, 'nameE-error', 'Invalid fullname!'),
+          view.validate(registerInfo.nameCompany ,'nameCompany-error','Invalid name company!'),
+          view.validate(
+            registerInfo.email && registerInfo.email.includes('@'),
+            'email-error',
+            'Invalid email!'
+          ),
+          view.validate(registerInfo.addressCompany ,'addressCompany-error','Invalid address company!'),
+          view.validate(
+            registerInfo.password && registerInfo.password.length >= 6,
+            'password-error',
+            'Invalid password!'
+          ),
+          view.validate(
+            registerInfo.confirmPassword
+            && registerInfo.confirmPassword.length >= 6
+            && registerInfo.password == registerInfo.confirmPassword,
+            'confirm-password-error',
+            'Invalid confirm password!'
+          )
+        ]
+        if (allPassed(validateResult)) {
+          controller.register(registerInfo)
+        }
       }
       view.nextLink()
       view.ShowNav()

@@ -466,24 +466,28 @@ component.registCompany = `
         <div class="md-form mb-5">
           <label>address</label>
           <input type="text" id="form29" name="addressCompany" class="form-control validate">
+          <div id="addressCompany-error" class="message-error"></div>
         </div>
         <div class="md-form mb-5">
           <label>Title company</label>
-          <input type="text" id="form29" name="addressCompany" class="form-control validate">
+          <input type="text" id="form29" name="titleCompany" class="form-control validate">
         </div>
         <div class="md-form mb-5">
           <label>Your name</label>
           <input type="text" id="form29" name="nameE" class="form-control validate">
+          <div id="nameE-error" class="message-error"></div>
         </div>
 
         <div class="md-form mb-5">
           <label data-error="wrong" data-success="right" for="form29">Your email</label>
           <input type="email" name="email" id="form29" class="form-control validate">
+          <div id="email-error" class="message-error"></div>
         </div>
 
         <div class="md-form mb-5">
           <label data-error="wrong" data-success="right" for="form32">password</label>
           <input type="password" name="password" id="form32" class="form-control validate">
+          <div id="password-error" class="message-error"></div>
         </div>
 
         <div class="md-form mb-5">

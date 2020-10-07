@@ -82,6 +82,24 @@ let addUser = async function (user) {
       });
   }
 }
+// function to add company to the database
+let registCompany = async function (user) {
+  if (user != null) {
+    db.collection("company").doc(user.name).set({
+      email: user.email,
+      displayName: user.displayName,
+      nameCompany: user.name,
+      title: user.title,
+      role: 'employer'
+    })
+      .then(function (docRef) {
+        console.log("Document written with ID: ", docRef.id);
+      })
+      .catch(function (error) {
+        console.error("Error adding document: ", error);
+      });
+  }
+}
 // function to fill the existing profile page (default user profile)
 controller.fillProfilePage = async function () {
   let currentUser = firebase.auth().currentUser
