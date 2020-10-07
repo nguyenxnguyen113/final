@@ -349,6 +349,7 @@ view.showComponents = async function (name) {
             'Invalid email!'
           ),
           view.validate(registerInfo.addressCompany ,'addressCompany-error','Invalid address company!'),
+          view.validate(registerInfo.titleCompany ,'titleCompany-error','Invalid title company!'),
           view.validate(
             registerInfo.password && registerInfo.password.length >= 6,
             'password-error',

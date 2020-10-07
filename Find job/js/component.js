@@ -471,6 +471,7 @@ component.registCompany = `
         <div class="md-form mb-5">
           <label>Title company</label>
           <input type="text" id="form29" name="titleCompany" class="form-control validate">
+          <div id="titleCompany-error" class="message-error"></div>
         </div>
         <div class="md-form mb-5">
           <label>Your name</label>
