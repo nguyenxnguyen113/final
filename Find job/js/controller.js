@@ -82,14 +82,41 @@ let addUser = async function (user) {
       });
   }
 }
+//regist to become employer
+controller.registCompany = async function (registerInfo) {
+
+  let email = registerInfo.email
+  let password = registerInfo.password
+  let displayName = registerInfo.fullname
+ 
+  view.setText('register-error', '')
+  view.setText('register-success', '')
+  
+  try {
+    await firebase.auth().createUserWithEmailAndPassword(email, password)
+    await firebase.auth().currentUser.updateProfile({
+      displayName: displayName,
+      email: email,
+      password: password
+    })
+    addCompany(firebase.auth().currentUser)
+
+    await firebase.auth().currentUser.sendEmailVerification()
+    view.setText('register-success', 'An email verification has been sended to your email address!')
+  } catch (err) {
+    view.setText('register-error', err.message)
+  }
+  
+}
 // function to add company to the database
 let addCompany = async function (user) {
   if (user != null) {
     db.collection("company").doc(user.name).set({
-      email: user.email,
-      displayName: user.displayName,
-      nameCompany: user.name,
+      emailCompany: user.email,
+      employee: user.displayName,
+      name: user.name,
       title: user.title,
+      address: user.address,
       role: 'employer',
       status: 'block'
     })

@@ -333,15 +333,15 @@ view.showComponents = async function (name) {
         let registerInfo = {
           nameCompany: form.nameCompany.value,
           addressCompany: form.addressCompany.value,
-          titleCompany: form.title.value,
-          fullname: form.nameE.value,
+          titleCompany: form.titleCompany.value,
+          fullname: form.nameEmployer.value,
           email: form.email.value,
           password: form.password.value,
           confirmPassword: form.confirmPassword.value,
         }
 
         let validateResult = [
-          view.validate(registerInfo.nameE, 'nameE-error', 'Invalid fullname!'),
+          view.validate(registerInfo.fullname, 'nameE-error', 'Invalid fullname!'),
           view.validate(registerInfo.nameCompany ,'nameCompany-error','Invalid name company!'),
           view.validate(
             registerInfo.email && registerInfo.email.includes('@'),
@@ -364,7 +364,7 @@ view.showComponents = async function (name) {
           )
         ]
         if (allPassed(validateResult)) {
-          controller.register(registerInfo)
+          controller.registCompany(registerInfo)
         }
       }
       view.nextLink()

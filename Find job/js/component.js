@@ -475,12 +475,12 @@ component.registCompany = `
         </div>
         <div class="md-form mb-5">
           <label>Your name</label>
-          <input type="text" id="form29" name="nameE" class="form-control validate">
+          <input type="text" id="form29" name="nameEmployer" class="form-control validate">
           <div id="nameE-error" class="message-error"></div>
         </div>
 
         <div class="md-form mb-5">
-          <label data-error="wrong" data-success="right" for="form29">Your email</label>
+          <label data-error="wrong" data-success="right" for="form29">Your email company</label>
           <input type="email" name="email" id="form29" class="form-control validate">
           <div id="email-error" class="message-error"></div>
         </div>
@@ -501,8 +501,8 @@ component.registCompany = `
           <label data-error="wrong" data-success="right" for="form8">Your message</label>
           <textarea type="text" id="form8" class="md-textarea form-control" rows="4"></textarea>
         </div>
-        
-
+        <div id="register-error" class="message-error"></div>
+        <div id="register-success" class="message-error"></div>
       </div>
       <div class="modal-footer d-flex justify-content-center">
         <button class="btn btn-unique">Send <i class="fas fa-paper-plane-o ml-1"></i></button>
