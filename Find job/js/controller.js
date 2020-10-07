@@ -91,21 +91,12 @@ controller.registCompany = async function (registerInfo) {
   let nameCompany = registerInfo.nameCompany
   let addressCompany = registerInfo.addressCompany
   let titleCompany = registerInfo.titleCompany
- 
+  addCompany(registerInfo)
   view.setText('register-error', '')
   view.setText('register-success', '')
   view.disable('btn-register')
   try {
     await firebase.auth().createUserWithEmailAndPassword(email, password)
-    await firebase.auth().currentUser.updateProfile({
-      displayName: displayName,
-      email: email,
-      password: password,
-      nameCompany: nameCompany,
-      addressCompany: addressCompany,
-      titleCompany: titleCompany
-    })
-    addCompany(firebase.auth().currentUser)
 
     await firebase.auth().currentUser.sendEmailVerification()
     view.setText('register-success', 'An email verification has been sended to your email address!')
@@ -118,12 +109,12 @@ controller.registCompany = async function (registerInfo) {
 // function to add company to the database
 const addCompany = async function (user) {
   if (user != null) {
-    db.collection("company").doc(user.email).set({
+    db.collection("company").doc().set({
       emailCompany: user.email,
-      employee: user.displayName,
+      employee: user.fullname,
       title: user.titleCompany,
       name: user.nameCompany,
-      address: user.address,
+      address: user.addressCompany,
       role: 'employer',
       status: 'block'
     })
