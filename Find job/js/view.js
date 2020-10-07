@@ -365,6 +365,7 @@ view.showComponents = async function (name) {
         ]
         if (allPassed(validateResult)) {
           controller.registCompany(registerInfo)
+          
         }
       }
       view.nextLink()
