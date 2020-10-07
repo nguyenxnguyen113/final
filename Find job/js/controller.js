@@ -83,14 +83,15 @@ let addUser = async function (user) {
   }
 }
 // function to add company to the database
-let registCompany = async function (user) {
+let addCompany = async function (user) {
   if (user != null) {
     db.collection("company").doc(user.name).set({
       email: user.email,
       displayName: user.displayName,
       nameCompany: user.name,
       title: user.title,
-      role: 'employer'
+      role: 'employer',
+      status: 'block'
     })
       .then(function (docRef) {
         console.log("Document written with ID: ", docRef.id);
@@ -425,6 +426,7 @@ controller.loadCompany = async function () {
   let result = await firebase
     .firestore()
     .collection('company')
+    .where("status", "==", "active")
     .get()
   let companys = transformDocs(result.docs)
   model.saveCompany(companys)

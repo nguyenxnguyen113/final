@@ -494,6 +494,7 @@ component.registCompany = `
         <div class="md-form mb-5">
           <label data-error="wrong" data-success="right" for="form32">re-password</label>
           <input type="password" name="confirmPassword" id="form32" class="form-control validate">
+          <div id="confirm-password-error" class="message-error"></div>
         </div>
 
         <div class="md-form">
