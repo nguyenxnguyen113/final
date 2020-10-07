@@ -91,9 +91,10 @@ controller.registCompany = async function (registerInfo) {
   let nameCompany = registerInfo.nameCompany
   let addressCompany = registerInfo.addressCompany
   let titleCompany = registerInfo.titleCompany
+ 
   view.setText('register-error', '')
   view.setText('register-success', '')
-  
+  view.disable('btn-register')
   try {
     await firebase.auth().createUserWithEmailAndPassword(email, password)
     await firebase.auth().currentUser.updateProfile({
@@ -104,17 +105,18 @@ controller.registCompany = async function (registerInfo) {
       addressCompany: addressCompany,
       titleCompany:titleCompany
     })
-    controller.addCompany(firebase.auth().currentUser)
+    addCompany(firebase.auth().currentUser)
 
     await firebase.auth().currentUser.sendEmailVerification()
     view.setText('register-success', 'An email verification has been sended to your email address!')
   } catch (err) {
     view.setText('register-error', err.message)
   }
-  
+  view.enable('btn-register')
 }
+
 // function to add company to the database
-controller.addCompany = async function (user) {
+const addCompany = async function (user) {
   if (user != null) {
     db.collection("company").doc(user.name).set({
       emailCompany: user.email,
