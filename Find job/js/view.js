@@ -21,7 +21,7 @@ view.showComponents = async function (name) {
       let app = document.getElementById('app')
       app.innerHTML = component.navTransf + component.header + component.home
       let registCompany = document.getElementById('link-employer')
-      if (currentUser.emailVerified) {
+      if (currentUser) {
         registCompany.classList.add("disable-employer");
       }
       registCompany.onclick = rC
@@ -32,6 +32,7 @@ view.showComponents = async function (name) {
       form.onsubmit = formSubmitSearch
 
       view.inputSearch()
+
       function formSubmitSearch(event) {
         event.preventDefault()
         let search = {
@@ -167,7 +168,7 @@ view.showComponents = async function (name) {
       
       view.showJob()
       let registCompany = document.getElementById('link-employer')
-      if (currentUser.emailVerified) {
+      if (currentUser) {
         registCompany.classList.add("disable-employer");
       }
       view.showJobDetail()
@@ -183,7 +184,7 @@ view.showComponents = async function (name) {
       app.innerHTML = component.navTransf + component.header + component.alljob
 
       let registCompany = document.getElementById('link-employer')
-      if (currentUser.emailVerified) {
+      if (currentUser) {
         registCompany.classList.add("disable-employer");
       }
       registCompany.onclick = rC
@@ -248,7 +249,7 @@ view.showComponents = async function (name) {
     }
     case 'profile': {
       let currentUser = firebase.auth().currentUser
-      if (!currentUser ) {
+      if (!currentUser) {
         view.showComponents('home')
         return
       } 
@@ -257,7 +258,7 @@ view.showComponents = async function (name) {
       view.nextLink()
       view.ShowNav()
       let registCompany = document.getElementById('link-employer')
-      if (currentUser.emailVerified) {
+      if (currentUser) {
         registCompany.classList.add("disable-employer");
       }
       let profileForm = document.getElementById('editProfileForm')
@@ -793,7 +794,7 @@ view.inputSearch = function () {
 view.ShowNav = function () {
   let link = document.getElementById("dropdown")
   let currentUser = firebase.auth().currentUser
-  if (currentUser.emailVerified == false) {
+  if (currentUser == null) {
     return
   }
   view.clearHtml("dropdown")
