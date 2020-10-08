@@ -161,14 +161,18 @@ view.showComponents = async function (name) {
       let app = document.getElementById('app')
       app.innerHTML = component.navNoTransf + component.companydetail
       view.nextLink()
+      
+
+
       controller.collectionJobChange()
 
       view.showCompanyDetail()
-      
       view.showJob()
       view.showJobDetail()
       view.ShowNav()
       let registCompany = document.getElementById('link-employer')
+
+      
       if (currentUser.emailVerified) {
         registCompany.classList.add("disable-employer");
       }
@@ -489,7 +493,7 @@ view.showJob = function () {
               </a>
           </div>
           <div>
-              <span style="color: #a50b0b" id="salary" ><i class="fas fa-search-dollar"></i>  ${model.currentUser.emailVerified ? job.money + "$" : "Sign in to view"}</span>
+              <span style="color: #a50b0b" id="salary" ><i class="fas fa-search-dollar"></i>  ${currentUser.emailVerified ? job.money + "$" : "Sign in to view"}</span>
           </div>
           <div>
               <span>${job.description.substr(0, 200)}...</span>
