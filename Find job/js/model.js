@@ -5,6 +5,7 @@ const model = {
   jobs: null,
   currentJobs: null,
 }
+model.currentUser=undefined
 
 model.saveCompany = function (companys) {
   model.companys = companys

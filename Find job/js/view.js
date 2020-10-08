@@ -16,6 +16,7 @@ view.showComponents = async function (name) {
     case 'home': {
       view.pastScreen = 'home'
       let currentUser = firebase.auth().currentUser
+      console.log(currentUser)
       model.saveCurrentJobs(model.jobs)
       let app = document.getElementById('app')
       app.innerHTML = component.navTransf + component.header + component.home
@@ -31,7 +32,7 @@ view.showComponents = async function (name) {
       form.onsubmit = formSubmitSearch
 
       view.inputSearch()
-
+      console.log(model.currentUser)
       function formSubmitSearch(event) {
         event.preventDefault()
         let search = {
