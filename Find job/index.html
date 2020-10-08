@@ -43,23 +43,7 @@
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-  firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-            // User is signed in.
-            if (user.emailVerified) {
-                model.currentUser = {
-                    displayName: user.displayName,
-                    email: user.email
-                }
-                view.showComponents('home')
-            } else {
-                view.showComponents('login')
-                alert('Please verify your email')
-            }
-        } else {
-            view.showComponents('login')
-        }
-    });
+
     </script>
 
 
