@@ -4,6 +4,7 @@ const model = {
   companyId: null,
   jobs: null,
   currentJobs: null,
+  currentUser: {emailVerified: null}
 }
 model.currentUser=undefined
 

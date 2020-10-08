@@ -21,9 +21,7 @@ view.showComponents = async function (name) {
       let app = document.getElementById('app')
       app.innerHTML = component.navTransf + component.header + component.home
       let registCompany = document.getElementById('link-employer')
-      if (currentUser) {
-        registCompany.classList.add("disable-employer");
-      }
+
       registCompany.onclick = rC
       function rC() {
         view.showComponents('registCompany')
@@ -42,10 +40,14 @@ view.showComponents = async function (name) {
         controller.inputSearch(search)
       }
       view.nextLink()
-      view.ShowNav()
+      
 
       jobSkill()
       view.showCompany()
+      view.ShowNav()
+      if (currentUser.emailVerified) {
+        registCompany.classList.add("disable-employer");
+      }
       break;
     }
     case 'login': {
@@ -159,19 +161,17 @@ view.showComponents = async function (name) {
       let app = document.getElementById('app')
       app.innerHTML = component.navNoTransf + component.companydetail
       view.nextLink()
-      view.ShowNav()
-
-
       controller.collectionJobChange()
 
       view.showCompanyDetail()
       
       view.showJob()
+      view.showJobDetail()
+      view.ShowNav()
       let registCompany = document.getElementById('link-employer')
-      if (currentUser) {
+      if (currentUser.emailVerified) {
         registCompany.classList.add("disable-employer");
       }
-      view.showJobDetail()
 
       break;
     }
@@ -184,9 +184,7 @@ view.showComponents = async function (name) {
       app.innerHTML = component.navTransf + component.header + component.alljob
 
       let registCompany = document.getElementById('link-employer')
-      if (currentUser) {
-        registCompany.classList.add("disable-employer");
-      }
+
       registCompany.onclick = rC
       function rC() {
         view.showComponents('registCompany')
@@ -243,7 +241,9 @@ view.showComponents = async function (name) {
 
       controller.collectionJobChange()
       view.showJobLong(model.currentJobs)
-
+      if (currentUser.emailVerified) {
+        registCompany.classList.add("disable-employer");
+      }
 
       break;
     }
@@ -258,9 +258,7 @@ view.showComponents = async function (name) {
       view.nextLink()
       view.ShowNav()
       let registCompany = document.getElementById('link-employer')
-      if (currentUser) {
-        registCompany.classList.add("disable-employer");
-      }
+
       let profileForm = document.getElementById('editProfileForm')
       controller.fillProfileForm(profileForm)
 
@@ -308,7 +306,9 @@ view.showComponents = async function (name) {
           alert(err.message)
         }
       }
-
+      if (currentUser.emailVerified) {
+        registCompany.classList.add("disable-employer");
+      }
       // show saved jobs
       controller.displaySavedJobs()
       break;
@@ -489,7 +489,7 @@ view.showJob = function () {
               </a>
           </div>
           <div>
-              <span style="color: #a50b0b" id="salary" ><i class="fas fa-search-dollar"></i>  ${currentUser ? job.money + "$" : "Sign in to view"}</span>
+              <span style="color: #a50b0b" id="salary" ><i class="fas fa-search-dollar"></i>  ${model.currentUser.emailVerified ? job.money + "$" : "Sign in to view"}</span>
           </div>
           <div>
               <span>${job.description.substr(0, 200)}...</span>
@@ -526,7 +526,7 @@ view.showJobLong = function (seclecjob) {
         let userEmail = job.userSaved
         let btnSave = ``
 
-        if (currentUser) {
+        if (currentUser.emailVerified) {
           btnSave = `<button id="btn-save" class="fs18 save" onclick=userSavedHandler('${job.id}')>Save</button>`
 
           for (let i = 0; i < userEmail.length; i++) {
@@ -554,7 +554,7 @@ view.showJobLong = function (seclecjob) {
                     </a>
                   </div>
                   <div>
-                    <span style="color: #a50b0b" id="salary"><i class="fas fa-search-dollar"></i> ${currentUser ? job.money + "$" : "Sign in to view"}</span>
+                    <span style="color: #a50b0b" id="salary"><i class="fas fa-search-dollar"></i> ${currentUser.emailVerified ? job.money + "$" : "Sign in to view"}</span>
                   </div>
                   <div>
                     <span>${job.description.substr(0, 200)}...</span>
@@ -636,7 +636,7 @@ view.showJobDetail = function () {
                  </div>
                  <div class="pl20">
                       <div>
-                          <span style="color: #a50b0b" id="salary" class="fs20"><i class="fas fa-search-dollar fs20"></i> ${currentUser ? job.money + "$" : "Sign in to view"}</span>
+                          <span style="color: #a50b0b" id="salary" class="fs20"><i class="fas fa-search-dollar fs20"></i> ${currentUser.emailVerified ? job.money + "$" : "Sign in to view"}</span>
                       </div>
                       <div>
                           <span style="color: #013B80;" class="fs20"><i class="fas fa-map-marker-alt fs20"></i> ${job.address} </span>
@@ -794,7 +794,7 @@ view.inputSearch = function () {
 view.ShowNav = function () {
   let link = document.getElementById("dropdown")
   let currentUser = firebase.auth().currentUser
-  if (currentUser == null) {
+  if (currentUser.emailVerified == false) {
     return
   }
   view.clearHtml("dropdown")
