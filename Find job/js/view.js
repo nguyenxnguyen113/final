@@ -493,7 +493,7 @@ view.showJob = function () {
               </a>
           </div>
           <div>
-              <span style="color: #a50b0b" id="salary" ><i class="fas fa-search-dollar"></i>  ${currentUser.emailVerified ? job.money + "$" : "Sign in to view"}</span>
+              <span style="color: #a50b0b" id="salary" ><i class="fas fa-search-dollar"></i>  ${currentUser.emailVerified ? "up to" + job.money + "$" : "Sign in to view"}</span>
           </div>
           <div>
               <span>${job.description.substr(0, 200)}...</span>
