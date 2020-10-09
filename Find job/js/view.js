@@ -15,6 +15,7 @@ view.showComponents = async function (name) {
   switch (name) {
     case 'home': {
       view.pastScreen = 'home'
+     
       let currentUser = firebase.auth().currentUser
       console.log(currentUser)
       model.saveCurrentJobs(model.jobs)
@@ -458,8 +459,15 @@ view.showCompanyDetail = function () {
 view.showJob = function () {
 
   let listJob = document.getElementById("listJob")
+  let test = {
+    emailVerified: false
+  }
   let currentUser = firebase.auth().currentUser
-
+  if(!currentUser) {
+    return test.emailVerified 
+  } else {
+    test.emailVerified = currentUser.emailVerified
+  }
   if (model.jobs) {
 
     let jobs = model.jobs
