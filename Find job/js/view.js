@@ -46,6 +46,7 @@ view.showComponents = async function (name) {
       jobSkill()
       view.showCompany()
       view.ShowNav()
+      
       if (currentUser.emailVerified) {
         registCompany.classList.add("disable-employer");
       }
