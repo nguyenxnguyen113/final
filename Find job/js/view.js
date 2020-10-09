@@ -174,7 +174,7 @@ view.showComponents = async function (name) {
       let registCompany = document.getElementById('link-employer')
 
       
-      if (currentUser.emailVerified) {
+      if (currentUser) {
         registCompany.classList.add("disable-employer");
       }
 
@@ -460,14 +460,15 @@ view.showJob = function () {
 
   let listJob = document.getElementById("listJob")
   let test = {
-    emailVerified: false
+    verified: false
   }
   let currentUser = firebase.auth().currentUser
   if(!currentUser) {
-    return test.emailVerified 
+     test.emailVerified 
   } else {
-    test.emailVerified = currentUser.emailVerified
+    test.verified = currentUser.emailVerified
   }
+ 
   if (model.jobs) {
 
     let jobs = model.jobs
@@ -501,7 +502,7 @@ view.showJob = function () {
               </a>
           </div>
           <div>
-              <span style="color: #a50b0b" id="salary" ><i class="fas fa-search-dollar"></i>  ${currentUser.emailVerified ? "up to" + job.money + "$" : "Sign in to view"}</span>
+              <span style="color: #a50b0b" id="salary" ><i class="fas fa-search-dollar"></i>  ${test.verified ? "up to" + job.money + "$" : "Sign in to view"}</span>
           </div>
           <div>
               <span>${job.description.substr(0, 200)}...</span>
@@ -527,7 +528,15 @@ view.showJob = function () {
 view.showJobLong = function (seclecjob) {
 
   let showAlljob = document.getElementById('all-job')
+  let test = {
+    verified: false
+  }
   let currentUser = firebase.auth().currentUser
+  if(!currentUser) {
+     test.emailVerified 
+  } else {
+    test.verified = currentUser.emailVerified
+  }
   let companys = model.companys
   let jobs = seclecjob
 
@@ -538,7 +547,7 @@ view.showJobLong = function (seclecjob) {
         let userEmail = job.userSaved
         let btnSave = ``
 
-        if (currentUser.emailVerified) {
+        if (currentUser) {
           btnSave = `<button id="btn-save" class="fs18 save" onclick=userSavedHandler('${job.id}')>Save</button>`
 
           for (let i = 0; i < userEmail.length; i++) {
@@ -566,7 +575,7 @@ view.showJobLong = function (seclecjob) {
                     </a>
                   </div>
                   <div>
-                    <span style="color: #a50b0b" id="salary"><i class="fas fa-search-dollar"></i> ${currentUser.emailVerified ? job.money + "$" : "Sign in to view"}</span>
+                    <span style="color: #a50b0b" id="salary"><i class="fas fa-search-dollar"></i> ${test.verified ? job.money + "$" : "Sign in to view"}</span>
                   </div>
                   <div>
                     <span>${job.description.substr(0, 200)}...</span>
@@ -806,7 +815,7 @@ view.inputSearch = function () {
 view.ShowNav = function () {
   let link = document.getElementById("dropdown")
   let currentUser = firebase.auth().currentUser
-  if (currentUser.emailVerified == false) {
+  if (!currentUser) {
     return
   }
   view.clearHtml("dropdown")
