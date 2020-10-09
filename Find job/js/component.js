@@ -439,6 +439,10 @@ component.alljob = `
 `
 component.registCompany = `
 <div class="container">
+<div class="side-left-regist-company">
+<p id="title-regist-company">Already a customer?</p>
+<p id="sign-in-regist-company">> Sign in</p>
+</div>
 <h2>HI!</h2>
 <h2>Want great IT candidates?</h2>
 <p>Give us your details and our Customer Love team will contact you about our service!</p>

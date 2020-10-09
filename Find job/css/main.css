@@ -869,3 +869,13 @@ a{
   #add {
     margin: 10px;
   }
+  .side-left-regist-company {
+      margin-top: 0px;
+      float: right;
+  }
+  .side-left-regist-company #title-regist-company {
+      color: #bfc0c2;
+  }
+  .side-left-regist-company #sign-in-regist-company {
+      color: #e93f35;
+  }
