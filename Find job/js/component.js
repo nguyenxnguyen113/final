@@ -517,10 +517,15 @@ component.registCompany = `
 </form>
 `
 component.loginCompany =`
+<nav id="nav-b" class="navbar navbar-expand-sm fixed-top">
+<a id="logo" href="index.html" ><img src="imgs/img/logotrang.png" alt=""></a>
+
+
+</nav>
 <div class="wrapper fadeInDown">
 <div id="formContent">
   <!-- Tabs Titles -->
-
+  <h2>Hire the best</h2>
   <!-- Login Form -->
   <form>
     <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">

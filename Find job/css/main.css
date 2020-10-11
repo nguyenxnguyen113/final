@@ -879,6 +879,9 @@ a{
   .side-left-regist-company #sign-in-regist-company {
       color: #e93f35;
   }
+  #sign-in-regist-company {
+      cursor: pointer;
+  }
   
 /*login company*/
   
@@ -998,9 +1001,9 @@ a{
     color: #cccccc;
   }
   .wrapper #formContent form button {
-      width: 200px;
+      width: 100px;
       margin: 10px ;
-      border-radius: 10px;
+      border-radius: 3px;
       background-color: #39ace7;
   }
   
