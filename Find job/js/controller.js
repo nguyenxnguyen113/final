@@ -67,11 +67,11 @@ controller.logIn = async function (logInInfo) {
   }
 }
 //
-controller.loginEmployer = async function (loginEmployer) {
+controller.loginEmployer = async function (logInInfo) {
   try {
     let email = logInInfo.email
     let password = logInInfo.password
-    let user = await firebase.firestore().collection('company').where("email", "==", email).get()
+    let user = await firebase.firestore().collection('company').where("emailCompany", "==", email).get()
     let u = transformDocs(user.docs)
     console.log(u)
     console.log(u[0].role)
@@ -85,12 +85,7 @@ controller.loginEmployer = async function (loginEmployer) {
     if (!result.user.emailVerified) {
       throw new Error('You must verify email!')
     }
-
-   if(view.pastScreen){
-     view.showComponents(view.pastScreen)
-   }else{
-     view.showComponents('employerScreen')
-    }
+    view.showComponents('employerScreen')
   } catch (error) {
     view.setText('log-in-error', error.message)
   }
