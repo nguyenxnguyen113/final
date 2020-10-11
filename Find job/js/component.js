@@ -569,6 +569,28 @@ component.employer = `
 
 </nav>
 `
+component.detailEmployer = ` 
+<div id="clear" class="container" >
+<div class="about-company">
+<div class="pt30">
+    <span class="fw500 fs25">ABOUT COMPANY</span>
+</div>
+<div id="detail"class="detail row">
+   
+</div>
+</div>
+<div class="jobs">
+<div>
+   
+</div>
+<div>
+   
+        
+      
+</div>
+</div>
+</div>
+</div> `
 component.loading = `
 <section>
   Loading...

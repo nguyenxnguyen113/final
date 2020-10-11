@@ -389,6 +389,7 @@ view.showComponents = async function (name) {
     }
     case 'employerScreen': {
       let app = document.getElementById('app')
+      app.innerHTML = component.navNoTransf + component.detailEmployer
     }
   }
 }
@@ -910,6 +911,128 @@ function allPassed(validateResult) {
     }
   }
   return true
+}
+view.showCompanyDetailEmployer = function () {
+
+  let companydetail = document.getElementById("detail")
+  if (model.companys) {
+    companys = model.companys
+    for (let company of companys) {
+
+      let nameId = company.name.replace(' ', '')
+      if (model.companyId == nameId) {
+        let name = company.name
+
+        let companyDetail = ` 
+        <div style="margin-right: 10px" class="logo-cty col-sm-3">
+            <div>
+                <img style="max-width: 100%" src="${company.logo}" alt="">
+                <div>
+                    <div style="text-align: center; padding-bottom: 20px"><span class="fw500 fs20">${name}</span></div>
+                    <div style="padding-bottom: 10px"><i class="fas fa-map-marker-alt"></i><span>&nbsp;${company.address}</span>
+                    </div>
+                    <div style="padding-top: 20px"><i class="fas fa-users"></i><span>&nbsp;${company.employee}+</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="about col-sm-8">
+        <div class="row">
+        <div class="col-md-10">
+            <div class="img-jd">
+                <img style="max-width: 100%; border: 5px solid #C4C4C4;" src="${company.bg}" alt="">
+            </div>
+            <div class="pt0">
+
+                <div style="text-align: center">
+                    <span class="fw500 fs20">${company.title}</span>
+                
+                </div>
+
+                <div>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp; ${company.description}</p>
+                </div>
+            </div>
+            </div>
+            <div class="col-md-2">
+            <button class="btn-sj" data-toggle="modal" data-target="#exampleModal" id="btn-edit-company-detail">EDIT COMPANY DETAIL</button>
+           </div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Company Detail</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+
+      <div class="modal-body">
+        <div class="col-md-9">
+          <div class="edit-profile">
+
+            <form id="editCompanyDetail" method="post">
+
+              <div class="form-group">
+                <label class="col-xs-3 form-control-label" for="companyName">Company Name</label>
+                <div class="col-xs-9">
+                  <input type="text" class="form-control" id="companyName" name="companyName"
+                    placeholder="${company.name}">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-xs-3 form-control-label" for="companyAddress">Address</label>
+                <div class="col-xs-9">
+                  <input type="text" class="form-control" name="companyAddress" placeholder="${company.address}">
+                </div>
+              </div>
+                            
+              <div class="form-group">
+              <label class="col-xs-3 form-control-label" for="companyEmployee">Employee</label>
+              <div class="col-xs-9">
+              <input type="text" class="form-control" name="companyEmployee" placeholder="${company.employee}">
+              </div>
+              </div>
+
+              <div class="form-group">
+              <label class="col-xs-3 form-control-label" for="companyTitle">Title</label>
+              <div class="col-xs-9">
+              <input type="text" class="form-control" name="companyTitle" placeholder="${company.title}">
+              </div>
+              </div>
+
+              <div class="form-group">
+              <label class="col-xs-3 form-control-label" for="companyDesc">Description</label>
+              <div class="col-xs-9">
+              <input type="text" class="form-control" name="companyDesc" placeholder="${company.description}">
+              </div>
+              </div>
+
+            </form>
+
+          </div>
+        </div>
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" onclick=submitEditCompanyForm('${this.idCompany}') id="submitProfileForm" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End modal -->
+
+        </div>`
+        view.appendHtml(companydetail, companyDetail)
+        break;
+      }
+    }
+  }
 }
 view.disable = function (id) {
   document.getElementById(id).setAttribute('disabled', true)
