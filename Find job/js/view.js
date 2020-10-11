@@ -164,8 +164,8 @@ view.showComponents = async function (name) {
       app.innerHTML = component.navNoTransf + component.companydetail
       view.nextLink()
       
-
-
+      
+   
       controller.collectionJobChange()
 
       view.showCompanyDetail()
@@ -174,7 +174,9 @@ view.showComponents = async function (name) {
       view.ShowNav()
       let registCompany = document.getElementById('link-employer')
 
-      
+      registCompany.addEventListener('click', () => {
+        view.showComponents('registCompany')
+      })
       if (currentUser) {
         registCompany.classList.add("disable-employer");
       }
@@ -189,12 +191,6 @@ view.showComponents = async function (name) {
       let app = document.getElementById('app')
       app.innerHTML = component.navTransf + component.header + component.alljob
 
-      let registCompany = document.getElementById('link-employer')
-
-      registCompany.onclick = rC
-      function rC() {
-        view.showComponents('registCompany')
-      }
 
       let form = document.getElementById('form-search')
       form.onsubmit = formSubmitSearch
@@ -247,6 +243,11 @@ view.showComponents = async function (name) {
 
       controller.collectionJobChange()
       view.showJobLong(model.currentJobs)
+      let registCompany = document.getElementById('link-employer')
+
+      registCompany.addEventListener('click', () => {
+        view.showComponents('registCompany')
+      })
       if (currentUser.emailVerified) {
         registCompany.classList.add("disable-employer");
       }
@@ -815,8 +816,14 @@ view.inputSearch = function () {
 // các hàm tiện ích
 view.ShowNav = function () {
   let link = document.getElementById("dropdown")
+  let test = {
+    verified: false
+  }
   let currentUser = firebase.auth().currentUser
-  if (!currentUser) {
+  if(currentUser) {
+     test.verified = currentUser.emailVerified
+  } 
+  if(test.verified === false) {
     return
   }
   view.clearHtml("dropdown")
