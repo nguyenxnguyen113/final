@@ -527,10 +527,12 @@ component.loginCompany =`
   <!-- Tabs Titles -->
   <h2>Hire the best</h2>
   <!-- Login Form -->
-  <form>
-    <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
-    <input type="password" id="password" class="fadeIn third" name="login" placeholder="password">
-    <button>Login</button>
+  <form id="login-employer">
+    <input type="text" id="login" class="fadeIn second" name="loginEmail" placeholder="login">
+    <div id="email-error" class="message-error"></div>
+    <input type="password" id="password" class="fadeIn third" name="loginPassword" placeholder="password">
+    <div id="password-error" class="message-error"></div>
+    <button type="submit">Login</button>
   </form>
 
   <!-- Remind Passowrd -->

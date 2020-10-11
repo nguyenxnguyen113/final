@@ -75,7 +75,7 @@ controller.loginEmployer = async function (loginEmployer) {
     let u = transformDocs(user.docs)
     console.log(u)
     console.log(u[0].role)
-    if (u[0].role === 'user') {
+    if (u[0].role === 'employer') {
       result = await firebase.auth().signInWithEmailAndPassword(email, password)
     } else {
       alert('oke')
@@ -85,12 +85,8 @@ controller.loginEmployer = async function (loginEmployer) {
     if (!result.user.emailVerified) {
       throw new Error('You must verify email!')
     }
-
-   if(view.pastScreen){
-     view.showComponents(view.pastScreen)
-   }else{
-     view.showComponents('employerPage')
-    }
+    view.showComponents('employerScreen')
+    
   } catch (error) {
     
   }

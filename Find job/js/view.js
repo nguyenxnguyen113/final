@@ -385,6 +385,30 @@ view.showComponents = async function (name) {
     case 'loginCompany': {
       let app = document.getElementById('app')
       app.innerHTML = component.loginCompany
+      let form = document.getElementById('login-employer')
+      form.onsubmit = formSubmit
+      function formSubmit(event) {
+        event.preventDefault()
+        let logInInfo = {
+          email: form.loginEmail.value,
+          password: form.loginPassword.value,
+        }
+        let validateResult = [
+          view.validate(
+            logInInfo.email && logInInfo.email.includes('@'),
+            'email-error',
+            'Invalid email!'
+          ),
+          view.validate(
+            logInInfo.password && logInInfo.password.length >= 6,
+            'password-error',
+            'Invalid password!'
+          )
+        ]
+        if (allPassed(validateResult)) {
+          controller.loginEmployer(logInInfo)
+        }
+      }
       break;
     }
     case 'employerScreen': {
