@@ -382,11 +382,14 @@ view.showComponents = async function (name) {
       view.nextLink()
       break;
     }
-    case 'loginCompany':
+    case 'loginCompany': {
       let app = document.getElementById('app')
       app.innerHTML = component.loginCompany
       break;
-      
+    }
+    case 'employerScreen': {
+      let app = document.getElementById('app')
+    }
   }
 }
 view.showCompany = function () {

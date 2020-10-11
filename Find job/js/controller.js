@@ -66,6 +66,35 @@ controller.logIn = async function (logInInfo) {
     view.enable('btn-login')
   }
 }
+//
+controller.loginEmployer = async function (loginEmployer) {
+  try {
+    let email = logInInfo.email
+    let password = logInInfo.password
+    let user = await firebase.firestore().collection('company').where("email", "==", email).get()
+    let u = transformDocs(user.docs)
+    console.log(u)
+    console.log(u[0].role)
+    if (u[0].role === 'user') {
+      result = await firebase.auth().signInWithEmailAndPassword(email, password)
+    } else {
+      alert('oke')
+    }
+    
+    console.log(result)
+    if (!result.user.emailVerified) {
+      throw new Error('You must verify email!')
+    }
+
+   if(view.pastScreen){
+     view.showComponents(view.pastScreen)
+   }else{
+     view.showComponents('employerPage')
+    }
+  } catch (error) {
+    
+  }
+}
 // function to add user to the database
 let addUser = async function (user) {
   if (user != null) {
