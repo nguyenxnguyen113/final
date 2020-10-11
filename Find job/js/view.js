@@ -177,7 +177,7 @@ view.showComponents = async function (name) {
       registCompany.addEventListener('click', () => {
         view.showComponents('registCompany')
       })
-      if (currentUser) {
+      if (currentUser.emailVerified) {
         registCompany.classList.add("disable-employer");
       }
 
@@ -491,7 +491,7 @@ view.showJob = function () {
 
         let btnSave = ``
 
-        if (currentUser) {
+        if (test.verified) {
           btnSave = `<button id="btn-save" class="fs18 save" onclick=userSavedHandler('${job.id}')>Save</button>`
 
           for (let i = 0; i < userEmail.length; i++) {
@@ -558,7 +558,7 @@ view.showJobLong = function (seclecjob) {
         let userEmail = job.userSaved
         let btnSave = ``
 
-        if (currentUser) {
+        if (test.verified) {
           btnSave = `<button id="btn-save" class="fs18 save" onclick=userSavedHandler('${job.id}')>Save</button>`
 
           for (let i = 0; i < userEmail.length; i++) {
