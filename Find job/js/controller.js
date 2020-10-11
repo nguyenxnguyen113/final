@@ -85,10 +85,14 @@ controller.loginEmployer = async function (loginEmployer) {
     if (!result.user.emailVerified) {
       throw new Error('You must verify email!')
     }
-    view.showComponents('employerScreen')
-    
+
+   if(view.pastScreen){
+     view.showComponents(view.pastScreen)
+   }else{
+     view.showComponents('employerScreen')
+    }
   } catch (error) {
-    
+    view.setText('log-in-error', error.message)
   }
 }
 // function to add user to the database

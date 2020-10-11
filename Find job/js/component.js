@@ -534,6 +534,7 @@ component.loginCompany =`
     <div id="password-error" class="message-error"></div>
     <button type="submit">Login</button>
   </form>
+  <div id="log-in-error" class="message-error"></div>
 
   <!-- Remind Passowrd -->
   <div id="formFooter">
