@@ -517,15 +517,23 @@ component.registCompany = `
 </form>
 `
 component.loginCompany =`
-<div class="login-page">
-  <div class="form">
-    <form class="login-form">
-      <input type="text" placeholder="username"/>
-      <input type="password" placeholder="password"/>
-      <button>login</button>
-      <p class="message">Forgot password</p>
-    </form>
+<div class="wrapper fadeInDown">
+<div id="formContent">
+  <!-- Tabs Titles -->
+
+  <!-- Login Form -->
+  <form>
+    <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
+    <input type="password" id="password" class="fadeIn third" name="login" placeholder="password">
+    <button>Login</button>
+  </form>
+
+  <!-- Remind Passowrd -->
+  <div id="formFooter">
+    <a class="underlineHover" href="#">Forgot Password?</a>
   </div>
+
+</div>
 </div>
 `
 component.employer = `

@@ -376,11 +376,15 @@ view.showComponents = async function (name) {
           
         }
       }
+      document.getElementById('sign-in-regist-company').addEventListener('click',() =>{
+        view.showComponents('loginCompany')
+      })
       view.nextLink()
       break;
     }
     case 'loginCompany':
-      
+      let app = document.getElementById('app')
+      app.innerHTML = component.loginCompany
       break;
       
   }
