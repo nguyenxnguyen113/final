@@ -377,7 +377,12 @@ view.showComponents = async function (name) {
         }
       }
       view.nextLink()
+      break;
     }
+    case 'loginCompany':
+      
+      break;
+      
   }
 }
 view.showCompany = function () {
@@ -616,9 +621,16 @@ function userSavedHandler(id) {
   controller.saveJob(id, email)
 }
 view.showJobDetail = function () {
-  let currentUser = firebase.auth().currentUser
   let jobdetail = document.getElementById("clear")
-
+  let test = {
+    verified: false
+  }
+  let currentUser = firebase.auth().currentUser
+  if(!currentUser) {
+     test.emailVerified 
+  } else {
+    test.verified = currentUser.emailVerified
+  }
   if (model.jobs) {
     jobs = model.jobs
     for (let job of jobs) {
@@ -659,7 +671,7 @@ view.showJobDetail = function () {
                  </div>
                  <div class="pl20">
                       <div>
-                          <span style="color: #a50b0b" id="salary" class="fs20"><i class="fas fa-search-dollar fs20"></i> ${currentUser.emailVerified ? job.money + "$" : "Sign in to view"}</span>
+                          <span style="color: #a50b0b" id="salary" class="fs20"><i class="fas fa-search-dollar fs20"></i> ${test.verified ? job.money + "$" : "Sign in to view"}</span>
                       </div>
                       <div>
                           <span style="color: #013B80;" class="fs20"><i class="fas fa-map-marker-alt fs20"></i> ${job.address} </span>

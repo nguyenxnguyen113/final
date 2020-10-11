@@ -516,6 +516,18 @@ component.registCompany = `
 </div>
 </form>
 `
+component.loginCompany =`
+<div class="login-page">
+  <div class="form">
+    <form class="login-form">
+      <input type="text" placeholder="username"/>
+      <input type="password" placeholder="password"/>
+      <button>login</button>
+      <p class="message">Forgot password</p>
+    </form>
+  </div>
+</div>
+`
 component.employer = `
 <nav id="nav-b" class="navbar navbar-expand-sm fixed-top">
 <a id="logo" href="index.html" ><img src="imgs/img/logotrang.png" alt=""></a>

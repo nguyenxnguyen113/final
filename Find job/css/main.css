@@ -879,3 +879,14 @@ a{
   .side-left-regist-company #sign-in-regist-company {
       color: #e93f35;
   }
+  /*login company*/
+  
+#login-company {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+#login-company input {
+    width: 300px;
+}
