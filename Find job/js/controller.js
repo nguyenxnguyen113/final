@@ -634,12 +634,12 @@ controller.checkbox = function () {
   model.saveCurrentJobs(result)
 }
 function transformDoc(doc) {
-  let data = doc.data()
+  const data = doc.data()
   data.id = doc.id
   return data
 }
 function transformDocs(docs) {
-  return docs.map(transformDoc)
+  return docs.map(item => transformDoc(item))
 }
 
 
