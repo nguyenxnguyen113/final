@@ -1122,3 +1122,8 @@ a{
     width:60%;
   }
   
+
+  #btn-edit-company-detail {
+    width: 120px;
+    height: 60px;
+  }

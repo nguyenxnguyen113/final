@@ -413,8 +413,12 @@ view.showComponents = async function (name) {
     }
     case 'employerScreen': {
       let app = document.getElementById('app')
-      app.innerHTML = component.navNoTransf + component.detailEmployer
+      app.innerHTML = component.detailEmployer
       view.showCompanyDetailEmployer()
+      document.getElementById('link-home').addEventListener('click', () => {
+        view.showComponents(employerScreen)
+      })
+      break;
     }
   }
 }
@@ -942,16 +946,16 @@ view.showCompanyDetailEmployer = async function () {
   let currentUser = firebase.auth().currentUser
   let user = await firebase.firestore().collection('company').where("emailCompany", "==", currentUser.email).get()
   let u = transformDocs(user.docs)
-  console.log(u)
+  console.log(u[0].name)
         let companyDetail = ` 
         <div style="margin-right: 10px" class="logo-cty col-sm-3">
             <div>
                 <img style="max-width: 100%" src="${u.logo}" alt="">
                 <div>
-                    <div style="text-align: center; padding-bottom: 20px"><span class="fw500 fs20">${u.name}</span></div>
-                    <div style="padding-bottom: 10px"><i class="fas fa-map-marker-alt"></i><span>&nbsp;${u.address}</span>
+                    <div style="text-align: center; padding-bottom: 20px"><span class="fw500 fs20">${u[0].name}</span></div>
+                    <div style="padding-bottom: 10px"><i class="fas fa-map-marker-alt"></i><span>&nbsp;${u[0].address}</span>
                     </div>
-                    <div style="padding-top: 20px"><i class="fas fa-users"></i><span>&nbsp;${u.employee}+</span></div>
+                    <div style="padding-top: 20px"><i class="fas fa-users"></i><span>&nbsp;${u[0].employee}+</span></div>
                 </div>
             </div>
         </div>
@@ -964,17 +968,17 @@ view.showCompanyDetailEmployer = async function () {
             <div class="pt0">
 
                 <div style="text-align: center">
-                    <span class="fw500 fs20">${u.title}</span>
+                    <span class="fw500 fs20">${u[0].title}</span>
                 
                 </div>
 
                 <div>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp; ${u.description}</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp; ${u[0].description}</p>
                 </div>
             </div>
             </div>
             <div class="col-md-2">
-            <button class="btn-sj" data-toggle="modal" data-target="#exampleModal" id="btn-edit-company-detail">EDIT COMPANY DETAIL</button>
+            <button class="btn-sj" data-toggle="modal" data-target="#exampleModal" id="btn-edit-company-detail">EDIT COMPANY</button>
            </div>
 
 <!-- Modal -->
@@ -1000,35 +1004,35 @@ view.showCompanyDetailEmployer = async function () {
                 <label class="col-xs-3 form-control-label" for="companyName">Company Name</label>
                 <div class="col-xs-9">
                   <input type="text" class="form-control" id="companyName" name="companyName"
-                    placeholder="${u.name}">
+                    placeholder="${u[0].name}">
                 </div>
               </div>
 
               <div class="form-group">
                 <label class="col-xs-3 form-control-label" for="companyAddress">Address</label>
                 <div class="col-xs-9">
-                  <input type="text" class="form-control" name="companyAddress" placeholder="${u.address}">
+                  <input type="text" class="form-control" name="companyAddress" placeholder="${u[0].address}">
                 </div>
               </div>
                             
               <div class="form-group">
               <label class="col-xs-3 form-control-label" for="companyEmployee">Employee</label>
               <div class="col-xs-9">
-              <input type="text" class="form-control" name="companyEmployee" placeholder="${u.employee}">
+              <input type="text" class="form-control" name="companyEmployee" placeholder="${u[0].employee}">
               </div>
               </div>
 
               <div class="form-group">
               <label class="col-xs-3 form-control-label" for="companyTitle">Title</label>
               <div class="col-xs-9">
-              <input type="text" class="form-control" name="companyTitle" placeholder="${u.title}">
+              <input type="text" class="form-control" name="companyTitle" placeholder="${u[0].title}">
               </div>
               </div>
 
               <div class="form-group">
               <label class="col-xs-3 form-control-label" for="companyDesc">Description</label>
               <div class="col-xs-9">
-              <input type="text" class="form-control" name="companyDesc" placeholder="${u.description}">
+              <input type="text" class="form-control" name="companyDesc" placeholder="${u[0].description}">
               </div>
               </div>
 

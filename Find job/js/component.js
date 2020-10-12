@@ -573,6 +573,27 @@ component.employer = `
 </nav>
 `
 component.detailEmployer = ` 
+<nav id="nav-b" class="navbar navbar-expand-sm fixed-top">
+<a id="logo" href="#" ><img src="imgs/img/logotrang.png" alt=""></a>
+<ul id="1" class="navbar-nav justify-content-end">
+    <li class="nav-item">
+        <a class="nav-link" id="link-home">HOME</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="all-job">ALL JOB</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link "  id="link-job">POST JOB</a>
+    </li>
+    <div id="dropdown">
+    <div class="dropdown" style="width: 50px; height: 30px;margin: 0px 30px 0px 50px; text-align: center">
+        <div type="button" data-toggle="dropdown">
+            <i style="font-size: 22px" class="fas fa-user-circle"></i><span  id="next-login">login</span>
+        </div>
+      </div>  
+    </div>
+</ul>
+</nav>
 <div id="clear" class="container" >
 <div class="about-company">
 <div class="pt30">
