@@ -938,25 +938,17 @@ function allPassed(validateResult) {
   return true
 }
 view.showCompanyDetailEmployer = async function () {
-  let currentUser = await firebase.auth().currentUser
   let companydetail = document.getElementById("detail")
-  if (model.companys) {
-    companys = model.companys
-    for (let company of companys) {
-
-      let nameId = company.name.replace(' ', '')
-      console.log(nameId)
-      console.log(currentUser.email)
-      console.log(company.emailCompany)
-      if (company.emailCompany == currentUser.email) {
-        let name = company.name
-        console.log(name)
+  let currentUser = await firebase.auth().currentUser
+  let data = await db.collection('company').doc(currentUser.email).get()
+  const company = transformDoc(data)
+  console.log(company)
         let companyDetail = ` 
         <div style="margin-right: 10px" class="logo-cty col-sm-3">
             <div>
                 <img style="max-width: 100%" src="${company.logo}" alt="">
                 <div>
-                    <div style="text-align: center; padding-bottom: 20px"><span class="fw500 fs20">${name}</span></div>
+                    <div style="text-align: center; padding-bottom: 20px"><span class="fw500 fs20">${company.name}</span></div>
                     <div style="padding-bottom: 10px"><i class="fas fa-map-marker-alt"></i><span>&nbsp;${company.address}</span>
                     </div>
                     <div style="padding-top: 20px"><i class="fas fa-users"></i><span>&nbsp;${company.employee}+</span></div>
@@ -1057,10 +1049,6 @@ view.showCompanyDetailEmployer = async function () {
 
         </div>`
         view.appendHtml(companydetail, companyDetail)
-        break;
-      }
-    }
-  }
 }
 view.disable = function (id) {
   document.getElementById(id).setAttribute('disabled', true)
