@@ -414,6 +414,7 @@ view.showComponents = async function (name) {
     case 'employerScreen': {
       let app = document.getElementById('app')
       app.innerHTML = component.navNoTransf + component.detailEmployer
+      view.showCompanyDetailEmployer()
     }
   }
 }
@@ -936,17 +937,20 @@ function allPassed(validateResult) {
   }
   return true
 }
-view.showCompanyDetailEmployer = function () {
-
+view.showCompanyDetailEmployer = async function () {
+  let currentUser = await firebase.auth().currentUser
   let companydetail = document.getElementById("detail")
   if (model.companys) {
     companys = model.companys
     for (let company of companys) {
 
       let nameId = company.name.replace(' ', '')
-      if (model.companyId == nameId) {
+      console.log(nameId)
+      console.log(currentUser.email)
+      console.log(company.emailCompany)
+      if (company.emailCompany == currentUser.email) {
         let name = company.name
-
+        console.log(name)
         let companyDetail = ` 
         <div style="margin-right: 10px" class="logo-cty col-sm-3">
             <div>
