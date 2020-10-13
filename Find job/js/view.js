@@ -947,7 +947,7 @@ view.showCompanyDetailEmployer = async function () {
   let currentUser = firebase.auth().currentUser
   let user = await firebase.firestore().collection('company').where("emailCompany", "==", currentUser.email).get()
   let u = transformDocs(user.docs)
-  console.log(u[0].name)
+  console.log(u[0].id)
         let companyDetail = ` 
         <div style="margin-right: 10px" class="logo-cty col-sm-3">
             <div>
@@ -1002,11 +1002,11 @@ view.showCompanyDetailEmployer = async function () {
             <form id="editCompanyDetail" method="post">
               <div class="form-group">
                 <label class="col-xs-3 form-control-label" for="companyLogo">Company Logo</label>
-                <input type="file" class="form-control" id="companyLogo" name="Logo">
+                <input type="file" class="form-control" id="companyLogo" name="logoCompany">
               </div>
               <div class="form-group">
                 <label class="col-xs-3 form-control-label" for="companyImg">IMG description</label>
-                <input type="file" class="form-control" id="companyImg" name="descriptionImg">
+                <input type="file" class="form-control" id="companyImg" name="bgCompany">
               </div>
               <div class="form-group">
                 <label class="col-xs-3 form-control-label" for="companyName">Company Name</label>
@@ -1052,7 +1052,7 @@ view.showCompanyDetailEmployer = async function () {
       
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" onclick=submitEditCompanyForm('${this.idCompany}') id="submitProfileForm" class="btn btn-primary">Save changes</button>
+        <button type="button" onclick=submitEditCompanyForm('${u[0].id}') id="submitProfileForm" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
@@ -1067,22 +1067,6 @@ view.disable = function (id) {
 }
 view.enable = function (id) {
   document.getElementById(id).removeAttribute('disabled')
-}
-//IMG
-async function upload(file) {
-  let fileName = Date.now() + file.name
-  let filePath = `logo/${fileName}`
-  let fileRef = firebase.storage().ref().child(filePath)
-  await fileRef.put(file)
-  let link = getFlileUrl(fileRef)
-  return link
-}
-function getFlileUrl(fileRef) {
-  return `https://firebasestorage.googleapis.com/v0/b/${fileRef.bucket}/o/${encodeURIComponent(fileRef.fullPath)}?alt=media`
-}
-function imglink(imgLogo, imgBG) {
-  img.linkLogo = imgLogo;
-  img.linkBG = imgBG;
 }
 function submitEditCompanyForm(id) {
   let companyId = id

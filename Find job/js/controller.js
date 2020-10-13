@@ -535,22 +535,63 @@ controller.collectionJobChange = function () {
 controller.updateCompanyDetail = async function (id, form) {
   let db = firebase.firestore();
   let formEdit = form
+  let img = {};
+  try {
+    let logofiles = form.logoCompany.files
+    let logofile = logofiles[0]
+    let bgfiles = form.bgCompany.files
+    let bgfile = bgfiles[0]
+    if (!logofile) {
+      throw new Error('Choose your Logo image!')
+    }
+    if (!bgfile) {
+      throw new Error('Choose your IMG description image!')
+    }
+    let linklogo = await upload(logofile)
+    let linkbg = await upload(bgfile)
+    imglink(linklogo, linkbg)
+
+
+  } catch (error) {
+    alert(error.message)
+  }
+
   db.collection("company").doc(id).update({
-    logo: formEdit.companyLogo.value,
-    img: formEdit.companyImg.value,
+    bg: img.linkLogo,
+    img: img.linkBG,
     name: formEdit.companyName.value,
     address: formEdit.companyAddress.value,
     employee: formEdit.companyEmployee.value,
     title: formEdit.companyTitle.value,
     description: formEdit.companyDesc.value
-  })
-    .then(function () {
-      console.log("Company detail successfully updated!");
-    })
-    .catch(function (error) {
-      // The document probably doesn't exist.
-      console.error("Company detail update error: ", error);
-    });
+  }).then(function () {
+    console.log("Company detail successfully updated!");
+  }).catch(function (error) {
+    // The document probably doesn't exist.
+    console.error("Company detail update error: ", error);
+  });
+    //IMG
+    async function upload(file) {
+      let fileName = Date.now() + file.name
+      let filePath = `logo/${fileName}`
+      let fileRef = firebase.storage().ref().child(filePath)
+      await fileRef.put(file)
+      let link = getFlileUrl(fileRef)
+      return link
+    }
+    function getFlileUrl(fileRef) {
+      return `https://firebasestorage.googleapis.com/v0/b/${fileRef.bucket}/o/${encodeURIComponent(fileRef.fullPath)}?alt=media`
+    }
+    function imglink(imgLogo, imgBG) {
+      img.linkLogo = imgLogo;
+      img.linkBG = imgBG;
+    }
+    function submitEditCompanyForm(id) {
+      let companyId = id
+      let formEdit = document.getElementById('editCompanyDetail')
+      console.log(formEdit)
+      controller.updateCompanyDetail(companyId, formEdit)
+    }
 }
 controller.inputSearch = async function (search) {
   let a = search.text.toLowerCase()
