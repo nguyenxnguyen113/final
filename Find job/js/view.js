@@ -999,40 +999,47 @@ view.showCompanyDetailEmployer = async function () {
           <div class="edit-profile">
 
             <form id="editCompanyDetail" method="post">
-
+              <div class="form-group">
+                <label class="col-xs-3 form-control-label" for="companyLogo">Company Logo</label>
+                <input type="file" class="form-control" id="companyLogo" name="Logo">
+              </div>
+              <div class="form-group">
+                <label class="col-xs-3 form-control-label" for="companyImg">IMG description</label>
+                <input type="file" class="form-control" id="companyImg" name="descriptionImg">
+              </div>
               <div class="form-group">
                 <label class="col-xs-3 form-control-label" for="companyName">Company Name</label>
                 <div class="col-xs-9">
                   <input type="text" class="form-control" id="companyName" name="companyName"
-                    placeholder="${u[0].name}">
+                    placeholder="${u[0].name}" value="${u[0].name}">
                 </div>
               </div>
 
               <div class="form-group">
                 <label class="col-xs-3 form-control-label" for="companyAddress">Address</label>
                 <div class="col-xs-9">
-                  <input type="text" class="form-control" name="companyAddress" placeholder="${u[0].address}">
+                  <input type="text" class="form-control" name="companyAddress" placeholder="${u[0].address}" value="${u[0].address}">
                 </div>
               </div>
                             
               <div class="form-group">
               <label class="col-xs-3 form-control-label" for="companyEmployee">Employee</label>
               <div class="col-xs-9">
-              <input type="text" class="form-control" name="companyEmployee" placeholder="${u[0].employee}">
+              <input type="text" class="form-control" name="companyEmployee" placeholder="${u[0].employee}" value="${u[0].employee}">
               </div>
               </div>
 
               <div class="form-group">
               <label class="col-xs-3 form-control-label" for="companyTitle">Title</label>
               <div class="col-xs-9">
-              <input type="text" class="form-control" name="companyTitle" placeholder="${u[0].title}">
+              <input type="text" class="form-control" name="companyTitle" placeholder="${u[0].title}" value="${u[0].title}">
               </div>
               </div>
 
               <div class="form-group">
               <label class="col-xs-3 form-control-label" for="companyDesc">Description</label>
               <div class="col-xs-9">
-              <input type="text" class="form-control" name="companyDesc" placeholder="${u[0].description}">
+              <input type="text" class="form-control" name="companyDesc" placeholder="${u[0].description}" value="${u[0].description}">
               </div>
               </div>
 
