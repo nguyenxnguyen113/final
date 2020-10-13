@@ -532,6 +532,26 @@ controller.collectionJobChange = function () {
       }
     })
 }
+controller.updateCompanyDetail = async function (id, form) {
+  let db = firebase.firestore();
+  let formEdit = form
+  db.collection("company").doc(id).update({
+    logo: formEdit.companyLogo.value,
+    img: formEdit.companyImg.value,
+    name: formEdit.companyName.value,
+    address: formEdit.companyAddress.value,
+    employee: formEdit.companyEmployee.value,
+    title: formEdit.companyTitle.value,
+    description: formEdit.companyDesc.value
+  })
+    .then(function () {
+      console.log("Company detail successfully updated!");
+    })
+    .catch(function (error) {
+      // The document probably doesn't exist.
+      console.error("Company detail update error: ", error);
+    });
+}
 controller.inputSearch = async function (search) {
   let a = search.text.toLowerCase()
   let b = search.address.toLowerCase()

@@ -418,6 +418,7 @@ view.showComponents = async function (name) {
       document.getElementById('link-home').addEventListener('click', () => {
         view.showComponents(employerScreen)
       })
+      
       break;
     }
   }
@@ -1066,4 +1067,26 @@ view.disable = function (id) {
 }
 view.enable = function (id) {
   document.getElementById(id).removeAttribute('disabled')
+}
+//IMG
+async function upload(file) {
+  let fileName = Date.now() + file.name
+  let filePath = `logo/${fileName}`
+  let fileRef = firebase.storage().ref().child(filePath)
+  await fileRef.put(file)
+  let link = getFlileUrl(fileRef)
+  return link
+}
+function getFlileUrl(fileRef) {
+  return `https://firebasestorage.googleapis.com/v0/b/${fileRef.bucket}/o/${encodeURIComponent(fileRef.fullPath)}?alt=media`
+}
+function imglink(imgLogo, imgBG) {
+  img.linkLogo = imgLogo;
+  img.linkBG = imgBG;
+}
+function submitEditCompanyForm(id) {
+  let companyId = id
+  let formEdit = document.getElementById('editCompanyDetail')
+  console.log(formEdit)
+  controller.updateCompanyDetail(companyId, formEdit)
 }
