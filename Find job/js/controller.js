@@ -557,8 +557,8 @@ controller.updateCompanyDetail = async function (id, form) {
   }
 
   db.collection("company").doc(id).update({
-    bg: img.linkLogo,
-    img: img.linkBG,
+    bg: img.linkBG,
+    logo: img.linkLogo,
     name: formEdit.companyName.value,
     address: formEdit.companyAddress.value,
     employee: formEdit.companyEmployee.value,
