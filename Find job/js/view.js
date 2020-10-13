@@ -950,7 +950,7 @@ view.showCompanyDetailEmployer = async function () {
         let companyDetail = ` 
         <div style="margin-right: 10px" class="logo-cty col-sm-3">
             <div>
-                <img style="max-width: 100%" src="${u.logo}" alt="">
+                <img style="max-width: 100%" src="${u[0].logo}" alt="">
                 <div>
                     <div style="text-align: center; padding-bottom: 20px"><span class="fw500 fs20">${u[0].name}</span></div>
                     <div style="padding-bottom: 10px"><i class="fas fa-map-marker-alt"></i><span>&nbsp;${u[0].address}</span>
@@ -963,7 +963,7 @@ view.showCompanyDetailEmployer = async function () {
         <div class="row">
         <div class="col-md-10">
             <div class="img-jd">
-                <img style="max-width: 100%; border: 5px solid #C4C4C4;" src="${u.bg}" alt="">
+                <img style="max-width: 100%; border: 5px solid #C4C4C4;" src="${u[0].bg}" alt="">
             </div>
             <div class="pt0">
 

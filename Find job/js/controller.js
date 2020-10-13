@@ -229,7 +229,6 @@ controller.updateProfile = async function (profileForm) {
     skills: skills,
     // tu tay luu, neu khong se mat thong tin
     email: email,
-
   }, { merge: true })
     .then(function (docRef) {
       console.log("Document written")
