@@ -729,18 +729,18 @@ controller.uploadLogo = async function (file) {
 }
 
 let updateLogo = async function (link) {
+  let currentUser = firebase.auth().currentUser
   let user = await firebase.firestore().collection('company').where("emailCompany", "==", currentUser.email).get()
   let u = transformDocs(user.docs)
-  let userAvatar = document.getElementById('user-avatar-img')
-  userAvatar.style.background = `url('${link}') center center no-repeat`
-  userAvatar.style.backgroundSize = 'cover'
+  let userLogo = document.getElementById('logo-test')
+  userLogo.src = `${link}`
 
   db.collection("company").doc(u[0].id).set({
     logo: link
   }, { merge: true })
     .then(function () {
       console.log("Document written")
-      alert("Avatar updated.")
+      alert("logo updated.")
     })
     .catch(function (error) {
       console.error("Error adding document: ", error)

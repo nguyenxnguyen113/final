@@ -967,7 +967,7 @@ view.showCompanyDetailEmployer = async function () {
         let companyDetail = ` 
         <div style="margin-right: 10px" class="logo-cty col-sm-3">
             <div>
-                <img id="logo" style="max-width: 100%" src="${u[0].logo}" alt="">
+                <img id="logo-test" style="max-width: 100%" src="${u[0].logo}" alt="">
                 <form id = "logo-form-upload"> 
                     <input name="fileChooserLogo" type="file" class="file file-loading " 
                     data-allowed-file-extensions='["png", "jpg"]'> 
