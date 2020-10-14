@@ -435,6 +435,22 @@ view.showComponents = async function (name) {
           alert(err.message)
         }
       }
+      let BgUploadForm = document.getElementById('bg-form-upload')
+      console.log(BgUploadForm)
+      BgUploadForm.onsubmit = async function (e) {
+        e.preventDefault()
+        try {
+          let files = BgUploadForm.fileChooserBg.files
+          let file = files[0]
+          if (!file) {
+            throw new Error('Choose a file!')
+          }
+          // upload to firebase + update 
+          await controller.uploadBg(file)
+        } catch (err) {
+          alert(err.message)
+        }
+      }
       break;
     }
   }
@@ -674,12 +690,13 @@ function userSavedHandler(id) {
 
   controller.saveJob(id, email)
 }
-view.showJobDetail = function () {
+view.showJobDetail = async function () {
   let jobdetail = document.getElementById("clear")
   let test = {
     verified: false
   }
-  let currentUser = firebase.auth().currentUser
+   let currentUser = await firebase.auth().currentUser
+   console.log(currentUser.email)
   if(!currentUser) {
      test.emailVerified 
   } else {
@@ -696,7 +713,7 @@ view.showJobDetail = function () {
             companys = model.companys
             for (let company of companys) {
               if (company.name === job.nameCompany) {
-
+                console.log(job.id)
                 let jobDetail = `
           <div class="about-company">
           <div class="pt30">
@@ -777,7 +794,7 @@ view.showJobDetail = function () {
                                       <p>Upload your CV</p>
                                   </div>
                                   <div class="modal-body btn-modal-apply">
-                                      <button>UPLOAD</button>
+                                      <button onclick="${await controller.appliedJob(job.id, currentUser.email)}">APPLY</button>
                                   </div>
                               </div>
                               </div>
@@ -985,7 +1002,11 @@ view.showCompanyDetailEmployer = async function () {
         <div class="row">
         <div class="col-md-10">
             <div class="img-jd">
-                <img style="max-width: 100%; border: 5px solid #C4C4C4;" src="${u[0].bg}" alt="">
+                <img id="bg-test" style="max-width: 100%; border: 5px solid #C4C4C4;" src="${u[0].bg}" alt="">
+                <form id = "bg-form-upload"> 
+                  <input name="fileChooserBg" type="file" class="file file-loading" data-allowed-file-extensions='["png", "jpg"]'> 
+                  <button class="btn-submit-profile">Submit</button> 
+                </form> 
             </div>
             <div class="pt0">
 
@@ -1021,14 +1042,6 @@ view.showCompanyDetailEmployer = async function () {
           <div class="edit-profile">
 
             <form id="editCompanyDetail" method="post">
-              <div class="form-group">
-                <label class="col-xs-3 form-control-label" for="companyLogo">Company Logo</label>
-                <input type="file" class="form-control" id="companyLogo" name="logoCompany">
-              </div>
-              <div class="form-group">
-                <label class="col-xs-3 form-control-label" for="companyImg">IMG description</label>
-                <input type="file" class="form-control" id="companyImg" name="bgCompany">
-              </div>
               <div class="form-group">
                 <label class="col-xs-3 form-control-label" for="companyName">Company Name</label>
                 <div class="col-xs-9">

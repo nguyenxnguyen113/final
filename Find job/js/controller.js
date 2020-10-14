@@ -509,6 +509,15 @@ controller.saveJob = async function (id, email) {
       userSaved: firebase.firestore.FieldValue.arrayUnion(email)
     })
 }
+controller.appliedJob = async function (id, email) {
+  await firebase
+  .firestore()
+  .collection('job')
+  .doc(id)
+  .update({
+    userApplied: firebase.firestore.FieldValue.arrayUnion(email)
+  })
+}
 controller.collectionJobChange = function () {
   let isFirstRun = true
 
@@ -532,27 +541,9 @@ controller.collectionJobChange = function () {
       }
     })
 }
-controller.updateCompanyDetail = async function (id, form) {
+controller.updateCompanyDetail = async function (id) {
   let db = firebase.firestore();
-  let formEdit = form
-  let img = {};
-  try {
-    let logofiles = form.logoCompany.files
-    let logofile = logofiles[0]
-    let bgfiles = form.bgCompany.files
-    let bgfile = bgfiles[0]
-    let linklogo = await upload(logofile)
-    let linkbg = await upload(bgfile)
-    imglink(linklogo, linkbg)
-
-
-  } catch (error) {
-    alert(error.message)
-  }
-
   db.collection("company").doc(id).update({
-    bg: img.linkBG,
-    logo: img.linkLogo,
     name: formEdit.companyName.value,
     address: formEdit.companyAddress.value,
     employee: formEdit.companyEmployee.value,
@@ -564,28 +555,6 @@ controller.updateCompanyDetail = async function (id, form) {
     // The document probably doesn't exist.
     console.error("Company detail update error: ", error);
   });
-    //IMG
-    async function upload(file) {
-      let fileName = Date.now() + file.name
-      let filePath = `logo/${fileName}`
-      let fileRef = firebase.storage().ref().child(filePath)
-      await fileRef.put(file)
-      let link = getFlileUrl(fileRef)
-      return link
-    }
-    function getFlileUrl(fileRef) {
-      return `https://firebasestorage.googleapis.com/v0/b/${fileRef.bucket}/o/${encodeURIComponent(fileRef.fullPath)}?alt=media`
-    }
-    function imglink(imgLogo, imgBG) {
-      img.linkLogo = imgLogo;
-      img.linkBG = imgBG;
-    }
-    function submitEditCompanyForm(id) {
-      let companyId = id
-      let formEdit = document.getElementById('editCompanyDetail')
-      console.log(formEdit)
-      controller.updateCompanyDetail(companyId, formEdit)
-    }
 }
 controller.inputSearch = async function (search) {
   let a = search.text.toLowerCase()
@@ -741,6 +710,36 @@ let updateLogo = async function (link) {
     .then(function () {
       console.log("Document written")
       alert("logo updated.")
+    })
+    .catch(function (error) {
+      console.error("Error adding document: ", error)
+    });
+}
+
+controller.uploadBg = async function (file) {
+  let fileName = file.name
+  let filePath = `logo/${fileName}`
+  let fileRef = firebase.storage().ref().child(filePath)
+  await fileRef.put(file)
+  let fileLink = getAvatarUrl(fileRef)
+  updateBg(fileLink)
+  console.log('bg Link: ' + fileLink)
+  return fileLink
+}
+
+let updateBg = async function (link) {
+  let currentUser = firebase.auth().currentUser
+  let user = await firebase.firestore().collection('company').where("emailCompany", "==", currentUser.email).get()
+  let u = transformDocs(user.docs)
+  let userBg = document.getElementById('bg-test')
+  userBg.src = `${link}`
+
+  db.collection("company").doc(u[0].id).set({
+    bg: link
+  }, { merge: true })
+    .then(function () {
+      console.log("Document written")
+      alert("bg updated.")
     })
     .catch(function (error) {
       console.error("Error adding document: ", error)
