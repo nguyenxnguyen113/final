@@ -281,6 +281,7 @@ view.showComponents = async function (name) {
 
       // handle avatar 
       let avatarUploadForm = document.getElementById('avatar-form-upload')
+      console.log(avatarUploadForm)
       avatarUploadForm.onsubmit = async function (e) {
         e.preventDefault()
         try {
@@ -414,15 +415,16 @@ view.showComponents = async function (name) {
     case 'employerScreen': {
       let app = document.getElementById('app')
       app.innerHTML = component.detailEmployer
-      view.showCompanyDetailEmployer()
+      await view.showCompanyDetailEmployer()
       document.getElementById('link-home').addEventListener('click', () => {
         view.showComponents(employerScreen)
       })
-      let avatarUploadForm = document.getElementById('uploadLogo')
-      avatarUploadForm.onsubmit = async function (e) {
+      let LogoUploadForm = document.getElementById('logo-form-upload')
+      console.log(LogoUploadForm)
+      LogoUploadForm.onsubmit = async function (e) {
         e.preventDefault()
         try {
-          let files = avatarUploadForm.bgCompany.files
+          let files = LogoUploadForm.fileChooserLogo.files
           let file = files[0]
           if (!file) {
             throw new Error('Choose a file!')
@@ -965,11 +967,12 @@ view.showCompanyDetailEmployer = async function () {
         let companyDetail = ` 
         <div style="margin-right: 10px" class="logo-cty col-sm-3">
             <div>
-                <img style="max-width: 100%" src="${u[0].logo}" alt="">
-                <form id="uploadLogo">
-                  <input type="file" id="companyImg" name="bgCompany" value="changes avt">
-                  <button type="button" types="submit" class="btn btn-primary">Save changes</button>
-                </form>
+                <img id="logo" style="max-width: 100%" src="${u[0].logo}" alt="">
+                <form id = "logo-form-upload"> 
+                    <input name="fileChooserLogo" type="file" class="file file-loading " 
+                    data-allowed-file-extensions='["png", "jpg"]'> 
+                    <button class="btn-submit-profile">Submit logo</button> 
+                </form> 
                 <div>
                     <div style="text-align: center; padding-bottom: 20px"><span class="fw500 fs20">${u[0].name}</span></div>
                     <div style="padding-bottom: 10px"><i class="fas fa-map-marker-alt"></i><span>&nbsp;${u[0].address}</span>
