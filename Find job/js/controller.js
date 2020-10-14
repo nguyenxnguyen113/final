@@ -541,12 +541,6 @@ controller.updateCompanyDetail = async function (id, form) {
     let logofile = logofiles[0]
     let bgfiles = form.bgCompany.files
     let bgfile = bgfiles[0]
-    if (!logofile) {
-      throw new Error('Choose your Logo image!')
-    }
-    if (!bgfile) {
-      throw new Error('Choose your IMG description image!')
-    }
     let linklogo = await upload(logofile)
     let linkbg = await upload(bgfile)
     imglink(linklogo, linkbg)
@@ -721,4 +715,34 @@ function add() {
     document.getElementById("age").value = "";
     document.getElementById("country").value = "";
   }
+}
+
+controller.uploadLogo = async function (file) {
+  let fileName = file.name
+  let filePath = `logo/${fileName}`
+  let fileRef = firebase.storage().ref().child(filePath)
+  await fileRef.put(file)
+  let fileLink = getAvatarUrl(fileRef)
+  updateAvatar(fileLink)
+  console.log('Avatar Link: ' + fileLink)
+  return fileLink
+}
+
+let updateAvatar = async function (link) {
+  let user = await firebase.firestore().collection('company').where("emailCompany", "==", currentUser.email).get()
+  let u = transformDocs(user.docs)
+  let userAvatar = document.getElementById('user-avatar-img')
+  userAvatar.style.background = `url('${link}') center center no-repeat`
+  userAvatar.style.backgroundSize = 'cover'
+
+  db.collection("company").doc(u[0].id).set({
+    logo: link
+  }, { merge: true })
+    .then(function () {
+      console.log("Document written")
+      alert("Avatar updated.")
+    })
+    .catch(function (error) {
+      console.error("Error adding document: ", error)
+    });
 }

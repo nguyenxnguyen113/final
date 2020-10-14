@@ -418,7 +418,21 @@ view.showComponents = async function (name) {
       document.getElementById('link-home').addEventListener('click', () => {
         view.showComponents(employerScreen)
       })
-      
+      let avatarUploadForm = document.getElementById('uploadLogo')
+      avatarUploadForm.onsubmit = async function (e) {
+        e.preventDefault()
+        try {
+          let files = avatarUploadForm.bgCompany.files
+          let file = files[0]
+          if (!file) {
+            throw new Error('Choose a file!')
+          }
+          // upload to firebase + update 
+          await controller.uploadLogo(file)
+        } catch (err) {
+          alert(err.message)
+        }
+      }
       break;
     }
   }
@@ -952,6 +966,10 @@ view.showCompanyDetailEmployer = async function () {
         <div style="margin-right: 10px" class="logo-cty col-sm-3">
             <div>
                 <img style="max-width: 100%" src="${u[0].logo}" alt="">
+                <form id="uploadLogo">
+                  <input type="file" id="companyImg" name="bgCompany" value="changes avt">
+                  <button type="button" types="submit" class="btn btn-primary">Save changes</button>
+                </form>
                 <div>
                     <div style="text-align: center; padding-bottom: 20px"><span class="fw500 fs20">${u[0].name}</span></div>
                     <div style="padding-bottom: 10px"><i class="fas fa-map-marker-alt"></i><span>&nbsp;${u[0].address}</span>
