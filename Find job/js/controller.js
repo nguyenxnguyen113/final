@@ -745,3 +745,10 @@ let updateBg = async function (link) {
       console.error("Error adding document: ", error)
     });
 }
+controller.getTest = async () => {
+  return await db.collection("job")
+  .orderBy("money")
+  .limit(3).get();
+
+
+}
