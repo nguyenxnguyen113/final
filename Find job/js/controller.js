@@ -747,8 +747,8 @@ let updateBg = async function (link) {
 }
 controller.getTest = async function ()  {
   let test = await firebase.firestore().collection("job").orderBy("money").limit(2).get()
-  return transformDocs(test.docs[1])
+  let test2 = transformDocs(test.docs)
 
-  // let next = await firebase.firestore().collection("job").orderBy("money").startAfter(test2).limit(1).get();
-  // return transformDocs(next.docs)
+  let next = await firebase.firestore().collection("job").orderBy("money").startAfter(test2).limit(2).get();
+  return transformDocs(next.docs)
 }
