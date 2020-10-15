@@ -693,14 +693,16 @@ function userSavedHandler(id) {
 view.showJobDetail = async function () {
   let jobdetail = document.getElementById("clear")
   let test = {
-    verified: false
+    verified: false,
+    email: null
   }
-   let currentUser = await firebase.auth().currentUser
-   console.log(currentUser.email)
+  let currentUser = await firebase.auth().currentUser
+
   if(!currentUser) {
      test.emailVerified 
   } else {
     test.verified = currentUser.emailVerified
+    test.email = currentUser.email
   }
   if (model.jobs) {
     jobs = model.jobs
@@ -794,7 +796,7 @@ view.showJobDetail = async function () {
                                       <p>Upload your CV</p>
                                   </div>
                                   <div class="modal-body btn-modal-apply">
-                                      <button onclick="${await controller.appliedJob(job.id, currentUser.email)}">APPLY</button>
+                                      <button onclick="${test.verified ? await controller.appliedJob(job.id, test.email) : alert('You havent login') }">APPLY</button>
                                   </div>
                               </div>
                               </div>
