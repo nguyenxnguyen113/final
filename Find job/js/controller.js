@@ -745,10 +745,10 @@ let updateBg = async function (link) {
       console.error("Error adding document: ", error)
     });
 }
-controller.getTest = async function ()  {
-  let test = await firebase.firestore().collection("job").orderBy("money").limit(2).get()
-  let test2 = transformDocs(test.docs)
+// controller.getTest = async function ()  {
+//   let test = await firebase.firestore().collection("job").orderBy("money").limit(2).get()
+//   let test2 = transformDocs(test.docs)
 
-  let next = await firebase.firestore().collection("job").orderBy("money").startAfter(test2).limit(2).get();
-  return transformDocs(next.docs)
-}
+//   let next = await firebase.firestore().collection("job").orderBy("money").startAt(10).limit(2).get();
+//   return transformDocs(next.docs)
+// }
