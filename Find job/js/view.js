@@ -388,6 +388,7 @@ view.showComponents = async function (name) {
       app.innerHTML = component.loginCompany
       let form = document.getElementById('login-employer')
       form.onsubmit = formSubmit
+      
       function formSubmit(event) {
         event.preventDefault()
         let logInInfo = {
@@ -410,6 +411,7 @@ view.showComponents = async function (name) {
           controller.loginEmployer(logInInfo)
         }
       }
+      view.nextLink()
       break;
     }
     case 'employerScreen': {
@@ -930,12 +932,10 @@ view.ShowNav = function () {
   }
 }
 view.nextLink = function () {
-
   if (view.currentScreen == 'home' || view.currentScreen == 'alljob') {
     let bgChange = document.getElementById(`${view.currentScreen}`)
     bgChange.style.color = "#2F76CA"
   }
-
   let link = document.getElementById("next-login")
   link.onclick = loginLinkClick
   function loginLinkClick() {
@@ -949,7 +949,6 @@ view.nextLink = function () {
   home.onclick = function () {
     view.showComponents("home")
   }
-
 }
 view.clearHtml = function (id) {
   document.getElementById(id).innerHTML = ""
