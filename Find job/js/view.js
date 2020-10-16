@@ -41,7 +41,6 @@ view.showComponents = async function (name) {
         controller.inputSearch(search)
       }
       view.nextLink()
-      
 
       jobSkill()
       view.showCompany()
@@ -388,7 +387,7 @@ view.showComponents = async function (name) {
       app.innerHTML = component.loginCompany
       let form = document.getElementById('login-employer')
       form.onsubmit = formSubmit
-      
+      view.nextLink()
       function formSubmit(event) {
         event.preventDefault()
         let logInInfo = {
@@ -411,13 +410,13 @@ view.showComponents = async function (name) {
           controller.loginEmployer(logInInfo)
         }
       }
-      view.nextLink()
       break;
     }
     case 'employerScreen': {
       let app = document.getElementById('app')
       app.innerHTML = component.detailEmployer
       await view.showCompanyDetailEmployer()
+      view.nextLink()
       document.getElementById('link-home').addEventListener('click', () => {
         view.showComponents(employerScreen)
       })
@@ -437,6 +436,7 @@ view.showComponents = async function (name) {
           alert(err.message)
         }
       }
+      view.nextLink()
       let BgUploadForm = document.getElementById('bg-form-upload')
       console.log(BgUploadForm)
       BgUploadForm.onsubmit = async function (e) {
@@ -876,7 +876,7 @@ view.showLastLocation = function (rollbackScreenName) {
 }
 view.getLastLocation = function () {
   let hash = window.location.hash
-  let screenNames = ['register', 'login', 'home', 'companyDetail', 'alljob', 'profile','registCompany']
+  let screenNames = ['register', 'login', 'home', 'companyDetail', 'alljob', 'profile','registCompany','loginCompany','employerScreen']
   if (hash && hash.length && hash.startsWith('#')) {
     let lastLocation = hash.substring(1)
     if (screenNames.includes(lastLocation)) {
