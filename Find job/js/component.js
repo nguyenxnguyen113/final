@@ -677,6 +677,9 @@ component.allJobOfCompany=`
         </div>
     </div>
 </div>`
+component.detailJobEmployer = `
+
+`
 component.loading = `
 <section>
   Loading...
