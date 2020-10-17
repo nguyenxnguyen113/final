@@ -414,11 +414,13 @@ view.showComponents = async function (name) {
     }
     case 'employerScreen': {
       let app = document.getElementById('app')
-      app.innerHTML = component.detailEmployer
+      app.innerHTML = component.headerEmployer + component.detailEmployer
       await view.showCompanyDetailEmployer()
-      view.nextLink()
-      document.getElementById('link-home').addEventListener('click', () => {
+      document.getElementById('link-home-employer').addEventListener('click', () => {
         view.showComponents(employerScreen)
+      })
+      document.getElementById('sign-in-regist-company').addEventListener('click',() =>{
+        view.showComponents('loginCompany')
       })
       let LogoUploadForm = document.getElementById('logo-form-upload')
       console.log(LogoUploadForm)
@@ -439,7 +441,6 @@ view.showComponents = async function (name) {
       }
       view.nextLink()
       let BgUploadForm = document.getElementById('bg-form-upload')
-      console.log(BgUploadForm)
       BgUploadForm.onsubmit = async function (e) {
         e.preventDefault()
         try {
@@ -454,6 +455,11 @@ view.showComponents = async function (name) {
           alert(err.message)
         }
       }
+      break;
+    }
+    case 'allJobOfCompany' : {
+      let app = document.getElementById('app')
+      app.innerHTML = component.headerEmployer + component.allJobOfCompany
       break;
     }
   }

@@ -572,15 +572,15 @@ component.employer = `
 
 </nav>
 `
-component.detailEmployer = ` 
+component.headerEmployer = `
 <nav id="nav-b" class="navbar navbar-expand-sm fixed-top">
 <a id="logo" href="#" ><img src="imgs/img/logotrang.png" alt=""></a>
 <ul id="1" class="navbar-nav justify-content-end">
     <li class="nav-item">
-        <a class="nav-link" id="link-home">HOME</a>
+        <a class="nav-link" id="link-home-employer">HOME</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" id="all-job">ALL JOB</a>
+        <a class="nav-link" id="all-job-employer">ALL JOB</a>
     </li>
     <li class="nav-item">
         <a class="nav-link "  id="link-job">POST JOB</a>
@@ -594,6 +594,9 @@ component.detailEmployer = `
     </div>
 </ul>
 </nav>
+`
+component.detailEmployer = ` 
+
 <div id="clear" class="container" >
 <div class="about-company">
 <div class="pt30">
@@ -615,6 +618,65 @@ component.detailEmployer = `
 </div>
 </div>
 </div> `
+component.allJobOfCompany=`
+<div class="  text-job container ">
+<h2> Nhà Tuyển Dụng </h2>
+</div>
+<div class="filter container">
+    <div style="display: flex; justify-content: center; padding-top: 46px" class="row">
+        <div style="padding: 0px" class="filter-main col-sm-3">
+        <div style="max-width: 100%; padding: 15px 35px 10px 50px ; border-bottom: 2px solid #013B80">
+        <span style="font-size: 25px">Filter</span>
+    </div>
+
+    <div style="padding: 15px 35px 10px 50px">
+        <div id="option-checkbox" style="border-bottom: 1px solid #cccccc; padding: 10px ">
+            <div style="padding-bottom: 10px">
+                <span style="font-size: 20px">City</span>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input id="all" type="checkbox" class="form-check-input">All
+                </label>
+            </div>
+            
+        </div>
+        <div style=" padding: 10px ">
+            <div style="padding-bottom: 10px">
+                <span style="font-size: 20px">Salary</span>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input id="all1" type="checkbox" class="form-check-input">All
+                </label>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="checkbox" name="checkbox1" class="form-check-input" value="duoi1000"><1000$
+                </label>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="checkbox" name="checkbox1" class="form-check-input" value="tu1000den2000">1000$-2000$
+                </label>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="checkbox" name="checkbox1" class="form-check-input" value="tren2000">>2000$
+                </label>
+            </div>
+        </div>
+
+        </div>    
+          <div style="display: flex; justify-content: center; padding: 60px">
+            <button onclick="controller.checkbox()" class="filter-btn">Search</button>
+          </div>
+        </div>
+        <div id="job" style="padding: 0px" class="filter-result col-sm-8">
+            
+        </div>
+    </div>
+</div>`
 component.loading = `
 <section>
   Loading...
