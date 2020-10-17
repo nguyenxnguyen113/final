@@ -749,6 +749,11 @@ let updateBg = async function (link) {
 //   let test = await firebase.firestore().collection("job").orderBy("money").limit(2).get()
 //   let test2 = transformDocs(test.docs)
 
-//   let next = await firebase.firestore().collection("job").orderBy("money").startAt(10).limit(2).get();
+//   let next = await firebase.firestore().collection("job").orderBy("money").startAt(test2[1].money).limit(2).get();
 //   return transformDocs(next.docs)
 // }
+
+controller.getNameCompanyCurrent = () => {
+  let currentUser = firebase.auth().currentUser
+  
+}

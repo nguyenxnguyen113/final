@@ -22,7 +22,7 @@ view.showComponents = async function (name) {
       let app = document.getElementById('app')
       app.innerHTML = component.navTransf + component.header + component.home
       let registCompany = document.getElementById('link-employer')
-      // console.log( await controller.getTest())
+      // console.log(await controller.getTest())
       registCompany.onclick = rC
       function rC() {
         view.showComponents('registCompany')
