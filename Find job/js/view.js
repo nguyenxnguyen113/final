@@ -417,10 +417,10 @@ view.showComponents = async function (name) {
       app.innerHTML = component.headerEmployer + component.detailEmployer
       await view.showCompanyDetailEmployer()
       document.getElementById('link-home-employer').addEventListener('click', () => {
-        view.showComponents(employerScreen)
+        view.showComponents('employerScreen')
       })
-      document.getElementById('sign-in-regist-company').addEventListener('click',() =>{
-        view.showComponents('loginCompany')
+      document.getElementById('all-job-employer').addEventListener('click',() =>{
+        view.showComponents('allJobOfCompany')
       })
       let LogoUploadForm = document.getElementById('logo-form-upload')
       console.log(LogoUploadForm)
@@ -460,6 +460,10 @@ view.showComponents = async function (name) {
     case 'allJobOfCompany' : {
       let app = document.getElementById('app')
       app.innerHTML = component.headerEmployer + component.allJobOfCompany
+      document.getElementById('link-home-employer').addEventListener('click', () => {
+        view.showComponents('employerScreen')
+      })
+      view.showjobEmployer(model.jobsCompany)
       break;
     }
   }
@@ -883,7 +887,7 @@ view.showLastLocation = function (rollbackScreenName) {
 }
 view.getLastLocation = function () {
   let hash = window.location.hash
-  let screenNames = ['register', 'login', 'home', 'companyDetail', 'alljob', 'profile','registCompany','loginCompany','employerScreen']
+  let screenNames = ['register', 'login', 'home', 'companyDetail', 'alljob', 'profile','registCompany','loginCompany','employerScreen','allJobOfCompany']
   if (hash && hash.length && hash.startsWith('#')) {
     let lastLocation = hash.substring(1)
     if (screenNames.includes(lastLocation)) {
@@ -1103,6 +1107,58 @@ view.showCompanyDetailEmployer = async function () {
 
         </div>`
         view.appendHtml(companydetail, companyDetail)
+}
+view.showjobEmployer = function (seclecjob) {
+  let listJob = document.getElementById("job")
+  let jobs = seclecjob
+
+  for (let job of jobs) {
+    if (model.companys) {
+      companys = model.companys
+      for (let company of companys) {
+        if (company.name == job.nameCompany) {
+
+          let jobCompany = `
+            <div style="padding: 15px" class="row">
+            <div class="col-sm-3">
+                <div style="width: 100px; height: 100px;">
+                    <img style="max-width: 100%; max-height: 100%" src="${company.logo}" alt="">
+                </div>
+            </div>
+            <div class="col-sm-9">
+                <div>
+                <a onclick=linkCompanyDetail('${job.id}') >
+                <span class="fw500 fs25">${job.title}
+                </span>
+                </a>
+                </div>
+                <div>
+                    <span style="color: #a50b0b"><i class="fas fa-search-dollar"></i> upto ${job.money}$</span>
+                </div>
+                <div>
+                    <span>${job.description.substr(0, 200)}...</span>
+                </div>
+                <div>
+                    <span style="color: #013B80;" class="fs20"><i class="fas fa-map-marker-alt"></i> ${job.address}
+                        </span>
+                </div>
+                <div class="footer-card">
+                    <div>
+                        <span class="fs18 skill">${job.skill}</span>
+                    </div>
+                    <div class="">
+                    <button onclick= deleteJob('${job.id}') style="padding: 0 30px 0 30px; border-radius: 5px" class="fs18 save">Delete</button>
+                    <button style="padding: 0 30px 0 30px; border-radius: 5px; background-color: blue;" class="fs18 save">Edit</button>
+                    </div>
+                </div>
+            </div>
+        </div>`
+
+          view.appendHtml(listJob, jobCompany)
+        }
+      }
+    }
+  }
 }
 view.disable = function (id) {
   document.getElementById(id).setAttribute('disabled', true)

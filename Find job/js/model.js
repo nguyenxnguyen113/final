@@ -4,7 +4,8 @@ const model = {
   companyId: null,
   jobs: null,
   currentJobs: null,
-  currentUser: null
+  currentUser: null,
+  jobsCompany:null
 }
 model.currentUser=undefined
 
@@ -22,5 +23,8 @@ model.saveId = function (companyId) {
 model.saveCurrentJobs = function (currentJobs) {
   model.currentJobs = currentJobs
 }
- 
+model.saveJobsCompany = function (currentJobs) {
+  model.jobsCompany = currentJobs
+}
+
 
