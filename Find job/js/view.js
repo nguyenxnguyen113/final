@@ -463,7 +463,7 @@ view.showComponents = async function (name) {
       document.getElementById('link-home-employer').addEventListener('click', () => {
         view.showComponents('employerScreen')
       })
-      view.showjobEmployer(model.jobsCompany)
+      controller.getNameCompanyCurrent()
       break;
     }
   }
