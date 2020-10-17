@@ -422,6 +422,7 @@ view.showComponents = async function (name) {
       })
       let LogoUploadForm = document.getElementById('logo-form-upload')
       console.log(LogoUploadForm)
+      console.log(await controller.getNameCompanyCurrent())
       LogoUploadForm.onsubmit = async function (e) {
         e.preventDefault()
         try {

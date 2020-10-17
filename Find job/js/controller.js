@@ -753,7 +753,11 @@ let updateBg = async function (link) {
 //   return transformDocs(next.docs)
 // }
 
-controller.getNameCompanyCurrent = () => {
+controller.getNameCompanyCurrent = async () => {
   let currentUser = firebase.auth().currentUser
-  
+  let company = await firebase.firestore().collection('company').where("emailCompany", "==", currentUser.email).get()
+  let companyData = transformDocs(company.docs)
+  // console.log(companyData[0].name)
+  let jobOfCompany = await firebase.firestore().collection('job').where("nameCompany", "==", companyData[0].name).get()
+  return transformDocs(jobOfCompany.docs)
 }
