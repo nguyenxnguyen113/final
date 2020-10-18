@@ -469,7 +469,7 @@ view.showComponents = async function (name) {
     case 'companyEmployerdetail': {
       let app = document.getElementById('app')
       app.innerHTML = component.headerEmployer + component.companyEmployerdetail
-      
+      view.showJobDetailEmployer()
       break;
     }
   }
@@ -1118,6 +1118,109 @@ function linkCompanyEmployerDetail(id) {
   model.saveId(id)
   localStorage.setItem('companyId', model.companyId);
   view.showComponents("companyEmployerdetail")
+}
+view.showJobDetailEmployer = async function () {
+  let jobdetail = document.getElementById("clear")
+  let test = {
+    verified: false,
+    email: null
+  }
+  let currentUser = await firebase.auth().currentUser
+
+  if(!currentUser) {
+     test.emailVerified 
+  } else {
+    test.verified = currentUser.emailVerified
+    test.email = currentUser.email
+  }
+  if (model.jobs) {
+    jobs = model.jobs
+    for (let job of jobs) {
+      if (model.companyId) {
+        companyId = model.companyId
+        if (companyId === job.id) {
+          view.clearHtml("clear")
+          if (model.companys) {
+            companys = model.companys
+            for (let company of companys) {
+              if (company.name === job.nameCompany) {
+                console.log(job.id)
+                let jobDetail = `
+          <div class="about-company">
+          <div class="pt30">
+              <span class="fw500 fs25">JOB DETAIL</span>
+          </div>
+          <div class="detail row">
+              <div style="margin-right: 10px" class="logo-cty col-sm-3">
+                  <div>
+                      <img style="max-width: 100%" src="${company.logo}" alt="">
+                      <div>
+                          <div style="text-align: center; padding-bottom: 20px"><span class="fw500 fs20"> ${job.nameCompany}</span></div>
+                          <div style="padding-bottom: 10px"><i class="fas fa-map-marker-alt"></i><span>&nbsp;${job.address}</span>
+                          </div>
+                          <div style="padding-top: 20px"><i class="fas fa-users"></i><span>&nbsp;1000+</span></div>
+                      </div>
+                  </div>
+              </div>
+              <div class="about col-sm-8">
+                 <div class="row">
+                     <div class="col-md-8">
+                      <p style="font-weight: 500;font-size: 23px;">${job.title}</p>
+                     </div>
+                     <div class="col-md-4">
+                      <button class="btn-sj">Edit Job</button>
+                     </div>
+                 </div>
+                 <div class="pl20">
+                      <div>
+                          <span style="color: #a50b0b" id="salary" class="fs20"><i class="fas fa-search-dollar fs20"></i> ${test.verified ? job.money + "$" : "Sign in to view"}</span>
+                      </div>
+                      <div>
+                          <span style="color: #013B80;" class="fs20"><i class="fas fa-map-marker-alt fs20"></i> ${job.address} </span>
+                      </div>
+                  </div>
+                  <div class="pl20 mt20">
+                      <span class="fs18 skill">${job.skill}</span>
+                  </div>
+                  <div class="pt20">
+                      <div class="pl20">
+                          <p style="font-weight: 500;font-size: 23px;">The job</p>
+                          <p>
+                          ${job.description}
+                          </p>
+                      </div>
+                      <div class="pl20">
+                          <p style="font-weight: 500;font-size: 23px;">Your Skills and Experience</p>
+                          <p>
+                          ${job.SandE}
+                          </p>
+                      </div>
+                      <div class="pl20">
+                          <p style="font-weight: 500;font-size: 23px;">Why You'll Love Working Here</p>
+                          <p>
+                          ${job.why}
+                          </p>
+                      </div>
+                      <div class="pl20">
+                      <p style="font-weight: 500;font-size: 23px;">Send at Your CV</p>
+                      <p>
+                      ${company.emailCompany}
+                      </p>
+                  </div>
+                  </div>
+               </div>
+
+              </div>
+          </div>`
+                view.appendHtml(jobdetail, jobDetail)
+                break;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
 view.showjobEmployer = function (seclecjob) {
   let listJob = document.getElementById("job")
