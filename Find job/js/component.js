@@ -698,6 +698,7 @@ component.companyEmployerdetail = `
 </div>
 </div>
 </div>
+
 </div> `
 component.detailJobEmployer = `
 
