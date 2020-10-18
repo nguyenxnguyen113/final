@@ -466,6 +466,12 @@ view.showComponents = async function (name) {
       controller.getNameCompanyCurrent()
       break;
     }
+    case 'companyEmployerdetail': {
+      let app = document.getElementById('app')
+      app.innerHTML = component.headerEmployer + component.companyEmployerdetail
+      
+      break;
+    }
   }
 }
 view.showCompany = function () {
@@ -1108,6 +1114,11 @@ view.showCompanyDetailEmployer = async function () {
         </div>`
         view.appendHtml(companydetail, companyDetail)
 }
+function linkCompanyEmployerDetail(id) {
+  model.saveId(id)
+  localStorage.setItem('companyId', model.companyId);
+  view.showComponents("companyEmployerdetail")
+}
 view.showjobEmployer = function (seclecjob) {
   let listJob = document.getElementById("job")
   let jobs = seclecjob
@@ -1117,7 +1128,7 @@ view.showjobEmployer = function (seclecjob) {
       companys = model.companys
       for (let company of companys) {
         if (company.name == job.nameCompany) {
-
+          console.log(job.id)
           let jobCompany = `
             <div style="padding: 15px" class="row">
             <div class="col-sm-3">
@@ -1127,7 +1138,7 @@ view.showjobEmployer = function (seclecjob) {
             </div>
             <div class="col-sm-9">
                 <div>
-                <a onclick=linkCompanyDetail('${job.id}') >
+                <a onclick=linkCompanyEmployerDetail('${job.id}') >
                 <span class="fw500 fs25">${job.title}
                 </span>
                 </a>

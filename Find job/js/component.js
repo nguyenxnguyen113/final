@@ -677,6 +677,28 @@ component.allJobOfCompany=`
         </div>
     </div>
 </div>`
+component.companyEmployerdetail = ` 
+<div class="container" id="clear">
+<div class="about-company">
+<div class="pt30">
+    <span class="fw500 fs25">ABOUT COMPANY</span>
+</div>
+<div id="companyDetail"class="detail row">
+   
+</div>
+</div>
+<div class="jobs">
+<div>
+    <span class="fw500 fs25">JOBS</span>
+</div>
+<div>
+    <div id="listJob" class="job row">
+        
+      
+</div>
+</div>
+</div>
+</div> `
 component.detailJobEmployer = `
 
 `
