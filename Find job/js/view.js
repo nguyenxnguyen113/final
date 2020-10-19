@@ -689,7 +689,6 @@ view.showJobLong = function (seclecjob) {
                 </div>
             </div>
             `
-            
         view.appendHtml(showAlljob, alljob)
       }
     }
@@ -698,7 +697,6 @@ view.showJobLong = function (seclecjob) {
 function userSavedHandler(id) {
   view.disable('btn-save')
   let email = firebase.auth().currentUser.email
-
   let jobs = model.currentJobs
   for (let job of jobs) {
     if (id == job.id) {
@@ -706,7 +704,6 @@ function userSavedHandler(id) {
       arr.push(email)
     }
   }
-
   controller.saveJob(id, email)
 }
 view.showJobDetail = async function () {
