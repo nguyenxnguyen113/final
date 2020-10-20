@@ -469,7 +469,8 @@ view.showComponents = async function (name) {
     case 'companyEmployerdetail': {
       let app = document.getElementById('app')
       app.innerHTML = component.headerEmployer + component.companyEmployerdetail
-      controller.collectionJobChange()
+     
+      view.showJobDetailEmployer()
       break;
     }
   }
