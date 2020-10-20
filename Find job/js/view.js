@@ -424,7 +424,7 @@ view.showComponents = async function (name) {
       })
       let LogoUploadForm = document.getElementById('logo-form-upload')
       console.log(LogoUploadForm)
-      console.log(await controller.getNameCompanyCurrent())
+      await controller.getNameCompanyCurrent()
       LogoUploadForm.onsubmit = async function (e) {
         e.preventDefault()
         try {
@@ -469,7 +469,7 @@ view.showComponents = async function (name) {
     case 'companyEmployerdetail': {
       let app = document.getElementById('app')
       app.innerHTML = component.headerEmployer + component.companyEmployerdetail
-      view.showJobDetailEmployer()
+      controller.collectionJobChange()
       break;
     }
   }
@@ -1118,25 +1118,13 @@ function linkCompanyEmployerDetail(id) {
 }
 view.showJobDetailEmployer = async function () {
   let jobdetail = document.getElementById("clear")
-  let test = {
-    verified: false,
-    email: null
-  }
-  let currentUser = await firebase.auth().currentUser
 
-  if(!currentUser) {
-     test.emailVerified 
-  } else {
-    test.verified = currentUser.emailVerified
-    test.email = currentUser.email
-  }
   if (model.jobs) {
     jobs = model.jobs
     for (let job of jobs) {
       if (model.companyId) {
         companyId = model.companyId
         if (companyId === job.id) {
-          view.clearHtml("clear")
           if (model.companys) {
             companys = model.companys
             for (let company of companys) {
@@ -1170,7 +1158,7 @@ view.showJobDetailEmployer = async function () {
                  </div>
                  <div class="pl20">
                       <div>
-                          <span style="color: #a50b0b" id="salary" class="fs20"><i class="fas fa-search-dollar fs20"></i> ${test.verified ? job.money + "$" : "Sign in to view"}</span>
+                          <span style="color: #a50b0b" id="salary" class="fs20"><i class="fas fa-search-dollar fs20"></i> ${job.money}</span>
                       </div>
                       <div>
                           <span style="color: #013B80;" class="fs20"><i class="fas fa-map-marker-alt fs20"></i> ${job.address} </span>

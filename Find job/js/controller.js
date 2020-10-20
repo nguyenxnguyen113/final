@@ -520,7 +520,6 @@ controller.appliedJob = async function (id, email) {
 }
 controller.collectionJobChange = function () {
   let isFirstRun = true
-
   firebase
     .firestore()
     .collection('job')
@@ -759,5 +758,5 @@ controller.getNameCompanyCurrent = async () => {
   let companyData = transformDocs(company.docs)
   let jobOfCompany = await firebase.firestore().collection('job').where("nameCompany", "==", companyData[0].name).get()
   // model.saveJobsCompany(transformDocs(jobOfCompany.docs))
-  view.showjobEmployer(transformDocs(jobOfCompany.docs))
+  await view.showjobEmployer(transformDocs(jobOfCompany.docs))
 }
