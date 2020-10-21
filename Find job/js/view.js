@@ -469,7 +469,6 @@ view.showComponents = async function (name) {
     case 'companyEmployerdetail': {
       let app = document.getElementById('app')
       app.innerHTML = component.headerEmployer + component.companyEmployerdetail
-      console.log('fuck')
       view.showJobDetailEmployer()
       break;
     }
@@ -1119,12 +1118,25 @@ function linkCompanyEmployerDetail(id) {
 }
 view.showJobDetailEmployer = async function () {
   let jobdetail = document.getElementById("clear")
+  let test = {
+    verified: false,
+    email: null
+  }
+  let currentUser = await firebase.auth().currentUser
+
+  if(!currentUser) {
+     test.emailVerified 
+  } else {
+    test.verified = currentUser.emailVerified
+    test.email = currentUser.email
+  }
   if (model.jobs) {
     jobs = model.jobs
     for (let job of jobs) {
       if (model.companyId) {
         companyId = model.companyId
         if (companyId === job.id) {
+          view.clearHtml("clear")
           if (model.companys) {
             companys = model.companys
             for (let company of companys) {
@@ -1153,12 +1165,12 @@ view.showJobDetailEmployer = async function () {
                       <p style="font-weight: 500;font-size: 23px;">${job.title}</p>
                      </div>
                      <div class="col-md-4">
-                      <button class="btn-sj">Edit Job</button>
+                      <button class="btn-sj">Save Job</button>
                      </div>
                  </div>
                  <div class="pl20">
                       <div>
-                          <span style="color: #a50b0b" id="salary" class="fs20"><i class="fas fa-search-dollar fs20"></i> ${job.money}</span>
+                          <span style="color: #a50b0b" id="salary" class="fs20"><i class="fas fa-search-dollar fs20"></i> ${test.verified ? job.money + "$" : "Sign in to view"}</span>
                       </div>
                       <div>
                           <span style="color: #013B80;" class="fs20"><i class="fas fa-map-marker-alt fs20"></i> ${job.address} </span>
@@ -1192,12 +1204,34 @@ view.showJobDetailEmployer = async function () {
                       ${company.emailCompany}
                       </p>
                   </div>
+                      <!-- Button trigger modal -->
+                          <div class="btn-apply">
+                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">APPLY NOW</button>
+                          </div>
+                          <!-- Modal -->
+                          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLabel">Apply now</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                  </button>
+                                  </div>
+                                  <div class="title-up">
+                                      <p>Upload your CV</p>
+                                  </div>
+                                  <div class="modal-body btn-modal-apply">
+                                      <button onclick="${test.verified ? await controller.appliedJob(job.id, test.email) : alert('You havent login') }">APPLY</button>
+                                  </div>
+                              </div>
+                              </div>
+                          </div>
                   </div>
                </div>
 
               </div>
-          </div>
-          `
+          </div>`
                 view.appendHtml(jobdetail, jobDetail)
                 break;
               }
