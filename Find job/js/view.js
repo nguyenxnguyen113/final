@@ -466,12 +466,17 @@ view.showComponents = async function (name) {
       controller.getNameCompanyCurrent()
       break;
     }
-    case 'companyEmployerdetail': {
-      let app = document.getElementById('app')
-      let currentUser = firebase.auth().currentUser
-      app.innerHTML = component.headerEmployer + component.companyEmployerdetail
-      view.showJobDetailEmployer()
 
+    case 'companyEmployerdetail': {
+      view.pastScreen = 'companyEmployerdetail'
+      let currentUser = firebase.auth().currentUser
+      let app = document.getElementById('app')
+      app.innerHTML = component.headerEmployer + component.companydetail
+      
+      console.log(model.companyId)
+      view.showJobDetailEmployer()
+      // view.showJob()
+      // view.showJobDetail()
       break;
     }
   }
