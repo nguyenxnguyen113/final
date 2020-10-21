@@ -469,7 +469,7 @@ view.showComponents = async function (name) {
     case 'companyEmployerdetail': {
       let app = document.getElementById('app')
       app.innerHTML = component.headerEmployer + component.companyEmployerdetail
-     
+      console.log('fuck')
       view.showJobDetailEmployer()
       break;
     }
