@@ -16,9 +16,7 @@ model.saveJob = function (jobs) {
   model.jobs = jobs
 }
 model.saveId = function (companyId) {
-  model.companyId = companyId
-  
-  
+  model.companyId = companyId 
 }
 model.saveCurrentJobs = function (currentJobs) {
   model.currentJobs = currentJobs

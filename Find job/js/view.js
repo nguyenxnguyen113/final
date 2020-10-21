@@ -1119,7 +1119,6 @@ function linkCompanyEmployerDetail(id) {
 }
 view.showJobDetailEmployer = async function () {
   let jobdetail = document.getElementById("clear")
-
   if (model.jobs) {
     jobs = model.jobs
     for (let job of jobs) {
