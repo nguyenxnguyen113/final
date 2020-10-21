@@ -464,19 +464,22 @@ view.showComponents = async function (name) {
         view.showComponents('employerScreen')
       })
       controller.getNameCompanyCurrent()
+    
       break;
     }
 
     case 'companyEmployerdetail': {
-      view.pastScreen = 'companyEmployerdetail'
-      let currentUser = firebase.auth().currentUser
+      // view.pastScreen = 'companyEmployerdetail'
+      // let currentUser = firebase.auth().currentUser
       let app = document.getElementById('app')
-      app.innerHTML = component.headerEmployer + component.companydetail
+      app.innerHTML = component.headerEmployer + component.companyEmployerdetail
       
-      console.log(model.companyId)
-      view.showJobDetailEmployer()
+      console.log('abc')
+      console.log(localStorage.getItem("companyId"))
+      console.log(await view.showJobDetailEmployer(localStorage.getItem("companyId")))
       // view.showJob()
       // view.showJobDetail()
+      
       break;
     }
   }
@@ -1123,7 +1126,7 @@ function linkCompanyEmployerDetail(id) {
   localStorage.setItem('companyId', model.companyId);
   view.showComponents("companyEmployerdetail")
 }
-view.showJobDetailEmployer = async function () {
+view.showJobDetailEmployer = async function (companyId) {
   let jobdetail = document.getElementById("clear")
   let test = {
     verified: false,
