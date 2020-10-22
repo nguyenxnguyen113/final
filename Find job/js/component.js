@@ -679,6 +679,10 @@ component.allJobOfCompany=`
 </div>`
 component.companyEmployerdetail = ` 
 <div class="container" id="clear">
+ <div id="commentsDetail"class="detail row" >     
+  <div class="about" style="min-height: auto; margin-bottom: 25px; width: 1030px;"> 
+  </div>
+ </div>
 </div>
 `
 component.detailJobEmployer = `

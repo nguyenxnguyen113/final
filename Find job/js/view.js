@@ -1126,6 +1126,7 @@ function linkCompanyEmployerDetail(id) {
 view.showJobDetailEmployer = async function () {
   model.companyId = localStorage.getItem("companyId")
   let jobdetail = document.getElementById("clear")
+  let listCv = document.querySelector(".about")
   let test = {
     verified: false,
     email: null
