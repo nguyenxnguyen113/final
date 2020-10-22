@@ -1144,11 +1144,11 @@ view.showJobDetailEmployer = async function () {
       if (model.companyId) {
         companyId = model.companyId
         if (companyId === job.id) {
-          view.clearHtml("clear")
           if (model.companys) {
             companys = model.companys
             for (let company of companys) {
               if (company.name === job.nameCompany) {
+                console.log(job.userApplied)
                 console.log(job.id)
                 let jobDetail = `
           <div class="about-company">
@@ -1218,7 +1218,9 @@ view.showJobDetailEmployer = async function () {
                </div>
 
               </div>
-          </div>`
+          </div>
+
+          `
                 view.appendHtml(jobdetail, jobDetail)
                 break;
               }

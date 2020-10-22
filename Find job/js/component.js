@@ -680,8 +680,7 @@ component.allJobOfCompany=`
 component.companyEmployerdetail = ` 
 <div class="container" id="clear">
 </div>
-
-</div> `
+`
 component.detailJobEmployer = `
 
 `
