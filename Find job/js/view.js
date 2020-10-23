@@ -494,6 +494,12 @@ view.showComponents = async function(name) {
                 let app = document.getElementById('app')
                 app.innerHTML = component.headerEmployer + component.companyEmployerdetail
                 await view.showJobDetailEmployer()
+                document.getElementById('link-home-employer').addEventListener('click', () => {
+                    view.showComponents('employerScreen')
+                })
+                document.getElementById('all-job-employer').addEventListener('click', () => {
+                    view.showComponents('allJobOfCompany')
+                })
                 // view.showJob()
                 // view.showJobDetail()
 
