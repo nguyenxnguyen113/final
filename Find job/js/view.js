@@ -1175,10 +1175,7 @@ view.showJobDetailEmployer = async function() {
                         companys = model.companys
                         for (let company of companys) {
                             if (company.name === job.nameCompany) {
-                                console.log(job.userApplied[0])
-                                let test = await controller.getCv(job.userApplied[0])
-                                console.log(test[0])
-                                console.log(job.id)
+
                                 let jobDetail = `
           <div class="about-company">
           <div class="pt30">
@@ -1251,7 +1248,42 @@ view.showJobDetailEmployer = async function() {
 
           `
                                 view.appendHtml(jobdetail, jobDetail)
+
                                 break;
+                            }
+                            console.log(job.userApplied[0])
+
+                            console.log(test[0])
+                            console.log(job.id)
+                            for (let i = 0; i < job.userApplied.length; i++) {
+                                let test = await controller.getCv(job.userApplied[i])
+                                let cv = `
+                                <div class="img-jd inforCandidate" style="display: flex; ">
+                                <img style="width: 60px; height: 60px; border: 5px solid #dbdbf0; border-radius: 20%;" src="imgs/img/imshiba3.jpg" alt="">
+                                <div style="padding: 1px; margin-left: 10px;">
+                                    <div style="display:flex;" class="nameCandidate">
+                                        <h3 style="font-size: 18px; font-weight: bold; margin:3px 0px;">Name:</h3>
+                                        <p style="margin:3px 0px; font-size: 16; padding: 0px 5px;">${test.displayName}</p>
+                                    </div>
+                                    <div style="display:flex;" class="emailCandidate">
+                                        <h3 style="font-size: 18px;font-weight: bold;margin:3px 0px;">Email:</h3>
+                                        <p style="margin:3px 0px; font-size: 16; padding: 0px 5px;">hieuduc2029@gmail.com</p>
+                                    </div>
+                                    <div style="display:flex;" class="cvCandidate">
+                                        <h3 style="font-size: 18px;font-weight: bold;margin:3px 0px;">CV:</h3>
+                                        <p style="margin:3px 0px; font-size: 16; padding: 0px 5px;">Cv1Cv1Cv1Cv1Cv1s.pdf</p>
+                                        <div style=" padding-top: 3px;">
+                                            <a href="#" style="margin: 2px;"><i class="fas fa-eye"></i></a>
+                                            <a href="#" style="margin: 2px;"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                            <button type="button" class="btn btn-primary">Send message</button>
+            
+                                        </div>
+                                    </div>
+                                    <a href="#">View profile</a>
+                                </div>
+                            </div>
+                                `
+                                view.appendHtml(listCv, cv)
                             }
                         }
                     }
