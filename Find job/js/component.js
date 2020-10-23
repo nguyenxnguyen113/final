@@ -516,7 +516,7 @@ component.registCompany = `
 </div>
 </form>
 `
-component.loginCompany =`
+component.loginCompany = `
 <nav id="nav-b" class="navbar navbar-expand-sm fixed-top">
 <a id="logo" href="index.html" ><img src="imgs/img/logotrang.png" alt=""></a>
 
@@ -618,7 +618,7 @@ component.detailEmployer = `
 </div>
 </div>
 </div> `
-component.allJobOfCompany=`
+component.allJobOfCompany = `
 <div class="  text-job container ">
 <h2> Nhà Tuyển Dụng </h2>
 </div>
@@ -679,10 +679,7 @@ component.allJobOfCompany=`
 </div>`
 component.companyEmployerdetail = ` 
 <div class="container" id="clear">
- <div id="commentsDetail"class="detail row" >     
-  <div class="about" style="min-height: auto; margin-bottom: 25px; width: 1030px;"> 
-  </div>
- </div>
+
 </div>
 `
 component.detailJobEmployer = `
