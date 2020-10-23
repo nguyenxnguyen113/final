@@ -760,3 +760,8 @@ controller.getNameCompanyCurrent = async () => {
   // model.saveJobsCompany(transformDocs(jobOfCompany.docs))
   await view.showjobEmployer(transformDocs(jobOfCompany.docs))
 }
+
+controller.getCv = async (userApplied) => {
+  let getUser = await firebase.firestore().collection('users').where("email", "==", userApplied).get()
+  return transformDocs(getUser.docs)
+}
