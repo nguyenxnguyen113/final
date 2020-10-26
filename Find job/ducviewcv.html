@@ -26,11 +26,11 @@
     <script src="https://code.jquery.com/jquery-latest.js"></script>
 
     <link rel="stylesheet" href="css/main.css">
+    <!--Css for message box-->
+    <link rel="stylesheet" href="ducviewcv.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap" rel="stylesheet">
     <style>
-        .checked {
-            color: orange;
-        }
+
     </style>
 
 </head>
@@ -59,160 +59,259 @@
                     </div>
                 </div>
             </div>
+
         </ul>
     </nav>
 
 
     <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fas fa-angle-double-up "></i></button>
     <div class="container" id="clear">
-        <div class="about-company">
-            <div class="pt30">
-                <span class="fw500 fs25">JOB DETAIL</span>
-            </div>
-            <div class="detail row">
-                <div style="margin-right: 10px" class="logo-cty col-sm-3">
-                    <div>
-                        <img style="max-width: 100%" src="${company.logo}" alt="">
-                        <div>
-                            <div style="text-align: center; padding-bottom: 20px"><span class="fw500 fs20"> ${job.nameCompany}</span></div>
-                            <div style="padding-bottom: 10px"><i class="fas fa-map-marker-alt"></i><span>&nbsp;${job.address}</span>
+        <!--Chat Box area-->
+        <div class="chatBoxArea" id="myChatBox">
+            <div class="chatBoxShow">
+                <!--Chat Box Header-->
+                <div class="chatBoxShowHead">
+                    <div class="showHeadLeft"><img src="imgs/img/imshiba3.jpg" alt="shiba" style="width: 60px; height: 60px; border: 5px solid #dbdbf0; border-radius: 20%;"> Dang Hieu Duc</div>
+                    <div class="showHeadRight">
+                        <button type="button" class="btn btnCancel" onclick="closeForm()"><i class="fas fa-power-off"></i></button>
+                    </div>
+                </div>
+                <!--Chat Box Messages-->
+                <div class="showMessages">
+                    <div class="showMessagesDirect">
+                        <div class="messageTime">
+                            <abbr class="timeStamp">October 8th, 2015</abbr>
+                        </div>
+                        <div class="messagesList">
+                            <div class="messagesListInfor">
+                                <span class="inforName senderName">Duc</span>
                             </div>
-                            <div style="padding-top: 20px"><i class="fas fa-users"></i><span>&nbsp;1000+</span></div>
+                            <img src="imgs/img/imshiba3.jpg" alt="shiba" class="messagesImage fullLeft">
+                            <div class="messagesText">
+                                Hey bro, how’s everything going ?
+                            </div>
+                            <span class="messagesTimeStamp senderTimeLeft">3.36 PM</span>
+                        </div>
+                        <div class="messagesList">
+                            <div class="messagesListInfor">
+                                <span class="inforName receiverName">You</span>
+                            </div>
+                            <img src="imgs/img/imshiba3.jpg" alt="shiba" class="messagesImage fullRight">
+                            <div class="messagesText receiverText">
+                                Hey bro, how’s everything going ? Hey bro, how’s everything going ? Hey bro, how’s everything going ? Hey bro, how’s everything going ?
+                            </div>
+                            <span class="messagesTimeStamp receiverTimeRight">3.36 PM</span>
+                        </div>
+                        <div class="messagesList">
+                            <div class="messagesListInfor">
+                                <span class="inforName senderName">Duc</span>
+                            </div>
+                            <img src="imgs/img/imshiba3.jpg" alt="shiba" class="messagesImage fullLeft">
+                            <div class="messagesText">
+                                Hey bro, how’s everything going ?
+                            </div>
+                            <span class="messagesTimeStamp senderTimeLeft">3.36 PM</span>
+                        </div>
+                        <div class="messagesList">
+                            <div class="messagesListInfor">
+                                <span class="inforName receiverName">You</span>
+                            </div>
+                            <img src="imgs/img/imshiba3.jpg" alt="shiba" class="messagesImage fullRight">
+                            <div class="messagesText receiverText">
+                                Hey bro, how’s everything going ?
+                            </div>
+                            <span class="messagesTimeStamp receiverTimeRight">3.36 PM</span>
+                        </div>
+                        <div class="messagesList">
+                            <div class="messagesListInfor">
+                                <span class="inforName receiverName">You</span>
+                            </div>
+                            <img src="imgs/img/imshiba3.jpg" alt="shiba" class="messagesImage fullRight">
+                            <div class="messagesText receiverText">
+                                Hey bro, how’s everything going ?
+                            </div>
+                            <span class="messagesTimeStamp receiverTimeRight">3.36 PM</span>
+                        </div>
+
+                    </div>
+                </div>
+                <!--Chat Box Footer-->
+                <div class="chatBoxFooter">
+                    <form>
+                        <textarea id="status_message" placeholder="Type a message..." rows="10" cols="40" name="message"></textarea>
+                        <button class="btnItems"><i class="fa fa-paper-plane"></i></button>
+                    </form>
+                    <div class="btnFooter">
+                        <div class="btnFooterLeft">
+                            <button class="btnItems"><i class="fas fa-file"></i></button>
+                            <button class="btnItems"><i class="fas fa-image"></i></button>
+                            <button class="btnItems"><i class="fas fa-video"></i></button>
                         </div>
                     </div>
                 </div>
-                <div class="about col-sm-8">
-                    <div class="row">
-                        <div class="col-md-8">
-                            <p style="font-weight: 500;font-size: 23px;">${job.title}</p>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="about-company">
+        <div class="pt30">
+            <span class="fw500 fs25">JOB DETAIL</span>
+        </div>
+        <div class="detail row">
+            <div style="margin-right: 10px" class="logo-cty col-sm-3">
+                <div>
+                    <img style="max-width: 100%" src="${company.logo}" alt="">
+                    <div>
+                        <div style="text-align: center; padding-bottom: 20px"><span class="fw500 fs20"> ${job.nameCompany}</span></div>
+                        <div style="padding-bottom: 10px"><i class="fas fa-map-marker-alt"></i><span>&nbsp;${job.address}</span>
                         </div>
-                        <div class="col-md-4">
-                            <button class="btn-sj">Save Job</button>
-                        </div>
+                        <div style="padding-top: 20px"><i class="fas fa-users"></i><span>&nbsp;1000+</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="about col-sm-8">
+                <div class="row">
+                    <div class="col-md-8">
+                        <p style="font-weight: 500;font-size: 23px;">${job.title}</p>
+                    </div>
+                    <div class="col-md-4">
+                        <button class="btn-sj">Save Job</button>
+                    </div>
+                </div>
+                <div class="pl20">
+                    <div>
+                        <span style="color: #a50b0b" id="salary" class="fs20"><i class="fas fa-search-dollar fs20"></i> ${currentUser ? job.money + "$" : "Sign in to view"}</span>
+                    </div>
+                    <div>
+                        <span style="color: #013B80;" class="fs20"><i class="fas fa-map-marker-alt fs20"></i> ${job.address} </span>
+                    </div>
+                </div>
+                <div class="pl20 mt20">
+                    <span class="fs18 skill">${job.skill}</span>
+                </div>
+                <div class="pt20">
+                    <div class="pl20">
+                        <p style="font-weight: 500;font-size: 23px;">The job</p>
+                        <p>
+                            ${job.description}
+                        </p>
                     </div>
                     <div class="pl20">
-                        <div>
-                            <span style="color: #a50b0b" id="salary" class="fs20"><i class="fas fa-search-dollar fs20"></i> ${currentUser ? job.money + "$" : "Sign in to view"}</span>
-                        </div>
-                        <div>
-                            <span style="color: #013B80;" class="fs20"><i class="fas fa-map-marker-alt fs20"></i> ${job.address} </span>
-                        </div>
+                        <p style="font-weight: 500;font-size: 23px;">Your Skills and Experience</p>
+                        <p>
+                            ${job.SandE}
+                        </p>
                     </div>
-                    <div class="pl20 mt20">
-                        <span class="fs18 skill">${job.skill}</span>
+                    <div class="pl20">
+                        <p style="font-weight: 500;font-size: 23px;">Why You'll Love Working Here</p>
+                        <p>
+                            ${job.why}
+                        </p>
                     </div>
-                    <div class="pt20">
-                        <div class="pl20">
-                            <p style="font-weight: 500;font-size: 23px;">The job</p>
-                            <p>
-                                ${job.description}
-                            </p>
-                        </div>
-                        <div class="pl20">
-                            <p style="font-weight: 500;font-size: 23px;">Your Skills and Experience</p>
-                            <p>
-                                ${job.SandE}
-                            </p>
-                        </div>
-                        <div class="pl20">
-                            <p style="font-weight: 500;font-size: 23px;">Why You'll Love Working Here</p>
-                            <p>
-                                ${job.why}
-                            </p>
-                        </div>
-                        <div class="pl20">
-                            <p style="font-weight: 500;font-size: 23px;">Send at Your CV</p>
-                            <p>
-                                ${company.emailCompany}
-                            </p>
-                        </div>
-                        <!-- Button trigger modal -->
-                        <div class="btn-apply">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">APPLY NOW</button>
-                        </div>
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Apply now</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <div class="pl20">
+                        <p style="font-weight: 500;font-size: 23px;">Send at Your CV</p>
+                        <p>
+                            ${company.emailCompany}
+                        </p>
+                    </div>
+                    <!-- Button trigger modal -->
+                    <div class="btn-apply">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">APPLY NOW</button>
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Apply now</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
-                                    </div>
-                                    <div class="title-up">
-                                        <p>Upload your CV</p>
-                                    </div>
-                                    <div class="modal-body btn-modal-apply">
-                                        <button>UPLOAD</button>
-                                    </div>
+                                </div>
+                                <div class="title-up">
+                                    <p>Upload your CV</p>
+                                </div>
+                                <div class="modal-body btn-modal-apply">
+                                    <button>UPLOAD</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-            </div>
-        </div>
-        <div id="commentsDetail" class="detail row">
-            <div class="about" style="min-height: auto; margin-bottom: 25px; width: 1030px;">
-                <div class="img-jd inforCandidate" style="display: flex; ">
-                    <img style="width: 60px; height: 60px; border: 5px solid #dbdbf0; border-radius: 20%;" src="imgs/img/imshiba3.jpg" alt="">
-                    <div style="padding: 1px; margin-left: 10px;">
-                        <div style="display:flex;" class="nameCandidate">
-                            <h3 style="font-size: 18px; font-weight: bold; margin:3px 0px;">Name:</h3>
-                            <p style="margin:3px 0px; font-size: 16; padding: 0px 5px;">Dang Hieu Duc</p>
-                        </div>
-                        <div style="display:flex;" class="emailCandidate">
-                            <h3 style="font-size: 18px;font-weight: bold;margin:3px 0px;">Email:</h3>
-                            <p style="margin:3px 0px; font-size: 16; padding: 0px 5px;">hieuduc2029@gmail.com</p>
-                        </div>
-                        <div style="display:flex;" class="cvCandidate">
-                            <h3 style="font-size: 18px;font-weight: bold;margin:3px 0px;">CV:</h3>
-                            <p style="margin:3px 0px; font-size: 16; padding: 0px 5px;">Cv1Cv1Cv1Cv1Cv1s.pdf</p>
-                            <div style=" padding-top: 3px;">
-                                <a href="#" style="margin: 2px;"><i class="fas fa-eye"></i></a>
-                                <a href="#" style="margin: 2px;"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                <button type="button" class="btn btn-primary">Send message</button>
-
-                            </div>
-                        </div>
-                        <a href="#">View profile</a>
-                    </div>
-                </div>
-
-                <div class="img-jd inforCandidate" style="display: flex; ">
-                    <img style="width: 60px; height: 60px; border: 5px solid #dbdbf0; border-radius: 20%;" src="imgs/img/imshiba3.jpg" alt="">
-                    <div style="padding: 1px; margin-left: 10px;">
-                        <div style="display:flex;" class="nameCandidate">
-                            <h3 style="font-size: 18px; font-weight: bold; margin:3px 0px;">Name:</h3>
-                            <p style="margin:3px 0px; font-size: 16; padding: 0px 5px;">Dang Hieu Duc</p>
-                        </div>
-                        <div style="display:flex;" class="emailCandidate">
-                            <h3 style="font-size: 18px;font-weight: bold;margin:3px 0px;">Email:</h3>
-                            <p style="margin:3px 0px; font-size: 16; padding: 0px 5px;">hieuduc2029@gmail.com</p>
-                        </div>
-                        <div style="display:flex;" class="cvCandidate">
-                            <h3 style="font-size: 18px;font-weight: bold;margin:3px 0px;">CV:</h3>
-                            <p style="margin:3px 0px; font-size: 16; padding: 0px 5px;">Cv1Cv1Cv1Cv1Cv1s.pdf</p>
-                            <div style=" padding-top: 3px;">
-                                <a href="#" style="margin: 2px;"><i class="fas fa-eye"></i></a>
-                                <a href="#" style="margin: 2px;"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                <button type="button" class="btn btn-primary">Send message</button>
-
-                            </div>
-                        </div>
-                        <a href="#">View profile</a>
-                    </div>
-                </div>
-
-
-
             </div>
 
+        </div>
+    </div>
+    <div id="commentsDetail" class="detail row">
+        <div class="about" style="min-height: auto; margin-bottom: 25px; width: 1030px;">
+            <div class="img-jd inforCandidate" style="display: flex; ">
+                <img style="width: 60px; height: 60px; border: 5px solid #dbdbf0; border-radius: 20%;" src="imgs/img/imshiba3.jpg" alt="">
+                <div style="padding: 1px; margin-left: 10px;">
+                    <div style="display:flex;" class="nameCandidate">
+                        <h3 style="font-size: 18px; font-weight: bold; margin:3px 0px;">Name:</h3>
+                        <p style="margin:3px 0px; font-size: 16; padding: 0px 5px;">Dang Hieu Duc</p>
+                    </div>
+                    <div style="display:flex;" class="emailCandidate">
+                        <h3 style="font-size: 18px;font-weight: bold;margin:3px 0px;">Email:</h3>
+                        <p style="margin:3px 0px; font-size: 16; padding: 0px 5px;">hieuduc2029@gmail.com</p>
+                    </div>
+                    <div style="display:flex;" class="cvCandidate">
+                        <h3 style="font-size: 18px;font-weight: bold;margin:3px 0px;">CV:</h3>
+                        <p style="margin:3px 0px; font-size: 16; padding: 0px 5px;">Cv1Cv1Cv1Cv1Cv1s.pdf</p>
+                        <div style=" padding-top: 3px;">
+                            <a href="#" style="margin: 2px;"><i class="fas fa-eye"></i></a>
+                            <a href="#" style="margin: 2px;"><i class="fa fa-download" aria-hidden="true"></i></a>
+                            <button type="button" class="btn btn-primary" onclick="openForm()">Send message</button>
+
+                        </div>
+                    </div>
+                    <a href="#">View profile</a>
+
+
+
+
+
+                </div>
+            </div>
+
+            <div class="img-jd inforCandidate" style="display: flex; ">
+                <img style="width: 60px; height: 60px; border: 5px solid #dbdbf0; border-radius: 20%;" src="imgs/img/imshiba3.jpg" alt="">
+                <div style="padding: 1px; margin-left: 10px;">
+                    <div style="display:flex;" class="nameCandidate">
+                        <h3 style="font-size: 18px; font-weight: bold; margin:3px 0px;">Name:</h3>
+                        <p style="margin:3px 0px; font-size: 16; padding: 0px 5px;">Dang Hieu Duc</p>
+                    </div>
+                    <div style="display:flex;" class="emailCandidate">
+                        <h3 style="font-size: 18px;font-weight: bold;margin:3px 0px;">Email:</h3>
+                        <p style="margin:3px 0px; font-size: 16; padding: 0px 5px;">hieuduc2029@gmail.com</p>
+                    </div>
+                    <div style="display:flex;" class="cvCandidate">
+                        <h3 style="font-size: 18px;font-weight: bold;margin:3px 0px;">CV:</h3>
+                        <p style="margin:3px 0px; font-size: 16; padding: 0px 5px;">Cv1Cv1Cv1Cv1Cv1s.pdf</p>
+                        <div style=" padding-top: 3px;">
+                            <a href="#" style="margin: 2px;"><i class="fas fa-eye"></i></a>
+                            <a href="#" style="margin: 2px;"><i class="fa fa-download" aria-hidden="true"></i></a>
+                            <button type="button" class="btn btn-primary">Send message</button>
+
+                        </div>
+                    </div>
+                    <a href="#">View profile</a>
+
+
+
+
+
+                </div>
+            </div>
+
 
 
         </div>
+
+
+
+    </div>
 
     </div>
 
@@ -222,6 +321,15 @@
     <script src="js/view.js"></script>
     <script src="js/css.js"></script>
     <script src="js/model.js"></script>
+    <script>
+        function openForm() {
+            document.getElementById("myChatBox").style.display = "block";
+        }
+
+        function closeForm() {
+            document.getElementById("myChatBox").style.display = "none";
+        }
+    </script>
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v7.0"></script>
 </body>

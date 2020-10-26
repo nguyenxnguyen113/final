@@ -1,0 +1,185 @@
+.chatBoxArea {
+    display: flex;
+    width: auto;
+    height: auto;
+    position: fixed;
+    bottom: 28px;
+    right: 80px;
+    border-radius: 1px;
+    z-index: 1;
+}
+
+.chatBoxShow {
+    width: 500px;
+    height: 400px;
+    margin: 20px;
+}
+
+.chatBoxShowHead {
+    background-color: #fff;
+    clear: both;
+    color: #7b7b7b;
+    display: inline-table;
+    font-size: 21px;
+    padding: 7px 10px;
+    width: 100%;
+}
+
+.showHeadLeft {
+    float: left!important;
+}
+
+.showHeadRight .btn {
+    background: transparent none repeat scroll 0 0;
+    border: 1px solid #636364;
+    border-radius: 50%;
+    font-size: 14px;
+    height: 30px;
+    width: 30px;
+}
+
+.showHeadRight .btnCancel {
+    float: right !important;
+}
+
+.showHeadRight .fas {
+    position: relative;
+    right: 4px;
+    bottom: 2px;
+}
+
+.showMessages {
+    background-color: rgb(255, 255, 255);
+    height: 275px;
+    overflow: auto;
+    z-index: 1;
+}
+
+.showMessagesDirect {
+    height: auto;
+    overflow: auto;
+    padding: 10px;
+    transform: translate(0px, 0px);
+}
+
+.showMessagesDirect .messageTime {
+    border-bottom: 1px solid #000704;
+    height: 12px;
+    margin: 7px 0 20px;
+    text-align: center;
+}
+
+.showMessagesDirect .timeStamp {
+    background: #3f9684 none repeat scroll 0 0;
+    padding: 0 11px;
+}
+
+.messagesList {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.messagesList .messagesListInfor {
+    display: block;
+    font-size: 12px;
+    margin-bottom: 0;
+}
+
+.messagesListInfor .senderName {
+    left: 50px;
+}
+
+.messagesListInfor .receiverName {
+    left: 380px;
+}
+
+.messagesListInfor .inforName {
+    font-size: 15px;
+    font-weight: 600;
+    opacity: 0.9;
+    position: relative;
+}
+
+.messagesImage {
+    border: 1px solid #fff;
+    border-radius: 50%;
+    height: 40px;
+    margin: -21px 0 0;
+    width: 40px;
+}
+
+.fullLeft {
+    float: left;
+}
+
+.fullRight {
+    float: right;
+}
+
+.messagesList .receiverText {
+    background: #564cb1 none repeat scroll 0 0;
+    left: 180px;
+}
+
+.messagesText {
+    background: #dfece7 none repeat scroll 0 0;
+    width: 40%;
+    border: 1px solid #dfece7;
+    border-radius: 10px;
+    color: #1f2121;
+    margin: 5px 0 0 50px;
+    padding: 5px 10px;
+    position: relative;
+}
+
+.messagesList .receiverTimeRight {
+    right: 48px;
+}
+
+.messagesList .senderTimeLeft {
+    left: 48px;
+}
+
+.messagesList .messagesTimeStamp {
+    color: #1f2121;
+    position: absolute;
+}
+
+.chatBoxFooter {
+    background: #fff none repeat scroll 0 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.chatBoxFooter textarea {
+    border-bottom: 1px solid #b2b2b2 !important;
+    height: 34px !important;
+    margin: 7px;
+    padding: 5px !important;
+    border: medium none;
+    width: 95% !important;
+}
+
+.chatBoxFooter .btnItems {
+    border: medium none;
+}
+
+.chatBoxFooter form {
+    display: flex;
+}
+
+.btnItems i {
+    color: rgb(21, 88, 143);
+    height: 30px;
+    width: 30px;
+    line-height: 30px;
+    border: 1px solid #88563d;
+    border-radius: 50%;
+    font-size: 17px;
+}
+
+.btnFooter {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
