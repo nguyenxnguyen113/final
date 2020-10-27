@@ -1364,10 +1364,94 @@ function submitEditCompanyForm(id) {
     console.log(formEdit)
     controller.updateCompanyDetail(companyId, formEdit)
 }
-view.sendMessages =  (id) => {
-    const openMessages = document.getElementById(`${id}`)
-    openMessages.addEventListener('click',async ()=>{
-        let a = await controller.sendMessages(id)
-        console.log(a)
-    })
+view.sendMessages = async  (id) => {
+    let a = await controller.sendMessages(id)
+    let jobdetail = document.getElementById("clear")
+    let chatBox = `
+    <div class="chatBoxArea" id="myChatBox">
+    <div class="chatBoxShow">
+        <!--Chat Box Header-->
+        <div class="chatBoxShowHead">
+            <div class="showHeadLeft"><img src="${a[0].avatarUrl}" alt="shiba" style="width: 60px; height: 60px; border: 5px solid #dbdbf0; border-radius: 20%;"> Dang Hieu Duc</div>
+            <div class="showHeadRight">
+                <button type="button" class="btn btnCancel" onclick="closeForm()"><i class="fas fa-power-off"></i></button>
+            </div>
+        </div>
+        <!--Chat Box Messages-->
+        <div class="showMessages">
+            <div class="showMessagesDirect">
+                <div class="messageTime">
+                    <abbr class="timeStamp">October 8th, 2015</abbr>
+                </div>
+                <div class="messagesList">
+                    <div class="messagesListInfor">
+                        <span class="inforName senderName">Duc</span>
+                    </div>
+                    <img src="imgs/img/imshiba3.jpg" alt="shiba" class="messagesImage fullLeft">
+                    <div class="messagesText">
+                        Hey bro, how’s everything going ?
+                    </div>
+                    <span class="messagesTimeStamp senderTimeLeft">3.36 PM</span>
+                </div>
+                <div class="messagesList">
+                    <div class="messagesListInfor">
+                        <span class="inforName receiverName">You</span>
+                    </div>
+                    <img src="imgs/img/imshiba3.jpg" alt="shiba" class="messagesImage fullRight">
+                    <div class="messagesText receiverText">
+                        Hey bro, how’s everything going ? Hey bro, how’s everything going ? Hey bro, how’s everything going ? Hey bro, how’s everything going ?
+                    </div>
+                    <span class="messagesTimeStamp receiverTimeRight">3.36 PM</span>
+                </div>
+                <div class="messagesList">
+                    <div class="messagesListInfor">
+                        <span class="inforName senderName">Duc</span>
+                    </div>
+                    <img src="imgs/img/imshiba3.jpg" alt="shiba" class="messagesImage fullLeft">
+                    <div class="messagesText">
+                        Hey bro, how’s everything going ?
+                    </div>
+                    <span class="messagesTimeStamp senderTimeLeft">3.36 PM</span>
+                </div>
+                <div class="messagesList">
+                    <div class="messagesListInfor">
+                        <span class="inforName receiverName">You</span>
+                    </div>
+                    <img src="imgs/img/imshiba3.jpg" alt="shiba" class="messagesImage fullRight">
+                    <div class="messagesText receiverText">
+                        Hey bro, how’s everything going ?
+                    </div>
+                    <span class="messagesTimeStamp receiverTimeRight">3.36 PM</span>
+                </div>
+                <div class="messagesList">
+                    <div class="messagesListInfor">
+                        <span class="inforName receiverName">You</span>
+                    </div>
+                    <img src="imgs/img/imshiba3.jpg" alt="shiba" class="messagesImage fullRight">
+                    <div class="messagesText receiverText">
+                        Hey bro, how’s everything going ?
+                    </div>
+                    <span class="messagesTimeStamp receiverTimeRight">3.36 PM</span>
+                </div>
+
+            </div>
+        </div>
+        <!--Chat Box Footer-->
+        <div class="chatBoxFooter">
+            <form>
+                <textarea id="status_message" placeholder="Type a message..." rows="10" cols="40" name="message"></textarea>
+                <button class="btnItems"><i class="fa fa-paper-plane"></i></button>
+            </form>
+            <div class="btnFooter">
+                <div class="btnFooterLeft">
+                    <button class="btnItems"><i class="fas fa-file"></i></button>
+                    <button class="btnItems"><i class="fas fa-image"></i></button>
+                    <button class="btnItems"><i class="fas fa-video"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    `
+    view.appendHtml(jobdetail, chatBox)
 }
