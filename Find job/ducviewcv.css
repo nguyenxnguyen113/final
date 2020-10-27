@@ -13,7 +13,7 @@
     width: 500px;
     height: 400px;
     margin: 20px;
-    border-radius: 10px;
+    
 }
 
 .chatBoxShowHead {
@@ -24,8 +24,8 @@
     font-size: 21px;
     padding: 7px 10px;
     width: 100%;
-    border-bottom: 0 solid white;
-    
+    border-bottom: 0 solid red;
+    border-radius: 20px 20px 0px 0px;
 }
 
 .showHeadLeft {
@@ -39,6 +39,7 @@
     font-size: 14px;
     height: 30px;
     width: 30px;
+    color: white;
 }
 
 .showHeadRight .btnCancel {
@@ -151,9 +152,10 @@
 }
 
 .chatBoxFooter {
-    background: #fff none repeat scroll 0 0;
+    background: #242526  none repeat scroll 0 0;
     bottom: 0;
     width: 100%;
+    border-radius: 0px 20px 20px 20px;
 }
 
 .chatBoxFooter textarea {
