@@ -502,8 +502,17 @@ view.showComponents = async function(name) {
                 })
                 // view.showJob()
                 // view.showJobDetail()
-                view.testClose()
+                document.querySelector("#test-close").addEventListener("click", () => {
+                    console.log('123123')
+                })
+                document.querySelector('#test-click').addEventListener('click', () => {
+                    console.log('abc')
+                })
 
+                document.getElementById("myChatBox").style.display = "block";
+                document.querySelector('#send-messages').addEventListener('click', () => {
+                    console.log('abcd')
+                })
                 break;
             }
     }
@@ -1255,7 +1264,7 @@ view.showJobDetailEmployer = async function() {
 
               </div>
           </div>
-          <span class="fw500 fs25">List user applied</span>
+          <span id='test-click'class="fw500 fs25">List user applied</span>
           `
                                 view.appendHtml(jobdetail, jobDetail)
                                 for (let i = 0; i < job.userApplied.length; i++) {
@@ -1290,92 +1299,7 @@ view.showJobDetailEmployer = async function() {
             </div>
 </div>
 </div>
-<!--Chat Box area-->
-<div class="chatBoxArea" id="myChatBox">
-    <div class="chatBoxShow">
-        <!--Chat Box Header-->
-        <div class="chatBoxShowHead">
-            <div class="showHeadLeft"><img src="${test[0].avatarUrl}" alt="shiba" style="width: 60px; height: 60px; border: 5px solid #dbdbf0; border-radius: 20%;">${test[0].displayName}</div>
-            <div class="showHeadRight">
-                <button type="button" id="test-close" class="btn btnCancel"><i class="fas fa-power-off"></i></button>
-            </div>
-        </div>
-        <!--Chat Box Messages-->
-        <div class="showMessages">
-            <div class="showMessagesDirect">
-                <div class="messageTime">
-                    <abbr class="timeStamp">October 8th, 2015</abbr>
-                </div>
-                <div class="messagesList">
-                    <div class="messagesListInfor">
-                        <span class="inforName senderName">Duc</span>
-                    </div>
-                    <img src="imgs/img/imshiba3.jpg" alt="shiba" class="messagesImage fullLeft">
-                    <div class="messagesText">
-                        Hey bro, how’s everything going ?
-                    </div>
-                    <span class="messagesTimeStamp senderTimeLeft">3.36 PM</span>
-                </div>
-                <div class="messagesList">
-                    <div class="messagesListInfor">
-                        <span class="inforName receiverName">You</span>
-                    </div>
-                    <img src="imgs/img/imshiba3.jpg" alt="shiba" class="messagesImage fullRight">
-                    <div class="messagesText receiverText">
-                        Hey bro, how’s everything going ? Hey bro, how’s everything going ? Hey bro, how’s everything going ? Hey bro, how’s everything going ?
-                    </div>
-                    <span class="messagesTimeStamp receiverTimeRight">3.36 PM</span>
-                </div>
-                <div class="messagesList">
-                    <div class="messagesListInfor">
-                        <span class="inforName senderName">Duc</span>
-                    </div>
-                    <img src="imgs/img/imshiba3.jpg" alt="shiba" class="messagesImage fullLeft">
-                    <div class="messagesText">
-                        Hey bro, how’s everything going ?
-                    </div>
-                    <span class="messagesTimeStamp senderTimeLeft">3.36 PM</span>
-                </div>
-                <div class="messagesList">
-                    <div class="messagesListInfor">
-                        <span class="inforName receiverName">You</span>
-                    </div>
-                    <img src="imgs/img/imshiba3.jpg" alt="shiba" class="messagesImage fullRight">
-                    <div class="messagesText receiverText">
-                        Hey bro, how’s everything going ?
-                    </div>
-                    <span class="messagesTimeStamp receiverTimeRight">3.36 PM</span>
-                </div>
-                <div class="messagesList">
-                    <div class="messagesListInfor">
-                        <span class="inforName receiverName">You</span>
-                    </div>
-                    <img src="imgs/img/imshiba3.jpg" alt="shiba" class="messagesImage fullRight">
-                    <div class="messagesText receiverText">
-                        Hey bro, how’s everything going ?
-                    </div>
-                    <span class="messagesTimeStamp receiverTimeRight">3.36 PM</span>
-                </div>
-
-            </div>
-        </div>
-        <!--Chat Box Footer-->
-        <div class="chatBoxFooter">
-            <form>
-                <textarea id="status_message" placeholder="Type a message..." rows="10" cols="40" name="message"></textarea>
-                <button class="btnItems"><i class="fa fa-paper-plane"></i></button>
-            </form>
-            <div class="btnFooter">
-                <div class="btnFooterLeft">
-                    <button class="btnItems"><i class="fas fa-file"></i></button>
-                    <button class="btnItems"><i class="fas fa-image"></i></button>
-                    <button class="btnItems"><i class="fas fa-video"></i></button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-                `
+`
                                     view.appendHtml(jobdetail, cv)
                                 }
                                 break;
@@ -1445,21 +1369,12 @@ view.disable = function(id) {
 view.enable = function(id) {
     document.getElementById(id).removeAttribute('disabled')
 }
-function openForm() {
-    document.getElementById("myChatBox").style.display = "block";
-}
-
-function closeForm() {
-    document.getElementById("myChatBox").style.display = "none";
-}
 function submitEditCompanyForm(id) {
     let companyId = id
     let formEdit = document.getElementById('editCompanyDetail')
     console.log(formEdit)
     controller.updateCompanyDetail(companyId, formEdit)
 }
-view.testClose = () => {
-    document.getElementById("test-close").addEventListener("click", () => {
-        console.log('123123')
-    })
+view.sendMessages = () => {
+    
 }
