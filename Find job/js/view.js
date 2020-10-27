@@ -1364,10 +1364,10 @@ function submitEditCompanyForm(id) {
     console.log(formEdit)
     controller.updateCompanyDetail(companyId, formEdit)
 }
-view.sendMessages = (id) => {
+view.sendMessages =  (id) => {
     const openMessages = document.getElementById(`${id}`)
-    openMessages.addEventListener('click', ()=>{
-        console.log(`${id}`)
-        
+    openMessages.addEventListener('click',async ()=>{
+        let a = await controller.sendMessages(id)
+        console.log(a)
     })
 }

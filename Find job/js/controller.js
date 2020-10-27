@@ -765,3 +765,7 @@ controller.getCv = async (userApplied) => {
   let getUser = await firebase.firestore().collection('users').where("email", "==", userApplied).get()
   return transformDocs(getUser.docs)
 }
+controller.sendMessages = async (id) => {
+  const reveiver = await firebase.firestore().collection('users').doc(id).get()
+  return transformDocs(reveiver.docs)
+}
