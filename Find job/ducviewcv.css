@@ -5,7 +5,7 @@
     position: fixed;
     bottom: 28px;
     right: 80px;
-    border-radius: 1px;
+    
     z-index: 1;
 }
 
@@ -13,16 +13,19 @@
     width: 500px;
     height: 400px;
     margin: 20px;
+    border-radius: 10px;
 }
 
 .chatBoxShowHead {
-    background-color: #fff;
+    background-color:  #242526;
     clear: both;
     color: #7b7b7b;
     display: inline-table;
     font-size: 21px;
     padding: 7px 10px;
     width: 100%;
+    border-bottom: 0 solid white;
+    
 }
 
 .showHeadLeft {
@@ -49,7 +52,7 @@
 }
 
 .showMessages {
-    background-color: rgb(255, 255, 255);
+    background-color: #242526;
     height: 275px;
     overflow: auto;
     z-index: 1;
@@ -134,10 +137,12 @@
 
 .messagesList .receiverTimeRight {
     right: 48px;
+    color: #7c7f82 !important
 }
 
 .messagesList .senderTimeLeft {
     left: 48px;
+    color: #7c7f82 !important
 }
 
 .messagesList .messagesTimeStamp {

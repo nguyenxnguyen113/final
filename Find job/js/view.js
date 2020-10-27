@@ -1301,7 +1301,7 @@ view.showJobDetailEmployer = async function() {
     <div class="chatBoxShow">
         <!--Chat Box Header-->
         <div class="chatBoxShowHead">
-            <div class="showHeadLeft"><img src="${test[0].avatarUrl}" alt="shiba" style="width: 60px; height: 60px; border: 5px solid #dbdbf0; border-radius: 20%;"> Dang Hieu Duc</div>
+            <div class="showHeadLeft"><img src="${test[0].avatarUrl}" alt="shiba" style="width: 60px; height: 60px; border: 5px solid #dbdbf0; border-radius: 20%;">${test[0].displayName}</div>
             <div class="showHeadRight">
                 <p id="close-messages-form" class="btn btnCancel"><i class="fas fa-power-off"></i></p>
             </div>
