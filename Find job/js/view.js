@@ -1366,13 +1366,14 @@ function submitEditCompanyForm(id) {
 }
 view.sendMessages = async  (id) => {
     let a = await controller.sendMessages(id)
+    console.log(a[0])
     let jobdetail = document.getElementById("clear")
     let chatBox = `
     <div class="chatBoxArea" id="myChatBox">
     <div class="chatBoxShow">
         <!--Chat Box Header-->
         <div class="chatBoxShowHead">
-            <div class="showHeadLeft"><img src="${a[0].avatarUrl}" alt="shiba" style="width: 60px; height: 60px; border: 5px solid #dbdbf0; border-radius: 20%;"> Dang Hieu Duc</div>
+            <div class="showHeadLeft"><img src="${a[0].avatarUrl}" alt="shiba" style="width: 60px; height: 60px; border: 5px solid #dbdbf0; border-radius: 20%;">${a[0].displayName}</div>
             <div class="showHeadRight">
                 <button type="button" class="btn btnCancel" onclick="closeForm()"><i class="fas fa-power-off"></i></button>
             </div>
@@ -1380,59 +1381,6 @@ view.sendMessages = async  (id) => {
         <!--Chat Box Messages-->
         <div class="showMessages">
             <div class="showMessagesDirect">
-                <div class="messageTime">
-                    <abbr class="timeStamp">October 8th, 2015</abbr>
-                </div>
-                <div class="messagesList">
-                    <div class="messagesListInfor">
-                        <span class="inforName senderName">Duc</span>
-                    </div>
-                    <img src="imgs/img/imshiba3.jpg" alt="shiba" class="messagesImage fullLeft">
-                    <div class="messagesText">
-                        Hey bro, how’s everything going ?
-                    </div>
-                    <span class="messagesTimeStamp senderTimeLeft">3.36 PM</span>
-                </div>
-                <div class="messagesList">
-                    <div class="messagesListInfor">
-                        <span class="inforName receiverName">You</span>
-                    </div>
-                    <img src="imgs/img/imshiba3.jpg" alt="shiba" class="messagesImage fullRight">
-                    <div class="messagesText receiverText">
-                        Hey bro, how’s everything going ? Hey bro, how’s everything going ? Hey bro, how’s everything going ? Hey bro, how’s everything going ?
-                    </div>
-                    <span class="messagesTimeStamp receiverTimeRight">3.36 PM</span>
-                </div>
-                <div class="messagesList">
-                    <div class="messagesListInfor">
-                        <span class="inforName senderName">Duc</span>
-                    </div>
-                    <img src="imgs/img/imshiba3.jpg" alt="shiba" class="messagesImage fullLeft">
-                    <div class="messagesText">
-                        Hey bro, how’s everything going ?
-                    </div>
-                    <span class="messagesTimeStamp senderTimeLeft">3.36 PM</span>
-                </div>
-                <div class="messagesList">
-                    <div class="messagesListInfor">
-                        <span class="inforName receiverName">You</span>
-                    </div>
-                    <img src="imgs/img/imshiba3.jpg" alt="shiba" class="messagesImage fullRight">
-                    <div class="messagesText receiverText">
-                        Hey bro, how’s everything going ?
-                    </div>
-                    <span class="messagesTimeStamp receiverTimeRight">3.36 PM</span>
-                </div>
-                <div class="messagesList">
-                    <div class="messagesListInfor">
-                        <span class="inforName receiverName">You</span>
-                    </div>
-                    <img src="imgs/img/imshiba3.jpg" alt="shiba" class="messagesImage fullRight">
-                    <div class="messagesText receiverText">
-                        Hey bro, how’s everything going ?
-                    </div>
-                    <span class="messagesTimeStamp receiverTimeRight">3.36 PM</span>
-                </div>
 
             </div>
         </div>

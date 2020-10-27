@@ -23,7 +23,7 @@
     font-size: 21px;
     padding: 7px 10px;
     width: 100%;
-    border-bottom: 0 solid red;
+    border-bottom: 1px solid #7b7b7b;
     border-radius: 20px 20px 0px 0px;
 }
 
@@ -139,12 +139,16 @@
     right: 48px;
     color: #7c7f82 !important
 }
-
+.receiverText {
+    color: white;
+}
 .messagesList .senderTimeLeft {
     left: 48px;
     color: #7c7f82 !important
 }
-
+#status_message {
+    background-color: #3a3b3c;
+}
 .messagesList .messagesTimeStamp {
     color: #1f2121;
     position: absolute;
@@ -173,7 +177,9 @@
 .chatBoxFooter form {
     display: flex;
 }
-
+.btnItems {
+    background-color:#242526 ;
+}
 .btnItems i {
     color: rgb(21, 88, 143);
     height: 30px;
@@ -188,4 +194,8 @@
     display: flex;
     width: 100%;
     justify-content: space-between;
+}
+.btnFooterLeft {
+    margin-left: 10px;
+    margin-bottom: 2px;
 }

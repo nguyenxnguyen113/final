@@ -767,5 +767,5 @@ controller.getCv = async (userApplied) => {
 }
 controller.sendMessages = async (id) => {
   let jobOfCompany = await firebase.firestore().collection('users').where("email", "==", id).get()
-  console.log(transformDocs(jobOfCompany.docs))
+  return transformDocs(jobOfCompany.docs)
 }
