@@ -502,17 +502,6 @@ view.showComponents = async function(name) {
                 })
                 // view.showJob()
                 // view.showJobDetail()
-                document.querySelector("#test-close").addEventListener("click", () => {
-                    console.log('123123')
-                })
-                document.querySelector('#test-click').addEventListener('click', () => {
-                    console.log('abc')
-                })
-
-                document.getElementById("myChatBox").style.display = "block";
-                document.querySelector('#send-messages').addEventListener('click', () => {
-                    console.log('abcd')
-                })
                 break;
             }
     }
@@ -1264,7 +1253,7 @@ view.showJobDetailEmployer = async function() {
 
               </div>
           </div>
-          <span id='test-click'class="fw500 fs25">List user applied</span>
+          <span id='test-click' class="fw500 fs25">List user applied</span>
           `
                                 view.appendHtml(jobdetail, jobDetail)
                                 for (let i = 0; i < job.userApplied.length; i++) {
@@ -1290,7 +1279,7 @@ view.showJobDetailEmployer = async function() {
                     <div style=" padding-top: 3px;">
                        <a href="#" style="margin: 2px;"><i class="fas fa-eye"></i></a>
                        <a href="#" style="margin: 2px;"><i class="fa fa-download" aria-hidden="true"></i></a>
-                       <button type="button" id="send-messages" class="btn btn-primary">Send message</button>
+                       <button type="button" id='${test[0].id}' onclick="view.sendMessages(${test[0].id})" class="btn btn-primary">Send message</button>
                     
                     </div> 
                 </div>
@@ -1375,6 +1364,9 @@ function submitEditCompanyForm(id) {
     console.log(formEdit)
     controller.updateCompanyDetail(companyId, formEdit)
 }
-view.sendMessages = () => {
-    
+view.sendMessages = (id) => {
+    const openMessages = document.querySelector(id)
+    openMessages.addEventListener('click', ()=>{
+        console.log('oke')
+    })
 }
