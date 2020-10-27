@@ -502,9 +502,7 @@ view.showComponents = async function(name) {
                 })
                 // view.showJob()
                 // view.showJobDetail()
-                document.getElementById("send-messages").addEventListener('click', () => {
-                    document.getElementById("myChatBox").style.display = "block";
-                })
+  
                 const close = document.getElementById("close-messages-form")
                 console.log(close)
                 close.addEventListener('click', () => {
@@ -1303,9 +1301,9 @@ view.showJobDetailEmployer = async function() {
     <div class="chatBoxShow">
         <!--Chat Box Header-->
         <div class="chatBoxShowHead">
-            <div class="showHeadLeft"><img src="imgs/img/imshiba3.jpg" alt="shiba" style="width: 60px; height: 60px; border: 5px solid #dbdbf0; border-radius: 20%;"> Dang Hieu Duc</div>
+            <div class="showHeadLeft"><img src="${test[0].avatarUrl}" alt="shiba" style="width: 60px; height: 60px; border: 5px solid #dbdbf0; border-radius: 20%;"> Dang Hieu Duc</div>
             <div class="showHeadRight">
-                <button type="button" id="close-messages-form" class="btn btnCancel"><i class="fas fa-power-off"></i></button>
+                <p id="close-messages-form" class="btn btnCancel"><i class="fas fa-power-off"></i></p>
             </div>
         </div>
         <!--Chat Box Messages-->
