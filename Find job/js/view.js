@@ -502,6 +502,15 @@ view.showComponents = async function(name) {
                 })
                 // view.showJob()
                 // view.showJobDetail()
+                document.getElementById("send-messages").addEventListener('click', () => {
+                    document.getElementById("myChatBox").style.display = "block";
+                })
+                const close = document.getElementById("close-messages-form")
+                console.log(close)
+                close.addEventListener('click', () => {
+                    document.getElementById("myChatBox").style.display = "none";
+                    console.log('you clicked')
+                })
 
                 break;
             }
@@ -1280,7 +1289,7 @@ view.showJobDetailEmployer = async function() {
                     <div style=" padding-top: 3px;">
                        <a href="#" style="margin: 2px;"><i class="fas fa-eye"></i></a>
                        <a href="#" style="margin: 2px;"><i class="fa fa-download" aria-hidden="true"></i></a>
-                       <button type="button" class="btn btn-primary" onclick="openForm()" >Send message</button>
+                       <button type="button" id="send-messages" class="btn btn-primary">Send message</button>
                     
                     </div> 
                 </div>
@@ -1296,7 +1305,7 @@ view.showJobDetailEmployer = async function() {
         <div class="chatBoxShowHead">
             <div class="showHeadLeft"><img src="imgs/img/imshiba3.jpg" alt="shiba" style="width: 60px; height: 60px; border: 5px solid #dbdbf0; border-radius: 20%;"> Dang Hieu Duc</div>
             <div class="showHeadRight">
-                <button type="button" class="btn btnCancel" onclick="closeForm()"><i class="fas fa-power-off"></i></button>
+                <button type="button" id="close-messages-form" class="btn btnCancel"><i class="fas fa-power-off"></i></button>
             </div>
         </div>
         <!--Chat Box Messages-->
