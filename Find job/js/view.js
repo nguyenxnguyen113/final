@@ -1279,7 +1279,7 @@ view.showJobDetailEmployer = async function() {
                     <div style=" padding-top: 3px;">
                        <a href="#" style="margin: 2px;"><i class="fas fa-eye"></i></a>
                        <a href="#" style="margin: 2px;"><i class="fa fa-download" aria-hidden="true"></i></a>
-                       <button type="button" id='${test[0].id}' onclick="view.sendMessages(${test[0].id})" class="btn btn-primary">Send message</button>
+                       <button type="button" id='${test[0].id}' onclick="view.sendMessages('${test[0].id}')" class="btn btn-primary">Send message</button>
                     
                     </div> 
                 </div>
@@ -1365,8 +1365,9 @@ function submitEditCompanyForm(id) {
     controller.updateCompanyDetail(companyId, formEdit)
 }
 view.sendMessages = (id) => {
-    const openMessages = document.querySelector(id)
+    const openMessages = document.getElementById(`${id}`)
     openMessages.addEventListener('click', ()=>{
-        console.log('oke')
+        console.log(`${id}`)
+        
     })
 }
