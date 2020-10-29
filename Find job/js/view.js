@@ -1422,11 +1422,14 @@ view.sendMessages = async  (id) => {
         };
         console.log(model.currentConversation.id)
         console.log(html)
+        let chatTitle = document.querySelector(".showHeadLeft");
+        chatTitle.innerHTML = `${friend.email}`;
         messageBox.innerHTML = html;
         messageBox.scrollTop = messageBox.scrollHeight
     }
     let messageInput = document.getElementById("status_message");
     messageInput.addEventListener("keyup", (e) => {
+        if (e.keyCode == "13") {
             if (model.currentConversation !== null) {
                 if (messageInput.value.trim() !== "")
                     controller.firestoreArryUnion(
@@ -1440,6 +1443,7 @@ view.sendMessages = async  (id) => {
                 alert('Please input your friend email to chat')
                 messageInput.value = "";
             }
+        }
     });
 }
 view.addFriendMessage = (content, photoURL, date) => {

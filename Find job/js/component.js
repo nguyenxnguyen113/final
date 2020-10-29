@@ -696,10 +696,9 @@ component.companyEmployerdetail = `
     </div>
     <!--Chat Box Footer-->
     <div class="chatBoxFooter">
-        <form>
-            <input id="status_message" placeholder="Type a message..." rows="10" cols="40" name="message"/>
-            <button class="btnItems"><i class="fa fa-paper-plane"></i></button>
-        </form>
+        <div>
+            <input id="status_message" placeholder="Type a message..." name="message"/>
+        </div>
         <div class="btnFooter">
             <div class="btnFooterLeft">
                 <button class="btnItems"><i class="fas fa-file"></i></button>
