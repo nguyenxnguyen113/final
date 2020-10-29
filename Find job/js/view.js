@@ -1365,9 +1365,10 @@ function submitEditCompanyForm(id) {
     controller.updateCompanyDetail(companyId, formEdit)
 }
 view.sendMessages = async  (id) => {
+    let chatBox = document.querySelector('.chatBoxArea')
+    chatBox.style.display = "block";
     let a = await controller.sendMessages(id)
     console.log(a)
-    let jobdetail = document.getElementById("clear")
     let data = await controller.findConversation(
         "conversations",
         "users",
