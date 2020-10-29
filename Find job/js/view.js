@@ -503,9 +503,9 @@ view.showComponents = async function(name) {
                 })
                 // view.showJob()
                 // view.showJobDetail()
-                
+
                 //chat box
-                let allconversation = await model.getDataFireStore('conversations', 'users', 'array-contains')
+                let allconversation = await controller.getDataFireStore('conversations', 'users', 'array-contains')
                 console.log(allconversation);
                 model.allConversation = []
                 let conversations = []
@@ -520,8 +520,8 @@ view.showComponents = async function(name) {
                     }
                     console.log(conversations);
                     model.allConversation = controller.sortByTimeStamp(conversations)
-
                 }
+                
                 break;
             }
     }

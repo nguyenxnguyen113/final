@@ -817,12 +817,34 @@ controller.firestoreArryUnion = (collection, document, data) => {
 controller.initFirebaseStore = () => {
   return firebase.firestore()
 }
+
+controller.updateCheckConversation = (collection, document, data) => {
+  let db = firebase.firestore()
+  db.collection(collection).doc(document).update({
+      check: data
+  })
+}
+
+controller.getDataFireStore = async(collection, find, check = null) => {
+  let db = firebase.firestore()
+  if (check == null) {
+      let data = await db.collection(`${collection}`)
+          .where(`${find}`, "==", firebase.auth().currentUser.email)
+          .get()
+      return data.docs[0].data()
+  } else {
+      let data = await db.collection(`${collection}`)
+          .where(`${find}`, `${check}`, firebase.auth().currentUser.email)
+          .get()
+      return data.docs
+  }
+}
 controller.listenConversation = () => {
   let db = controller.initFirebaseStore().collection('conversations').onSnapshot(function(snapshot) {
     snapshot.docChanges().forEach(async function(change) {
       if (change.type === "modified") {
         console.log("Modified city: ", change.doc.data());
-        let box = document.querySelector('.chatBoxArea')
+        let box = document.querySelector('.showMessagesDirect')
         let friendImg = await controller.sendMessages(change.doc.data().users.find((user) => user !== firebase.auth().currentUser.email))
         let modelConversation = model.allConversation.find((item)=>item.id == change.doc.id)
         let messageData = change.doc.data().messages
@@ -831,13 +853,12 @@ controller.listenConversation = () => {
             if (change.doc.id == model.currentConversation.id && messageData.length !== modelConversation.messages.length) {
                 let messages = change.doc.data().messages
                 let html = ''
-                let messageBox = document.querySelector('.chatBoxArea')
+                let messageBox = document.querySelector('.showMessagesDirect')
                 if (messages[messages.length - 1].owner == firebase.auth().currentUser.email)
-                    html += view.addYourMessage(messages[messages.length - 1].content)
+                    html += view.addYourMessage(messages[messages.length - 1].content,messages[messages.length - 1].createdAt)
                 else html += view.addFriendMessage(messages[messages.length - 1].content, friendImg.photoURL)
                 messageBox.innerHTML += html
-                box.scrollTop = box.scrollHeight
-                
+                box.scrollTop = box.scrollHeight                
             }
         }
         model.allConversation.find((item,index) => {
@@ -851,3 +872,16 @@ controller.listenConversation = () => {
   })
   return db
 }
+
+controller.convertToTimeStamp = (data) => {
+  if (data !== undefined) {
+    let timeStamp = new Date(data).getTime() / 1000;
+    return timeStamp;
+  } else return "";
+};
+controller.sortByTimeStamp = (data) => {
+  let arrAfterSort = data.sort((a, b) => {
+    return b.createdAt - a.createdAt;
+  });
+  return arrAfterSort;
+};
