@@ -1373,7 +1373,7 @@ view.sendMessages = async  (id) => {
         "users",
         a.email
     );
-    let messageBox = document.querySelector(".showMessagesDirect");
+    const messageBox = document.querySelector(".showMessagesDirect");
     if (data == undefined) {
         let key = controller.addFireStore("conversations", {
             createAt: new Date().toLocaleString(),
@@ -1392,7 +1392,7 @@ view.sendMessages = async  (id) => {
             a.email
         );
         console.log(data2)
-        let friend = await controller.getInfoUser(a.email);
+        let friend = await controller.sendMessages(a.email);
         let html = "";
         if (data2.data().messages !== undefined) {
             for (let x of data2.data().messages) {
@@ -1405,41 +1405,21 @@ view.sendMessages = async  (id) => {
         }
         console.log(html)
         messageBox.innerHTML = html;
+    } else {
+        let html = "";
+        if (data.data().messages !== undefined) {
+            for (let x of data.data().messages) {
+                if (x.owner == firebase.auth().currentUser.email) {
+                    html += view.addYourMessage(x.content);
+                } else {
+                    html += view.addFriendMessage(x.content, friend.photoURL);
+                }
+            }
+        }
+        console.log(html)
+        messageBox.innerHTML = html;
     }
-    let chatBox = `
-    <div class="chatBoxArea" id="myChatBox">
-    <div class="chatBoxShow">
-        <!--Chat Box Header-->
-        <div class="chatBoxShowHead">
-            <div class="showHeadLeft"><img src="${a.avatarUrl}" alt="shiba" style="width: 60px; height: 60px; border: 5px solid #dbdbf0; border-radius: 20%;">${a.displayName}</div>
-            <div class="showHeadRight">
-                <button type="button" class="btn btnCancel" id="closeform"><i class="fas fa-power-off"></i></button>
-            </div>
-        </div>
-        <!--Chat Box Messages-->
-        <div class="showMessages">
-            <div class="showMessagesDirect">
 
-            </div>
-        </div>
-        <!--Chat Box Footer-->
-        <div class="chatBoxFooter">
-            <form>
-                <textarea id="status_message" placeholder="Type a message..." rows="10" cols="40" name="message"></textarea>
-                <button class="btnItems"><i class="fa fa-paper-plane"></i></button>
-            </form>
-            <div class="btnFooter">
-                <div class="btnFooterLeft">
-                    <button class="btnItems"><i class="fas fa-file"></i></button>
-                    <button class="btnItems"><i class="fas fa-image"></i></button>
-                    <button class="btnItems"><i class="fas fa-video"></i></button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-    `
-    view.appendHtml(jobdetail, chatBox)
 
 }
 view.addFriendMessage = (content, photoURL) => {
