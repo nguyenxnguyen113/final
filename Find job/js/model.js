@@ -8,7 +8,7 @@ const model = {
   jobsCompany:null
 }
 model.currentUser=undefined
-
+model.currentConversation= null
 model.saveCompany = function (companys) {
   model.companys = companys
 }

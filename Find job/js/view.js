@@ -1411,20 +1411,38 @@ view.sendMessages = async  (id) => {
         if (data.data().messages !== undefined) {
             for (let x of data.data().messages) {
                 if (x.owner == firebase.auth().currentUser.email) {
-                    html += view.addYourMessage(x.content);
+                    html += view.addYourMessage(x.content, x.createdAt);
                 } else {
-                    html += view.addFriendMessage(x.content, friend.photoURL);
+                    html += view.addFriendMessage(x.content, friend.photoURL, x.createdAt);
                 }
             }
         }
+        model.currentConversation = {
+            id: data.id,
+        };
+        console.log(model.currentConversation.id)
         console.log(html)
         messageBox.innerHTML = html;
         messageBox.scrollTop = messageBox.scrollHeight
     }
-
-
+    let messageInput = document.getElementById("status_message");
+    messageInput.addEventListener("keyup", (e) => {
+            if (model.currentConversation !== null) {
+                if (messageInput.value.trim() !== "")
+                    controller.firestoreArryUnion(
+                        "conversations",
+                        model.currentConversation.id,
+                        messageInput.value
+                    );
+                messageInput.value = "";
+            }
+            else {
+                alert('Please input your friend email to chat')
+                messageInput.value = "";
+            }
+    });
 }
-view.addFriendMessage = (content, photoURL) => {
+view.addFriendMessage = (content, photoURL, date) => {
     let html = "";
 
         html = `
@@ -1436,12 +1454,12 @@ view.addFriendMessage = (content, photoURL) => {
         <div class="messagesText">
             ${content}
         </div>
-        <span class="messagesTimeStamp senderTimeLeft">3.36 PM</span>
+        <span class="messagesTimeStamp senderTimeLeft">${date}</span>
     </div>
         `;
     return html;
 };
-view.addYourMessage = (content) => {
+view.addYourMessage = (content, date) => {
     let html = "";
     html = `
     <div class="messagesList">
@@ -1452,7 +1470,7 @@ view.addYourMessage = (content) => {
     <div class="messagesText receiverText">
         ${content}
     </div>
-    <span class="messagesTimeStamp receiverTimeRight">3.36 PM</span>
+    <span class="messagesTimeStamp receiverTimeRight">${date}</span>
 </div>
     `;
     

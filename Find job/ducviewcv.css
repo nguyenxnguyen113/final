@@ -15,7 +15,9 @@
     margin: 20px;
     
 }
-
+#status_message {
+    width: 100%;
+}
 .chatBoxShowHead {
     background-color:  #242526;
     clear: both;

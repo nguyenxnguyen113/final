@@ -697,7 +697,7 @@ component.companyEmployerdetail = `
     <!--Chat Box Footer-->
     <div class="chatBoxFooter">
         <form>
-            <textarea id="status_message" placeholder="Type a message..." rows="10" cols="40" name="message"></textarea>
+            <input id="status_message" placeholder="Type a message..." rows="10" cols="40" name="message"/>
             <button class="btnItems"><i class="fa fa-paper-plane"></i></button>
         </form>
         <div class="btnFooter">
