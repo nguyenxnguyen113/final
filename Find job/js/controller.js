@@ -814,3 +814,40 @@ controller.firestoreArryUnion = (collection, document, data) => {
       })
   })
 }
+controller.initFirebaseStore = () => {
+  return firebase.firestore()
+}
+controller.listenConversation = () => {
+  let db = controller.initFirebaseStore().collection('conversations').onSnapshot(function(snapshot) {
+    snapshot.docChanges().forEach(async function(change) {
+      if (change.type === "modified") {
+        console.log("Modified city: ", change.doc.data());
+        let box = document.querySelector('.chatBoxArea')
+        let friendImg = await controller.sendMessages(change.doc.data().users.find(
+            (user) => user !== firebase.auth().currentUser.email))
+            let modelConversation = controller.allConversation.find((item)=>item.id == change.doc.id)
+        let messageData = change.doc.data().messages
+        if (model.currentConversation !== null) {
+            if (change.doc.id == controller.currentConversation.id && messageData.length !== modelConversation.messages.length) {
+                let messages = change.doc.data().messages
+                let html = ''
+                let messageBox = document.querySelector('.chatBoxArea')
+                if (messages[messages.length - 1].owner == firebase.auth().currentUser.email)
+                    html += view.addYourMessage(messages[messages.length - 1].content)
+                else html += view.addFriendMessage(messages[messages.length - 1].content, friendImg.photoURL)
+                messageBox.innerHTML += html
+                box.scrollTop = box.scrollHeight
+                
+            }
+        }
+        model.allConversation.find((item,index) => {
+            if(item.id == change.doc.id){
+                model.allConversation[index].messages = change.doc.data().messages
+                return item
+            }
+        })
+      }
+    })
+  })
+  return db
+}

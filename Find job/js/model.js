@@ -9,6 +9,7 @@ const model = {
 }
 model.currentUser=undefined
 model.currentConversation= null
+model.allConversation = []
 model.saveCompany = function (companys) {
   model.companys = companys
 }
