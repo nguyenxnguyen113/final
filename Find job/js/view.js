@@ -1373,6 +1373,7 @@ view.sendMessages = async  (id) => {
         "users",
         a.email
     );
+    let messageBox = document.querySelector(".showMessagesDirect");
     if (data == undefined) {
         let key = controller.addFireStore("conversations", {
             createAt: new Date().toLocaleString(),
@@ -1390,17 +1391,20 @@ view.sendMessages = async  (id) => {
             "users",
             a.email
         );
-        let friend = await controller.getInfoUser(inputChatEmail.value);
+        console.log(data2)
+        let friend = await controller.getInfoUser(a.email);
         let html = "";
         if (data2.data().messages !== undefined) {
             for (let x of data2.data().messages) {
                 if (x.owner == firebase.auth().currentUser.email) {
                     html += view.addYourMessage(x.content);
                 } else {
-                    html += view.addFriendMessage(x.content, friend.photoURL);
+                    html += view.addFriendMessage(x.content, friend.avatarUrl);
                 }
             }
         }
+        console.log(html)
+        messageBox.innerHTML = html;
     }
     let chatBox = `
     <div class="chatBoxArea" id="myChatBox">
@@ -1439,27 +1443,19 @@ view.sendMessages = async  (id) => {
 
 }
 view.addFriendMessage = (content, photoURL) => {
-    let iconUrl = controller.checkIconChat(content);
     let html = "";
-    if (iconUrl !== null) {
-        let str = content;
-        for (let x of iconUrl) {
-            str = str.split(x.syntax).join(`<span><img src=${x.url}></span>`);
-        }
+
         html = `
-            <div class="friend-message">
-                <img src="${photoURL}">
-                <div class="message">
-                    ${str}
-                </div>
-            </div>
-        `;
-    } else
-        html = `
-        <div class="friend-message">
-            <img src="${photoURL}">
-            <div class="message">${content}</div>
+        <div class="messagesList">
+        <div class="messagesListInfor">
+            <span class="inforName senderName">Duc</span>
         </div>
+        <img src="${photoURL}" alt="shiba" class="messagesImage fullLeft">
+        <div class="messagesText">
+            ${content}
+        </div>
+        <span class="messagesTimeStamp senderTimeLeft">3.36 PM</span>
+    </div>
         `;
     return html;
 };
@@ -1468,13 +1464,13 @@ view.addYourMessage = (content) => {
     html = `
     <div class="messagesList">
     <div class="messagesListInfor">
-        <span class="inforName senderName">Duc</span>
+        <span class="inforName receiverName">You</span>
     </div>
-    <img src="imgs/img/imshiba3.jpg" alt="shiba" class="messagesImage fullLeft">
-    <div class="messagesText">
+    <img src="imgs/img/imshiba3.jpg" alt="shiba" class="messagesImage fullRight">
+    <div class="messagesText receiverText">
         ${content}
     </div>
-    <span class="messagesTimeStamp senderTimeLeft">3.36 PM</span>
+    <span class="messagesTimeStamp receiverTimeRight">3.36 PM</span>
 </div>
     `;
     
