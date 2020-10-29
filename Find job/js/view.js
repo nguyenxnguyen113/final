@@ -1419,6 +1419,7 @@ view.sendMessages = async  (id) => {
         }
         console.log(html)
         messageBox.innerHTML = html;
+        messageBox.scrollTop = messageBox.scrollHeight
     }
 
 

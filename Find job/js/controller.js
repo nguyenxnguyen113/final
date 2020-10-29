@@ -803,3 +803,14 @@ controller.addFireStore = (collection, data) => {
           console.error("Error adding document: ", error);
       });
 }
+controller.firestoreArryUnion = (collection, document, data) => {
+  let db = firebase.firestore()
+  db.collection(collection).doc(document).update({
+      check: false,
+      messages: firebase.firestore.FieldValue.arrayUnion({
+          content: data,
+          createdAt: controller.getDate(),
+          owner: firebase.auth().currentUser.email
+      })
+  })
+}
