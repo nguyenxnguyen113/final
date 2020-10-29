@@ -18,6 +18,12 @@
 #status_message {
     width: 100%;
 }
+.display-none {
+    display: none;
+}
+.notification {
+    margin-left: 12px;
+}
 .chatBoxShowHead {
     background-color:  #242526;
     clear: both;

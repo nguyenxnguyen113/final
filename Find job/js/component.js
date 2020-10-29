@@ -159,15 +159,28 @@ component.navTransf = `
         <li id="employer" class="nav-item">
            <a class="nav-link clw" id="link-employer">EMPLOYER</a>
         </li>
-        <div id="dropdown">
-    <div class="dropdown" style="width: 50px; height: 30px;margin: 0px 30px 0px 50px; text-align: center">
-        <div type="button" data-toggle="dropdown">
-            <i style="font-size: 22px" class="fas fa-user-circle"></i><span  id="next-login">login</span>
+        <div class="notification">
+            <i style="font-size: 22px" class="far fa-envelope"></i>
+            <div class="icon-notification"></div>
         </div>
-      </div>  
-    </div>
-      </ul>
-    </nav>
+        <div class="new-notification-box display-none">
+            <div class="search-notification">
+              <i class="fas fa-search"></i>
+              <input id="search-conversations" type="text" placeholder="Search Conversations">
+            </div>
+        <div class="new-notification">
+
+        </div>
+        </div>
+        <div id="dropdown">
+          <div class="dropdown" style="width: 50px; height: 30px;margin: 0px 30px 0px 50px; text-align: center">
+            <div type="button" data-toggle="dropdown">
+                <i style="font-size: 22px" class="fas fa-user-circle"></i><span  id="next-login">Login</span>
+            </div>
+          </div>  
+        </div>
+    </ul>
+</nav>
 `
 
 component.navNoTransf = `  <nav id="nav-b" class="navbar navbar-expand-sm fixed-top">
