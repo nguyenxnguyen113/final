@@ -823,12 +823,12 @@ controller.listenConversation = () => {
       if (change.type === "modified") {
         console.log("Modified city: ", change.doc.data());
         let box = document.querySelector('.chatBoxArea')
-        let friendImg = await controller.sendMessages(change.doc.data().users.find(
-            (user) => user !== firebase.auth().currentUser.email))
-            let modelConversation = controller.allConversation.find((item)=>item.id == change.doc.id)
+        let friendImg = await controller.sendMessages(change.doc.data().users.find((user) => user !== firebase.auth().currentUser.email))
+        let modelConversation = model.allConversation.find((item)=>item.id == change.doc.id)
         let messageData = change.doc.data().messages
+        console.log(change.doc.id)
         if (model.currentConversation !== null) {
-            if (change.doc.id == controller.currentConversation.id && messageData.length !== modelConversation.messages.length) {
+            if (change.doc.id == model.currentConversation.id && messageData.length !== modelConversation.messages.length) {
                 let messages = change.doc.data().messages
                 let html = ''
                 let messageBox = document.querySelector('.chatBoxArea')

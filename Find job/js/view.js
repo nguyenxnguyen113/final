@@ -503,6 +503,25 @@ view.showComponents = async function(name) {
                 })
                 // view.showJob()
                 // view.showJobDetail()
+                
+                //chat box
+                let allconversation = await model.getDataFireStore('conversations', 'users', 'array-contains')
+                console.log(allconversation);
+                model.allConversation = []
+                let conversations = []
+                if (allconversation.length !== 0) {
+                    for (let x of allconversation) {
+                        conversations.push({
+                            createdAt: controller.convertToTimeStamp(x.data().messages[x.data().messages.length - 1]['createdAt']),
+                            messages: x.data().messages,
+                            id: x.id,
+                            users: x.data().users
+                        })
+                    }
+                    console.log(conversations);
+                    model.allConversation = controller.sortByTimeStamp(conversations)
+
+                }
                 break;
             }
     }
