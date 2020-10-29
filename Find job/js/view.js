@@ -1408,6 +1408,7 @@ view.sendMessages = async  (id) => {
         messageBox.innerHTML = html;
     } else {
         let html = "";
+        let friend = await controller.sendMessages(a.email);
         if (data.data().messages !== undefined) {
             for (let x of data.data().messages) {
                 if (x.owner == firebase.auth().currentUser.email) {
@@ -1416,14 +1417,16 @@ view.sendMessages = async  (id) => {
                     html += view.addFriendMessage(x.content, friend.photoURL, x.createdAt);
                 }
             }
+            let chatTitle = document.querySelector(".showHeadLeft");
+            chatTitle.innerHTML = `${friend.email}`;
+            
         }
         model.currentConversation = {
             id: data.id,
         };
         console.log(model.currentConversation.id)
         console.log(html)
-        let chatTitle = document.querySelector(".showHeadLeft");
-        chatTitle.innerHTML = `${friend.email}`;
+
         messageBox.innerHTML = html;
         messageBox.scrollTop = messageBox.scrollHeight
     }
