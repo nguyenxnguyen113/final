@@ -1279,7 +1279,7 @@ view.showJobDetailEmployer = async function() {
                     <div style=" padding-top: 3px;">
                        <a href="#" style="margin: 2px;"><i class="fas fa-eye"></i></a>
                        <a href="#" style="margin: 2px;"><i class="fa fa-download" aria-hidden="true"></i></a>
-                       <button type="button" id='${test[0].id}' onclick="view.sendMessages('${test[0].id}')" class="btn btn-primary">Send message</button>
+                       <button type="button" id='${test[0].email}' onclick="view.sendMessages('${test[0].email}')" class="btn btn-primary">Send message</button>
                     
                     </div> 
                 </div>
@@ -1366,15 +1366,48 @@ function submitEditCompanyForm(id) {
 }
 view.sendMessages = async  (id) => {
     let a = await controller.sendMessages(id)
-    console.log(a[0])
+    console.log(a)
     let jobdetail = document.getElementById("clear")
-
+    let data = await controller.findConversation(
+        "conversations",
+        "users",
+        a.email
+    );
+    if (data == undefined) {
+        let key = controller.addFireStore("conversations", {
+            createAt: new Date().toLocaleString(),
+            messages: [
+                {
+                    content: "Hello",
+                    createdAt: controller.getDate(),
+                    owner: firebase.auth().currentUser.email,
+                },
+            ],
+            users: [a.email, firebase.auth().currentUser.email],
+        });
+        let data2 = await controller.findConversation(
+            "conversations",
+            "users",
+            a.email
+        );
+        let friend = await controller.getInfoUser(inputChatEmail.value);
+        let html = "";
+        if (data2.data().messages !== undefined) {
+            for (let x of data2.data().messages) {
+                if (x.owner == firebase.auth().currentUser.email) {
+                    html += view.addYourMessage(x.content);
+                } else {
+                    html += view.addFriendMessage(x.content, friend.photoURL);
+                }
+            }
+        }
+    }
     let chatBox = `
     <div class="chatBoxArea" id="myChatBox">
     <div class="chatBoxShow">
         <!--Chat Box Header-->
         <div class="chatBoxShowHead">
-            <div class="showHeadLeft"><img src="${a[0].avatarUrl}" alt="shiba" style="width: 60px; height: 60px; border: 5px solid #dbdbf0; border-radius: 20%;">${a[0].displayName}</div>
+            <div class="showHeadLeft"><img src="${a.avatarUrl}" alt="shiba" style="width: 60px; height: 60px; border: 5px solid #dbdbf0; border-radius: 20%;">${a.displayName}</div>
             <div class="showHeadRight">
                 <button type="button" class="btn btnCancel" id="closeform"><i class="fas fa-power-off"></i></button>
             </div>
@@ -1405,3 +1438,45 @@ view.sendMessages = async  (id) => {
     view.appendHtml(jobdetail, chatBox)
 
 }
+view.addFriendMessage = (content, photoURL) => {
+    let iconUrl = controller.checkIconChat(content);
+    let html = "";
+    if (iconUrl !== null) {
+        let str = content;
+        for (let x of iconUrl) {
+            str = str.split(x.syntax).join(`<span><img src=${x.url}></span>`);
+        }
+        html = `
+            <div class="friend-message">
+                <img src="${photoURL}">
+                <div class="message">
+                    ${str}
+                </div>
+            </div>
+        `;
+    } else
+        html = `
+        <div class="friend-message">
+            <img src="${photoURL}">
+            <div class="message">${content}</div>
+        </div>
+        `;
+    return html;
+};
+view.addYourMessage = (content) => {
+    let html = "";
+    html = `
+    <div class="messagesList">
+    <div class="messagesListInfor">
+        <span class="inforName senderName">Duc</span>
+    </div>
+    <img src="imgs/img/imshiba3.jpg" alt="shiba" class="messagesImage fullLeft">
+    <div class="messagesText">
+        ${content}
+    </div>
+    <span class="messagesTimeStamp senderTimeLeft">3.36 PM</span>
+</div>
+    `;
+    
+    return html;
+};

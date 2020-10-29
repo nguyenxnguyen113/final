@@ -765,9 +765,12 @@ controller.getCv = async (userApplied) => {
   let getUser = await firebase.firestore().collection('users').where("email", "==", userApplied).get()
   return transformDocs(getUser.docs)
 }
-controller.sendMessages = async (id) => {
-  let jobOfCompany = await firebase.firestore().collection('users').where("email", "==", id).get()
-  return transformDocs(jobOfCompany.docs)
+controller.sendMessages = async (email) => {
+  let db = firebase.firestore()
+  let data = await db.collection('users').where("email", "==", email).get()
+  if (data.docs[0] !== undefined)
+      return data.docs[0].data()
+  else return null
 }
 controller.findConversation = async(collection, find, email) => {
   let db = firebase.firestore()
@@ -779,4 +782,24 @@ controller.findConversation = async(collection, find, email) => {
       .get()
   if (data.docs[0] == undefined) return undefined
   return data.docs[0]
+}
+controller.getDate = () => {
+  var today = new Date();
+  var date =
+    today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+  var time =
+    today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+  return date + " " + time;
+};
+controller.addFireStore = (collection, data) => {
+  var db = firebase.firestore();
+  db.collection(collection).add(data)
+      .then(function(docRef) {
+          console.log("Document written with ID: ", docRef.id);
+          model.key = docRef.id
+          return docRef.id
+      })
+      .catch(function(error) {
+          console.error("Error adding document: ", error);
+      });
 }
