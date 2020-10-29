@@ -769,3 +769,14 @@ controller.sendMessages = async (id) => {
   let jobOfCompany = await firebase.firestore().collection('users').where("email", "==", id).get()
   return transformDocs(jobOfCompany.docs)
 }
+controller.findConversation = async(collection, find, email) => {
+  let db = firebase.firestore()
+  let data = await db.collection(`${collection}`)
+      .where(`${find}`, "in", [
+          [`${email}`, `${firebase.auth().currentUser.email}`],
+          [`${firebase.auth().currentUser.email}`, `${email}`]
+      ])
+      .get()
+  if (data.docs[0] == undefined) return undefined
+  return data.docs[0]
+}

@@ -1368,6 +1368,7 @@ view.sendMessages = async  (id) => {
     let a = await controller.sendMessages(id)
     console.log(a[0])
     let jobdetail = document.getElementById("clear")
+
     let chatBox = `
     <div class="chatBoxArea" id="myChatBox">
     <div class="chatBoxShow">
@@ -1375,7 +1376,7 @@ view.sendMessages = async  (id) => {
         <div class="chatBoxShowHead">
             <div class="showHeadLeft"><img src="${a[0].avatarUrl}" alt="shiba" style="width: 60px; height: 60px; border: 5px solid #dbdbf0; border-radius: 20%;">${a[0].displayName}</div>
             <div class="showHeadRight">
-                <button type="button" class="btn btnCancel" onclick="closeForm()"><i class="fas fa-power-off"></i></button>
+                <button type="button" class="btn btnCancel" id="closeform"><i class="fas fa-power-off"></i></button>
             </div>
         </div>
         <!--Chat Box Messages-->
@@ -1402,4 +1403,5 @@ view.sendMessages = async  (id) => {
 </div>
     `
     view.appendHtml(jobdetail, chatBox)
+
 }
