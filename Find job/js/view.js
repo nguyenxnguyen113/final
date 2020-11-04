@@ -64,7 +64,6 @@ view.showComponents = async function(name) {
                     document.querySelector('.notification').style.display = "block"
                 }
                 let allconversation = await controller.getDataFireStore('conversations', 'users', 'array-contains')
-                console.log(allconversation);
                 model.allConversation = []
                 let conversations = []
                 if (allconversation.length !== 0) {
@@ -79,7 +78,7 @@ view.showComponents = async function(name) {
                     console.log(conversations);
                     model.allConversation = controller.sortByTimeStamp(conversations)
                 }
-                 view.listenChat = await controller.listenConversation()
+                view.listenChat = await controller.listenConversation()
                 view.showNotification()
                 break;
             }

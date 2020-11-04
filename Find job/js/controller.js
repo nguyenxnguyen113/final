@@ -866,12 +866,11 @@ controller.listenConversation = async () => {
   let db = await controller.initFirebaseStore().collection('conversations').onSnapshot(function(snapshot) {
     snapshot.docChanges().forEach(async function(change) {
       if (change.type === "added") {
-        const friendImg = await controller.getInfoUser(change.doc.data().users.find((user) => user !== firebase.auth().currentUser.email))
+        let friendImg = await controller.sendMessages(change.doc.data().users.find((user) => user !== firebase.auth().currentUser.email))
         console.log(friendImg);
         console.log("added");
-        console.log(change.doc.data().users);
         if (change.doc.data().users.find((item) => item == firebase.auth().currentUser.email)) {
-          view.addNotification(change.doc.data(), change.doc.id, friendImg.avatarUrl, friendImg.email)
+          view.addNotification(change.doc.data(), change.doc.id, await controller.sendMessages(change.doc.data().users.find((user) => user !== firebase.auth().currentUser.email)).avatarUrl, await controller.sendMessages(change.doc.data().users.find((user) => user !== firebase.auth().currentUser.email)).email)
         }
         controller.updateModelConversation()
       }
@@ -900,7 +899,12 @@ controller.listenConversation = async () => {
                 model.allConversation[index].messages = change.doc.data().messages
                 return item
             }
-        })
+        });
+        if(modelConversation !== undefined){
+          let font = document.getElementById(`${change.doc.id}`)
+          font.remove()
+          view.addNotification(change.doc.data(), change.doc.id, friendImg.photoURL, friendImg.email)
+        }
       }
     })
   })
@@ -931,7 +935,7 @@ controller.updateModelConversation = async(imgLink) => {
               messages: x.data().messages,
               id: x.id,
               users: x.data().users,
-              friendImg: friendImg.avatarUrl,
+              friendImg: await controller.sendMessages(x.data().users.find((user) => user !== firebase.auth().currentUser.email)).avatarUrl,
               friendEmail: x.data().users.find((item) => item !== firebase.auth().currentUser.email)
           })
       }
