@@ -877,7 +877,7 @@ controller.listenConversation = async () => {
       if (change.type === "modified") {
         console.log("Modified city: ", change.doc.data());
         let box = document.querySelector('.showMessagesDirect')
-        let friendImg = await controller.sendMessages(change.doc.data().users.find((user) => user !== firebase.auth().currentUser.email))
+        let friendImg = await controller.getInfoUser(change.doc.data().users.find((user) => user !== firebase.auth().currentUser.email))
         console.log(friendImg)
         let modelConversation = model.allConversation.find((item)=>item.id == change.doc.id)
         let messageData = change.doc.data().messages
@@ -903,7 +903,7 @@ controller.listenConversation = async () => {
         if(modelConversation !== undefined){
           let font = document.getElementById(`${change.doc.id}`)
           font.remove()
-          view.addNotification(change.doc.data(), change.doc.id, friendImg.photoURL, friendImg.email)
+          view.addNotification(change.doc.data(), change.doc.id, friendImg.logo, friendImg.emailCompany)
         }
       }
     })
