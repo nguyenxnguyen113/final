@@ -1712,8 +1712,9 @@ view.addNotification = async (data, id, friendImg, friendEmail) => {
             messages: data.messages[data.messages.length - 1].messages,
             users: data.users,
         };
+        let chatBox = document.querySelector('.chatBoxArea')
         let messageBox = document.querySelector(".showMessagesDirect");
-        messageBox.style.display = "block"
+        
         console.log(messageBox)
         let html = "";
         controller.updateCheckConversation("conversations", id, true);
@@ -1726,6 +1727,7 @@ view.addNotification = async (data, id, friendImg, friendEmail) => {
         }
 
         messageBox.innerHTML = html;
+        chatBox.style.display = 'block'
         let iconMessage = document.querySelector(".icon-notification");
 
         iconMessage.style.display = "none";
