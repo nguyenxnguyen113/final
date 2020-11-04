@@ -1497,40 +1497,40 @@ view.sendMessages = async  (id) => {
             }
         }
     });
-    messageInput.addEventListener('click',()=>{
-        if (model.currentConversation !== null) {
-            let a = document.getElementById(`${model.currentConversation.id}`)
-            a.style.fontWeight = "300";
-            let iconMessage = document.querySelector(".icon-notification");
-            iconMessage.style.display = "none";
-            model.updateCheckConversation('conversations', model.currentConversation.id, true)
-        }
-    })
-    const searchBar = document.getElementById("search-conversations");
-    searchBar.addEventListener("keyup", (e) => {
-        const searchString = e.target.value.toLowerCase();
-        document.querySelector(".new-notification").innerText = "";
-        const filteredConversations = model.allConversation.filter(
-            (conversation) => {
-                return conversation.users
-                    .find((item) => item !== firebase.auth().currentUser.email)
-                    .toLowerCase()
-                    .includes(searchString);
-            }
-        );
-        console.log(filteredConversations);
-        for (let index = 0; index < model.allConversation.length; index++) {
-            console.log(model.allConversation[index].friendImg);
-            if (filteredConversations[index] !== undefined) {
-                view.addNotification(
-                    filteredConversations[index],
-                    filteredConversations[index].id,
-                    filteredConversations[index].friendImg,
-                    filteredConversations[index].friendEmail
-                );
-            }
-        }
-    });
+    // messageInput.addEventListener('click',()=>{
+    //     if (model.currentConversation !== null) {
+    //         let a = document.getElementById(`${model.currentConversation.id}`)
+    //         a.style.fontWeight = "300";
+    //         let iconMessage = document.querySelector(".icon-notification");
+    //         iconMessage.style.display = "none";
+    //         model.updateCheckConversation('conversations', model.currentConversation.id, true)
+    //     }
+    // })
+    // const searchBar = document.getElementById("search-conversations");
+    // searchBar.addEventListener("keyup", (e) => {
+    //     const searchString = e.target.value.toLowerCase();
+    //     document.querySelector(".new-notification").innerText = "";
+    //     const filteredConversations = model.allConversation.filter(
+    //         (conversation) => {
+    //             return conversation.users
+    //                 .find((item) => item !== firebase.auth().currentUser.email)
+    //                 .toLowerCase()
+    //                 .includes(searchString);
+    //         }
+    //     );
+    //     console.log(filteredConversations);
+    //     for (let index = 0; index < model.allConversation.length; index++) {
+    //         console.log(model.allConversation[index].friendImg);
+    //         if (filteredConversations[index] !== undefined) {
+    //             view.addNotification(
+    //                 filteredConversations[index],
+    //                 filteredConversations[index].id,
+    //                 filteredConversations[index].friendImg,
+    //                 filteredConversations[index].friendEmail
+    //             );
+    //         }
+    //     }
+    // });
 }
 view.showNotification = () => {
     let messageInput = document.getElementById("status_message");
@@ -1657,7 +1657,6 @@ view.addNotification = async (data, id, friendImg, friendEmail) => {
     console.log(friendImg);
     lassMessageOwner = data.messages[data.messages.length - 1].owner;
     let notificationBox = document.querySelector(".new-notification");
-    let icon = document.getElementById("icon-chat-container");
     let html = "";
     let sender = null;
     // onclick='${view.sendMessages(friendEmail)}'
@@ -1715,6 +1714,7 @@ view.addNotification = async (data, id, friendImg, friendEmail) => {
             users: data.users,
         };
         let messageBox = document.querySelector(".showMessagesDirect");
+        console.log(messageBox)
         let html = "";
         controller.updateCheckConversation("conversations", id, true);
         for (let x of data.messages) {
@@ -1729,11 +1729,10 @@ view.addNotification = async (data, id, friendImg, friendEmail) => {
         let iconMessage = document.querySelector(".icon-notification");
 
         iconMessage.style.display = "none";
-        let chatbox = document.querySelector(".chat-one-to-one-container");
+        let chatbox = document.querySelector(".showMessagesDirect");
         let notification = document.querySelector(".new-notification-box");
-        chatbox.classList = "chat-one-to-one-container";
+        chatbox.classList = ".showMessagesDirect";
         notification.classList = "new-notification-box display-none";
-        icon.classList = "chat-button cursor display-none";
         let chatTitle = document.querySelector(".showHeadLeft");
         chatTitle.innerHTML = `${friendEmail}`;
         messageBox.scrollTop = messageBox.scrollHeight;
