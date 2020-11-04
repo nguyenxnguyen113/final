@@ -24,7 +24,7 @@ view.showComponents = async function(name) {
                 app.innerHTML = component.navTransf + component.header + component.home
                 let registCompany = document.getElementById('link-employer')
                     // console.log(await controller.getTest())
-                view.listenChat = controller.listenConversation()
+                
                 registCompany.onclick = rC
                 view.onclickNotification()
                 function rC() {
@@ -52,6 +52,7 @@ view.showComponents = async function(name) {
                     verified: false,
                     email: null
                 }
+
                 if (!currentUser) {
                     test.emailVerified
                 } else {
@@ -62,7 +63,24 @@ view.showComponents = async function(name) {
                     registCompany.classList.add("disable-employer");
                     document.querySelector('.notification').style.display = "block"
                 }
-                
+                let allconversation = await controller.getDataFireStore('conversations', 'users', 'array-contains')
+                console.log(allconversation);
+                model.allConversation = []
+                let conversations = []
+                if (allconversation.length !== 0) {
+                    for (let x of allconversation) {
+                        conversations.push({
+                            createdAt: controller.convertToTimeStamp(x.data().messages[x.data().messages.length - 1]['createdAt']),
+                            messages: x.data().messages,
+                            id: x.id,
+                            users: x.data().users
+                        })
+                    }
+                    console.log(conversations);
+                    model.allConversation = controller.sortByTimeStamp(conversations)
+                }
+                 view.listenChat = await controller.listenConversation()
+                view.showNotification()
                 break;
             }
         case 'login':
@@ -1480,6 +1498,43 @@ view.sendMessages = async  (id) => {
             }
         }
     });
+    messageInput.addEventListener('click',()=>{
+        if (model.currentConversation !== null) {
+            let a = document.getElementById(`${model.currentConversation.id}`)
+            a.style.fontWeight = "300";
+            let iconMessage = document.querySelector(".icon-notification");
+            iconMessage.style.display = "none";
+            model.updateCheckConversation('conversations', model.currentConversation.id, true)
+        }
+    })
+    const searchBar = document.getElementById("search-conversations");
+    searchBar.addEventListener("keyup", (e) => {
+        const searchString = e.target.value.toLowerCase();
+        document.querySelector(".new-notification").innerText = "";
+        const filteredConversations = model.allConversation.filter(
+            (conversation) => {
+                return conversation.users
+                    .find((item) => item !== firebase.auth().currentUser.email)
+                    .toLowerCase()
+                    .includes(searchString);
+            }
+        );
+        console.log(filteredConversations);
+        for (let index = 0; index < model.allConversation.length; index++) {
+            console.log(model.allConversation[index].friendImg);
+            if (filteredConversations[index] !== undefined) {
+                view.addNotification(
+                    filteredConversations[index],
+                    filteredConversations[index].id,
+                    filteredConversations[index].friendImg,
+                    filteredConversations[index].friendEmail
+                );
+            }
+        }
+    });
+}
+view.showNotification = () => {
+    let messageInput = document.getElementById("status_message");
     messageInput.addEventListener('click',()=>{
         if (model.currentConversation !== null) {
             let a = document.getElementById(`${model.currentConversation.id}`)

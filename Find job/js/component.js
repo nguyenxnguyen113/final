@@ -361,6 +361,36 @@ component.home =
 <div id="listComponys" class="row mb-5 justify-content-center ">
 
 </div>
+<div class="chatBoxArea" id="myChatBox">
+<div class="chatBoxShow">
+    <!--Chat Box Header-->
+    <div class="chatBoxShowHead">
+        <div class="showHeadLeft"><img src="" alt="shiba" style="width: 60px; height: 60px; border: 5px solid #dbdbf0; border-radius: 20%;"></div>
+        <div class="showHeadRight">
+            <button type="button" class="btn btnCancel" id="closeform"><i class="fas fa-power-off"></i></button>
+        </div>
+    </div>
+    <!--Chat Box Messages-->
+    <div class="showMessages">
+        <div class="showMessagesDirect">
+
+        </div>
+    </div>
+    <!--Chat Box Footer-->
+    <div class="chatBoxFooter">
+        <div>
+            <input id="status_message" placeholder="Type a message..." name="message"/>
+        </div>
+        <div class="btnFooter">
+            <div class="btnFooterLeft">
+                <button class="btnItems"><i class="fas fa-file"></i></button>
+                <button class="btnItems"><i class="fas fa-image"></i></button>
+                <button class="btnItems"><i class="fas fa-video"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 </div>
 
 

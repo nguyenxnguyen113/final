@@ -866,9 +866,7 @@ controller.listenConversation = async () => {
   let db = await controller.initFirebaseStore().collection('conversations').onSnapshot(function(snapshot) {
     snapshot.docChanges().forEach(async function(change) {
       if (change.type === "added") {
-        let dt = change.doc.data().users.find((user) => user !== firebase.auth().currentUser.email)
-        console.log(dt)
-        const friendImg = await controller.getInfoUser(dt)
+        const friendImg = await controller.getInfoUser(change.doc.data().users.find((user) => user !== firebase.auth().currentUser.email))
         console.log(friendImg);
         console.log("added");
         console.log(change.doc.data().users);
