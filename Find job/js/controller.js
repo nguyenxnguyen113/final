@@ -842,6 +842,16 @@ controller.getDataFireStore = async(collection, find, check = null) => {
 controller.listenConversation = () => {
   let db = controller.initFirebaseStore().collection('conversations').onSnapshot(function(snapshot) {
     snapshot.docChanges().forEach(async function(change) {
+      if (change.type === "added") {
+        let friendImg = await controller.sendMessages(change.doc.data().users.find((user) => user !== firebase.auth().currentUser.email))
+        console.log(friendImg);
+        console.log("added");
+        console.log(change.doc.data().users);
+        if (change.doc.data().users.find((item) => item == firebase.auth().currentUser.email)) {
+            view.addNotification(change.doc.data(), change.doc.id, friendImg.photoURL, friendImg.email)
+        }
+        controller.updateModelConversation()
+    }
       if (change.type === "modified") {
         console.log("Modified city: ", change.doc.data());
         let box = document.querySelector('.showMessagesDirect')
@@ -885,3 +895,23 @@ controller.sortByTimeStamp = (data) => {
   });
   return arrAfterSort;
 };
+controller.updateModelConversation = async(imgLink) => {
+  let allconversation = await controller.getDataFireStore('conversations', 'users', 'array-contains')
+  model.allConversation = []
+  let conversations = []
+  if (allconversation.length !== 0) {
+      for (let x of allconversation) {
+          let friendImg = await controller.sendMessages(x.data().users.find(
+              (user) => user !== firebase.auth().currentUser.email))
+          conversations.push({
+              createdAt: controller.convertToTimeStamp(x.data().messages[x.data().messages.length - 1]['createdAt']),
+              messages: x.data().messages,
+              id: x.id,
+              users: x.data().users,
+              friendImg: friendImg.photoURL,
+              friendEmail: x.data().users.find((item) => item !== firebase.auth().currentUser.email)
+          })
+      }
+      model.allConversation = controller.sortByTimeStamp(conversations)
+  }
+}

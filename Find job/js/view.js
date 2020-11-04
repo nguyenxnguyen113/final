@@ -25,7 +25,8 @@ view.showComponents = async function(name) {
                 let registCompany = document.getElementById('link-employer')
                     // console.log(await controller.getTest())
                 registCompany.onclick = rC
-
+                view.listenChat = controller.listenConversation()
+                view.onclickNotification()
                 function rC() {
                     view.showComponents('registCompany')
                 }
@@ -47,8 +48,17 @@ view.showComponents = async function(name) {
                 jobSkill()
                 view.showCompany()
                 view.ShowNav()
-
-                if (currentUser.emailVerified) {
+                let test = {
+                    verified: false,
+                    email: null
+                }
+                if (!currentUser) {
+                    test.emailVerified
+                } else {
+                    test.verified = currentUser.emailVerified
+                }
+                if (test.verified) {
+                    console.log(test.verified)
                     registCompany.classList.add("disable-employer");
                 }
                 break;
@@ -1468,6 +1478,40 @@ view.sendMessages = async  (id) => {
             }
         }
     });
+    messageInput.addEventListener('click',()=>{
+        if (model.currentConversation !== null) {
+            let a = document.getElementById(`${model.currentConversation.id}`)
+            a.style.fontWeight = "300";
+            let iconMessage = document.querySelector(".icon-notification");
+            iconMessage.style.display = "none";
+            model.updateCheckConversation('conversations', model.currentConversation.id, true)
+        }
+    })
+    const searchBar = document.getElementById("search-conversations");
+    searchBar.addEventListener("keyup", (e) => {
+        const searchString = e.target.value.toLowerCase();
+        document.querySelector(".new-notification").innerText = "";
+        const filteredConversations = model.allConversation.filter(
+            (conversation) => {
+                return conversation.users
+                    .find((item) => item !== firebase.auth().currentUser.email)
+                    .toLowerCase()
+                    .includes(searchString);
+            }
+        );
+        console.log(filteredConversations);
+        for (let index = 0; index < model.allConversation.length; index++) {
+            console.log(model.allConversation[index].friendImg);
+            if (filteredConversations[index] !== undefined) {
+                view.addNotification(
+                    filteredConversations[index],
+                    filteredConversations[index].id,
+                    filteredConversations[index].friendImg,
+                    filteredConversations[index].friendEmail
+                );
+            }
+        }
+    });
 }
 view.addFriendMessage = (content, photoURL, date) => {
     let html = "";
@@ -1502,4 +1546,139 @@ view.addYourMessage = (content, date) => {
     `;
     
     return html;
+};
+view.addListConversation = (data, isActive = false) => {
+    let html = "";
+    if (isActive) {
+        if (
+            data.check == false &&
+            data.lassMessageOwner !== firebase.auth().currentUser.email
+        ) {
+            html += `
+                <div class="conversation-box active bold">${data.friendEmail[0].toUpperCase()}
+                ${data.friendEmail[
+                    data.friendEmail.length - 11
+                ].toUpperCase()}</div>
+            `;
+        } else {
+            html += `
+                <div class="conversation-box active">${data.friendEmail[0].toUpperCase()}
+                ${data.friendEmail[
+                    data.friendEmail.length - 11
+                ].toUpperCase()}</div>
+            `;
+        }
+    } else {
+        if (
+            data.check == false &&
+            data.lassMessageOwner !== firebase.auth().currentUser.email
+        ) {
+            html += `
+                <div class="conversation-box bold">${data.friendEmail[0].toUpperCase()}
+                ${data.friendEmail[
+                    data.friendEmail.length - 11
+                ].toUpperCase()}</div>
+            `;
+        } else {
+            html += `
+                <div class="conversation-box ">${data.friendEmail[0].toUpperCase()}
+                ${data.friendEmail[
+                    data.friendEmail.length - 11
+                ].toUpperCase()}</div>
+            `;
+        }
+    }
+    return html;
+};
+view.onclickNotification = () => {
+    let notification = document.querySelector(".notification");
+    let notificationBox = document.querySelector(".new-notification-box");
+    notification.addEventListener("click", () => {
+        notificationBox.classList.toggle("display-none");
+    });
+};
+view.addNotification = async (data, id, friendImg, friendEmail) => {
+    // console.log(data);
+    lassMessageOwner = data.messages[data.messages.length - 1].owner;
+    let notificationBox = document.querySelector(".new-notification");
+    let icon = document.getElementById("icon-chat-container");
+    let html = "";
+    let sender = null;
+    lassMessageOwner == firebase.auth().currentUser.email
+        ? (sender = "You:")
+        : (sender = "");
+    html = `
+        <div class="sub-notification" id="${id}">
+            <div class="owner-notification">
+                <img src="${friendImg}">
+            </div>
+            <div class="notification-box">
+                <div class="text-email">${friendEmail}</div>
+                <div class="content-notification text-email">${sender}
+                    ${data.messages[data.messages.length - 1].content}
+                </div>
+            </div>
+        </div>
+    `;
+    if (data.check == true) {
+        notificationBox.insertAdjacentHTML("beforeend", html);
+    } else notificationBox.insertAdjacentHTML("afterbegin", html);
+    if (lassMessageOwner !== firebase.auth().currentUser.email) {
+        if (model.currentConversation !== null) {
+            if (id !== model.currentConversation.id && data.check == false) {
+                let font = document.getElementById(`${id}`);
+                let icon = document.querySelector(".icon-notification");
+                font.style.fontWeight = "600";
+                icon.style.display = "block";
+            } else if (
+                id == model.currentConversation.id &&
+                data.check == false &&
+                icon.classList == "chat-button cursor"
+            ) {
+                let font = document.getElementById(`${id}`);
+                let icon = document.querySelector(".icon-notification");
+                font.style.fontWeight = "600";
+                icon.style.display = "block";
+            }
+        } else {
+            if (data.check == false) {
+                let font = document.getElementById(`${id}`);
+                let icon = document.querySelector(".icon-notification");
+                font.style.fontWeight = "600";
+                icon.style.display = "block";
+            }
+        }
+    }
+    let a = document.getElementById(`${id}`);
+    a.addEventListener("click", async () => {
+        a.style.fontWeight = "300";
+        model.currentConversation = {
+            id: id,
+            messages: data.messages[data.messages.length - 1].messages,
+            users: data.users,
+        };
+        let messageBox = document.querySelector(".message-box");
+        let html = "";
+        controller.updateCheckConversation("conversations", id, true);
+        for (let x of data.messages) {
+            if (x.owner == firebase.auth().currentUser.email) {
+                html += view.addYourMessage(x.content);
+            } else {
+                html += view.addFriendMessage(x.content, friendImg);
+            }
+        }
+
+        messageBox.innerHTML = html;
+        let iconMessage = document.querySelector(".icon-notification");
+
+        iconMessage.style.display = "none";
+        let chatbox = document.querySelector(".chat-one-to-one-container");
+        let notification = document.querySelector(".new-notification-box");
+        chatbox.classList = "chat-one-to-one-container";
+        notification.classList = "new-notification-box display-none";
+        icon.classList = "chat-button cursor display-none";
+        let chatTitle = document.querySelector(".showHeadLeft");
+        chatTitle.innerHTML = `${friendEmail}`;
+        messageBox.scrollTop = messageBox.scrollHeight;
+    });
 };
