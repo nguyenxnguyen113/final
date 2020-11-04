@@ -1600,7 +1600,7 @@ view.onclickNotification = () => {
     });
 };
 view.addNotification = async (data, id, friendImg, friendEmail) => {
-    // console.log(data);
+    console.log(friendImg);
     lassMessageOwner = data.messages[data.messages.length - 1].owner;
     let notificationBox = document.querySelector(".new-notification");
     let icon = document.getElementById("icon-chat-container");
