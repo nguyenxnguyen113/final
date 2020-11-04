@@ -1688,8 +1688,7 @@ view.addNotification = async (data, id, friendImg, friendEmail) => {
                 icon.style.display = "block";
             } else if (
                 id == model.currentConversation.id &&
-                data.check == false &&
-                icon.classList == "chat-button cursor"
+                data.check == false 
             ) {
                 let font = document.getElementById(`${id}`);
                 let icon = document.querySelector(".icon-notification");
@@ -1714,6 +1713,7 @@ view.addNotification = async (data, id, friendImg, friendEmail) => {
             users: data.users,
         };
         let messageBox = document.querySelector(".showMessagesDirect");
+        messageBox.style.display = "block"
         console.log(messageBox)
         let html = "";
         controller.updateCheckConversation("conversations", id, true);
