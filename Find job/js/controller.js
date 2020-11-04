@@ -854,7 +854,7 @@ controller.listenConversation = () => {
         console.log("added");
         console.log(change.doc.data().users);
         if (change.doc.data().users.find((item) => item == firebase.auth().currentUser.email)) {
-          view.addNotification(change.doc.data(), change.doc.id, await controller.getInfoUser(change.doc.data().users.find((user) => user !== firebase.auth().currentUser.email).avatarUrl, await controller.getInfoUser(change.doc.data().users.find((user) => user !== firebase.auth().currentUser.email).email)
+          view.addNotification(change.doc.data(), change.doc.id, friendImg.avatarUrl, friendImg.email)
         }
         controller.updateModelConversation()
       }
@@ -862,6 +862,7 @@ controller.listenConversation = () => {
         console.log("Modified city: ", change.doc.data());
         let box = document.querySelector('.showMessagesDirect')
         let friendImg = await controller.sendMessages(change.doc.data().users.find((user) => user !== firebase.auth().currentUser.email))
+        console.log(friendImg)
         let modelConversation = model.allConversation.find((item)=>item.id == change.doc.id)
         let messageData = change.doc.data().messages
         console.log(change.doc.id)
