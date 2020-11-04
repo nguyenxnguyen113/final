@@ -25,7 +25,7 @@ view.showComponents = async function(name) {
                 let registCompany = document.getElementById('link-employer')
                     // console.log(await controller.getTest())
                 registCompany.onclick = rC
-                view.listenChat = controller.listenConversation()
+                controller.listenConversation()
                 view.onclickNotification()
                 function rC() {
                     view.showComponents('registCompany')

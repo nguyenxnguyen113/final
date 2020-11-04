@@ -824,7 +824,13 @@ controller.updateCheckConversation = (collection, document, data) => {
       check: data
   })
 }
-
+controller.getInfoUser = async(email) => {
+  let db = firebase.firestore()
+  let data = await db.collection('users').where("email", "==", email).get()
+  if (data.docs[0] !== undefined)
+      return data.docs[0].data()
+  else return null
+}
 controller.getDataFireStore = async(collection, find, check = null) => {
   let db = firebase.firestore()
   if (check == null) {
@@ -843,15 +849,15 @@ controller.listenConversation = () => {
   let db = controller.initFirebaseStore().collection('conversations').onSnapshot(function(snapshot) {
     snapshot.docChanges().forEach(async function(change) {
       if (change.type === "added") {
-        let friendImg = await controller.sendMessages(change.doc.data().users.find((user) => user !== firebase.auth().currentUser.email))
+        const friendImg = await controller.getInfoUser(change.doc.data().users.find((user) => user !== firebase.auth().currentUser.email))
         console.log(friendImg);
         console.log("added");
         console.log(change.doc.data().users);
         if (change.doc.data().users.find((item) => item == firebase.auth().currentUser.email)) {
-            view.addNotification(change.doc.data(), change.doc.id, friendImg.photoURL, friendImg.email)
+          view.addNotification(change.doc.data(), change.doc.id, await controller.getInfoUser(change.doc.data().users.find((user) => user !== firebase.auth().currentUser.email).avatarUrl, await controller.getInfoUser(change.doc.data().users.find((user) => user !== firebase.auth().currentUser.email).email)
         }
         controller.updateModelConversation()
-    }
+      }
       if (change.type === "modified") {
         console.log("Modified city: ", change.doc.data());
         let box = document.querySelector('.showMessagesDirect')
@@ -901,14 +907,13 @@ controller.updateModelConversation = async(imgLink) => {
   let conversations = []
   if (allconversation.length !== 0) {
       for (let x of allconversation) {
-          let friendImg = await controller.sendMessages(x.data().users.find(
-              (user) => user !== firebase.auth().currentUser.email))
+          let friendImg = await controller.sendMessages(x.data().users.find((user) => user !== firebase.auth().currentUser.email))
           conversations.push({
               createdAt: controller.convertToTimeStamp(x.data().messages[x.data().messages.length - 1]['createdAt']),
               messages: x.data().messages,
               id: x.id,
               users: x.data().users,
-              friendImg: friendImg.photoURL,
+              friendImg: friendImg.avatarUrl,
               friendEmail: x.data().users.find((item) => item !== firebase.auth().currentUser.email)
           })
       }

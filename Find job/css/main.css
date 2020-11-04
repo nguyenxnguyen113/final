@@ -901,6 +901,96 @@ a{
 .display-none {
   display: none;
 }
+.notification .icon-notification {
+  border-radius: 50%;
+  right: -4px;
+  top: 12px;
+  position: absolute;
+  content: " ";
+  background: red;
+  height: 10px;
+  width: 10px;
+  display: none;
+}
+
+.notification {
+  position: relative;
+  cursor: pointer;
+}
+
+.new-notification-box {
+  overflow: auto;
+  padding: 15px;
+  width: 300px;
+  max-height: 400px;
+  min-height: 300px;
+  position: absolute;
+  background: #fff;
+  right: 20px;
+  top: 75px;
+  box-shadow: 0px 2px 12px -5px;
+  -webkit-user-select: none;
+}
+
+.new-notification-box::-webkit-scrollbar {
+  display: none;
+}
+
+.search-notification {
+  border-radius: 10px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  background: #f0f2f5;
+}
+
+.search-notification i {
+  line-height: 30px;
+}
+
+.search-notification input {
+  height: 30px;
+  width: 90%;
+  background: #f0f2f5;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  padding: 0 5px;
+}
+
+.sub-notification {
+  margin-top: 15px;
+  display: flex;
+  border-radius: 24px 10px 10px 24px;
+}
+
+.notification-box {
+  padding: 0 5px;
+  margin-left: 5px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  overflow: hidden;
+}
+
+.sub-notification:hover {
+  background: #dddd;
+}
+
+.owner-notification img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+
+.owner-notification div {
+  overflow: inherit;
+}
+
+.owner-notification {
+  display: flex;
+}
 /* STRUCTURE */
 
 .wrapper {
