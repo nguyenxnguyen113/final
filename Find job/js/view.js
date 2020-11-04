@@ -1660,11 +1660,12 @@ view.addNotification = async (data, id, friendImg, friendEmail) => {
     let icon = document.getElementById("icon-chat-container");
     let html = "";
     let sender = null;
+    // onclick='${view.sendMessages(friendEmail)}'
     lassMessageOwner == firebase.auth().currentUser.email
         ? (sender = "You:")
         : (sender = "");
     html = `
-        <div class="sub-notification" id="${id}">
+        <div class="sub-notification" id="${id}" >
             <div class="owner-notification">
                 <img src="${friendImg}">
             </div>
@@ -1713,7 +1714,7 @@ view.addNotification = async (data, id, friendImg, friendEmail) => {
             messages: data.messages[data.messages.length - 1].messages,
             users: data.users,
         };
-        let messageBox = document.querySelector(".message-box");
+        let messageBox = document.querySelector(".showMessagesDirect");
         let html = "";
         controller.updateCheckConversation("conversations", id, true);
         for (let x of data.messages) {

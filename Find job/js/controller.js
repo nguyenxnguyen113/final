@@ -826,7 +826,7 @@ controller.updateCheckConversation = (collection, document, data) => {
 }
 controller.getInfoUser = async(email) => {
   let db = firebase.firestore()
-  let data = await db.collection('users').where("email", "==", email).get()
+  let data = await db.collection('company').where("emailCompany", "==", email).get()
   if (data.docs[0] !== undefined)
       return data.docs[0].data()
   else return null
@@ -866,11 +866,11 @@ controller.listenConversation = async () => {
   let db = await controller.initFirebaseStore().collection('conversations').onSnapshot(function(snapshot) {
     snapshot.docChanges().forEach(async function(change) {
       if (change.type === "added") {
-        let friendImg = await controller.sendMessages(change.doc.data().users.find((user) => user !== firebase.auth().currentUser.email))
+        let friendImg = await controller.getInfoUser(change.doc.data().users.find((user) => user !== firebase.auth().currentUser.email))
         console.log(friendImg);
         console.log("added");
         if (change.doc.data().users.find((item) => item == firebase.auth().currentUser.email)) {
-          view.addNotification(change.doc.data(), change.doc.id, await controller.sendMessages(change.doc.data().users.find((user) => user !== firebase.auth().currentUser.email)).avatarUrl, await controller.sendMessages(change.doc.data().users.find((user) => user !== firebase.auth().currentUser.email)).email)
+          view.addNotification(change.doc.data(), change.doc.id, friendImg.logo, friendImg.emailCompany)
         }
         controller.updateModelConversation()
       }
