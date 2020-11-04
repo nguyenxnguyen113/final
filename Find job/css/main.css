@@ -916,6 +916,7 @@ a{
 .notification {
   position: relative;
   cursor: pointer;
+  display: none;
 }
 
 .new-notification-box {

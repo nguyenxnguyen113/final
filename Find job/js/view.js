@@ -24,7 +24,7 @@ view.showComponents = async function(name) {
                 app.innerHTML = component.navTransf + component.header + component.home
                 let registCompany = document.getElementById('link-employer')
                     // console.log(await controller.getTest())
-                controller.listenConversation()
+                view.listenChat = controller.listenConversation()
                 registCompany.onclick = rC
                 view.onclickNotification()
                 function rC() {
@@ -60,6 +60,7 @@ view.showComponents = async function(name) {
                 if (test.verified) {
                     console.log(test.verified)
                     registCompany.classList.add("disable-employer");
+                    document.querySelector('.notification').style.display = "block"
                 }
                 
                 break;
