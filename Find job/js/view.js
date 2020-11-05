@@ -15,8 +15,7 @@ view.showComponents = async function(name) {
     switch (name) {
         case 'home':
             {
-                view.pastScreen = 'home'
-
+                // view.pastScreen = 'home'
                 let currentUser = firebase.auth().currentUser
                 console.log(currentUser)
                 model.saveCurrentJobs(model.jobs)
@@ -214,8 +213,20 @@ view.showComponents = async function(name) {
                 registCompany.addEventListener('click', () => {
                     view.showComponents('registCompany')
                 })
-                if (currentUser.emailVerified) {
+                let test = {
+                    verified: false,
+                    email: null
+                }
+
+                if (!currentUser) {
+                    test.emailVerified
+                } else {
+                    test.verified = currentUser.emailVerified
+                }
+                if (test.verified) {
+                    console.log(test.verified)
                     registCompany.classList.add("disable-employer");
+                    document.querySelector('.notification').style.display = "block"
                 }
 
                 break;
@@ -288,8 +299,20 @@ view.showComponents = async function(name) {
                 registCompany.addEventListener('click', () => {
                     view.showComponents('registCompany')
                 })
-                if (currentUser.emailVerified) {
+                let test = {
+                    verified: false,
+                    email: null
+                }
+
+                if (!currentUser) {
+                    test.emailVerified
+                } else {
+                    test.verified = currentUser.emailVerified
+                }
+                if (test.verified) {
+                    console.log(test.verified)
                     registCompany.classList.add("disable-employer");
+                    document.querySelector('.notification').style.display = "block"
                 }
 
                 break;

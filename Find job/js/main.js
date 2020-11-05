@@ -1,7 +1,7 @@
 window.onload = init
 function init() {
 
-  view.showLastLocation('loading')
+  view.showLastLocation('home')
 
   firebase.auth().onAuthStateChanged(function (user) {
     if (view.currentScreen == 'register' || view.currentScreen == 'login') {
