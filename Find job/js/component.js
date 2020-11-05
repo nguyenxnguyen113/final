@@ -216,6 +216,8 @@ component.dropdown = `
 </div>
 <div class="dropdown-menu dropdown-menu-right">
 <a class="dropdown-item"  style="font-size: 20px" id="btn-profile">My Profile</a>
+<a class="dropdown-item"  style="font-size: 20px" id="btn-applied-job">Applied Job</a>
+<a class="dropdown-item"  style="font-size: 20px" id="btn-saved-job">Saved Job</a>
 <a class="dropdown-item"  style="font-size: 20px" id="btn-out" >Log out</a>
 </div>
 </div> `

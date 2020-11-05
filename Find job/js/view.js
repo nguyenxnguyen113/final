@@ -1447,7 +1447,7 @@ view.sendMessages = async  (id) => {
         if (data2.data().messages !== undefined) {
             for (let x of data2.data().messages) {
                 if (x.owner == firebase.auth().currentUser.email) {
-                    html += view.addYourMessage(x.content);
+                    html += view.addYourMessage(x.content, x.createdAt);
                 } else {
                     html += view.addFriendMessage(x.content, friend.avatarUrl);
                 }
@@ -1593,7 +1593,6 @@ view.addYourMessage = (content, date) => {
     <div class="messagesListInfor">
         <span class="inforName receiverName">You</span>
     </div>
-    <img src="imgs/img/imshiba3.jpg" alt="shiba" class="messagesImage fullRight">
     <div class="messagesText receiverText">
         ${content}
     </div>
