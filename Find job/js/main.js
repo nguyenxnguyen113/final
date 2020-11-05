@@ -10,7 +10,7 @@ function init() {
     }
     if (user && user.emailVerified) {
       console.log("đã đăng nhập")
-      view.showLastLocation('home')
+      // view.showLastLocation('home')
     }
     else {
       console.log("0k");
