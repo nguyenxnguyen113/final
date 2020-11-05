@@ -78,8 +78,8 @@ view.showComponents = async function(name) {
                     console.log(conversations);
                     model.allConversation = controller.sortByTimeStamp(conversations)
                 }
-                view.listenChat = await controller.listenConversation()
                 view.showNotification()
+                view.listenChat = await controller.listenConversation()
                 break;
             }
         case 'login':
@@ -1738,5 +1738,23 @@ view.addNotification = async (data, id, friendImg, friendEmail) => {
         let chatTitle = document.querySelector(".showHeadLeft");
         chatTitle.innerHTML = `${friendEmail}`;
         messageBox.scrollTop = messageBox.scrollHeight;
+    });
+    let messageInput = document.getElementById("status_message");
+    messageInput.addEventListener("keyup", (e) => {
+        if (e.keyCode == "13") {
+            if (model.currentConversation !== null) {
+                if (messageInput.value.trim() !== "")
+                    controller.firestoreArryUnion(
+                        "conversations",
+                        model.currentConversation.id,
+                        messageInput.value
+                    );
+                messageInput.value = "";
+            }
+            else {
+                alert('Please input your friend email to chat')
+                messageInput.value = "";
+            }
+        }
     });
 };

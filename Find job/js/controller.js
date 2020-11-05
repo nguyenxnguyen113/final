@@ -886,10 +886,12 @@ controller.listenConversation = async () => {
             if (change.doc.id == model.currentConversation.id && messageData.length !== modelConversation.messages.length) {
                 let messages = change.doc.data().messages
                 let html = ''
-                let messageBox = document.querySelector('.showMessagesDirect')
+                let messageBox = document.querySelector('.showMessages')
                 if (messages[messages.length - 1].owner == firebase.auth().currentUser.email)
                     html += view.addYourMessage(messages[messages.length - 1].content,messages[messages.length - 1].createdAt)
                 else html += view.addFriendMessage(messages[messages.length - 1].content, friendImg.photoURL)
+                
+                console.log(messageBox)
                 messageBox.innerHTML += html
                 box.scrollTop = box.scrollHeight                
             }
