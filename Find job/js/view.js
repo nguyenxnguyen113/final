@@ -24,7 +24,7 @@ view.showComponents = async function(name) {
                 app.innerHTML = component.navTransf + component.header + component.home
                 let registCompany = document.getElementById('link-employer')
                     // console.log(await controller.getTest())
-                
+                await controller.listenConversation()
                 registCompany.onclick = rC
                 view.onclickNotification()
                 function rC() {
@@ -79,7 +79,7 @@ view.showComponents = async function(name) {
                     model.allConversation = controller.sortByTimeStamp(conversations)
                 }
                 view.showNotification()
-                view.listenChat = await controller.listenConversation()
+                
                 break;
             }
         case 'login':
@@ -1720,9 +1720,9 @@ view.addNotification = async (data, id, friendImg, friendEmail) => {
         controller.updateCheckConversation("conversations", id, true);
         for (let x of data.messages) {
             if (x.owner == firebase.auth().currentUser.email) {
-                html += view.addYourMessage(x.content);
+                html += view.addYourMessage(x.content,x.createdAt);
             } else {
-                html += view.addFriendMessage(x.content, friendImg);
+                html += view.addFriendMessage(x.content, friendImg, x.createdAt);
             }
         }
 
