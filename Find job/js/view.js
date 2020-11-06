@@ -21,11 +21,13 @@ view.showComponents = async function(name) {
                 model.saveCurrentJobs(model.jobs)
                 let app = document.getElementById('app')
                 app.innerHTML = component.navTransf + component.header + component.home
-                let registCompany = document.getElementById('link-employer')
+                
                     // console.log(await controller.getTest())
                 controller.listenConversation()
-                registCompany.onclick = rC
+                
                 view.onclickNotification()
+                let registCompany = document.getElementById('link-employer')
+                registCompany.onclick = rC
                 function rC() {
                     view.showComponents('registCompany')
                 }
@@ -577,10 +579,35 @@ view.showComponents = async function(name) {
             }
         case 'savedJob': 
             {
+                let currentUser = firebase.auth().currentUser
                 let app = document.getElementById('app')
                 app.innerHTML = component.navNoTransf + component.savedJob
                 view.ShowNav()
                 console.log(await controller.displaySavedJobs())
+                let registCompany = document.getElementById('link-employer')
+                let job = document.getElementById("link-job")
+                job.onclick = function() {
+                    view.showComponents("alljob")
+                }
+                let home = document.getElementById("link-home")
+                home.onclick = function() {
+                    view.showComponents("home")
+                }
+                let test = {
+                    verified: false,
+                    email: null
+                }
+
+                if (!currentUser) {
+                    test.emailVerified
+                } else {
+                    test.verified = currentUser.emailVerified
+                }
+                if (test.verified) {
+                    console.log(test.verified)
+                    registCompany.classList.add("disable-employer");
+                    document.querySelector('.notification').style.display = "block"
+                }
                 break;
             }
     }

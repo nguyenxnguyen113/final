@@ -761,7 +761,7 @@ component.savedJob = `
         </div>
     </div>
     <div class="col-md-12 col-12">
-        <h1 style="margin-left:200px ;">You have 2 saved job</h1>
+        <h1 id='number-of-job' style="margin-left:200px ;"></h1>
         <div class="savedjobsContainer">
             <div class="col-md-7 jobGroup">
 

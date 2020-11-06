@@ -350,7 +350,8 @@ async function deleteJob(id, email) {
 controller.displaySavedJobs = async function () {
 
   let currentUser = firebase.auth().currentUser;
-
+  let numberOfjob = []
+  
   // doc.data() is never undefined for query doc snapshots
   let jobs = model.jobs
   document.querySelector(".jobGroup").innerHTML = ""
@@ -358,7 +359,6 @@ controller.displaySavedJobs = async function () {
     for (let email of job.userSaved) {
       if (email == currentUser.email) {
         // display to profile
-        let numberOfjob = []
         numberOfjob.push(job)
         console.log(numberOfjob)
         let jobTitle = job.title;
@@ -366,10 +366,11 @@ controller.displaySavedJobs = async function () {
         let jobDesc = job.description;
         let jobAdress = job.address;
         let jobSkill = job.skill;
+        let jobLogo = job.nameCompany
             let jobSaved = `
             <div class="jobContents">
             <div class="logo">
-                <a><img src="imgs/img/fpt.jpg"></a>
+                <a>${jobLogo}</a>
             </div>
             <div class="jobDesciption">
                 <div class="jobBody">
@@ -414,6 +415,7 @@ controller.displaySavedJobs = async function () {
       }
     }
   }
+  document.querySelector('#number-of-job').innerText = `you have ${numberOfjob.length} saved job`
 }
 
 
