@@ -354,10 +354,14 @@ controller.displaySavedJobs = async function () {
   
   // doc.data() is never undefined for query doc snapshots
   let jobs = model.jobs
+  let companys = model.companys
+  console.log(companys)
   document.querySelector(".jobGroup").innerHTML = ""
   for (let job of jobs) {
     for (let email of job.userSaved) {
+      for (let company of companys) {
       if (email == currentUser.email) {
+      if(company.name === job.nameCompany) {
         // display to profile
         numberOfjob.push(job)
         console.log(numberOfjob)
@@ -366,11 +370,11 @@ controller.displaySavedJobs = async function () {
         let jobDesc = job.description;
         let jobAdress = job.address;
         let jobSkill = job.skill;
-        let jobLogo = job.nameCompany
+        let jobLogo = company.logo
             let jobSaved = `
             <div class="jobContents">
             <div class="logo">
-                <a>${jobLogo}</a>
+                <a><img src='${jobLogo}'/></a>
             </div>
             <div class="jobDesciption">
                 <div class="jobBody">
@@ -414,6 +418,8 @@ controller.displaySavedJobs = async function () {
         view.appendHtml(userSavedJobs, jobSaved)
       }
     }
+  }
+}
   }
   document.querySelector('#number-of-job').innerText = `you have ${numberOfjob.length} saved job`
 }
