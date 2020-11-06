@@ -353,47 +353,64 @@ controller.displaySavedJobs = async function () {
 
   // doc.data() is never undefined for query doc snapshots
   let jobs = model.jobs
-  document.getElementById("all-job-saved").innerHTML = ""
+  document.querySelector(".jobGroup").innerHTML = ""
   for (let job of jobs) {
     for (let email of job.userSaved) {
       if (email == currentUser.email) {
         // display to profile
+        let numberOfjob = []
+        numberOfjob.push(job)
+        console.log(numberOfjob)
         let jobTitle = job.title;
         let jobMoney = job.money;
         let jobDesc = job.description;
         let jobAdress = job.address;
         let jobSkill = job.skill;
+            let jobSaved = `
+            <div class="jobContents">
+            <div class="logo">
+                <a><img src="imgs/img/fpt.jpg"></a>
+            </div>
+            <div class="jobDesciption">
+                <div class="jobBody">
+                    <div class="titleJob">
+                        <h3>${jobTitle}</h3>
+                    </div>
+                    <div class="jobSalary">
+                        <span class="salaryIcon"><i class="fa fa-usd" aria-hidden="true"></i></span>
+                        <span class="salaryNumber">
+                        ${jobMoney}
+                        </span>
+                    </div>
+                    <div class="descriptionText">
+                        <p>
+                        ${jobDesc.substr(0, 200)}...
+                        </p>
+                    </div>
+                    <div class="jobBottom">
+                        <div class="jobTagList">
+                            <a>${jobSkill}</a>
+                        </div>
+                    </div>
 
-        let jobCard = `
-              <div style="padding-bottom: 10px" class="col-sm-5">
-                  <div>
-                      <span class="fw500 fs25" id ="job-title">${jobTitle}
-                      </span>
-                  </div>
-                  <div>
-                      <span style="color: #a50b0b" id ="job-money"><i class="fas fa-search-dollar"></i>${jobMoney}</span>
-                  </div>
 
-                  <div>
-                      <span id ="job-desc">${jobDesc.substr(0, 200)}...</span>
-                  </div>
-
-                  <div>
-                      <span style="color: #013B80;" class="fs20"><i class="fas fa-map-marker-alt" id="job-address"></i>${jobAdress}</span>
-                  </div>
-
-                  <div class="footer-card">
-                      <div>
-                          <span class="fs18 skill id="job-skill"">${jobSkill}</span>
-                      </div>
-                      
-                      <button onclick="deleteJob('${job.id}','${email}')" style="padding: 0 10px 0 10px; border-radius: 5px" class="fs18 save" id="job-delete">Delete Job</button>
-
-                  </div>
                 </div>
+            </div>
+            <div class="jobMoreInformation">
+
+                <span class="jobTimeExpires">Expires on <span>3</span> days</span>
+                <div class="jobLocation">
+                    <span>${jobAdress}</span>
+                </div>
+
+
+            </div>
+            <button onclick="deleteJob('${job.id}','${email}')" style="padding: 0 10px 0 10px; border-radius: 5px" class="fs18 save" id="job-delete">Delete Job</button>
+
+        </div>
             `
-        let userSavedJobs = document.getElementById("all-job-saved")
-        view.appendHtml(userSavedJobs, jobCard)
+        let userSavedJobs = document.querySelector(".jobGroup")
+        view.appendHtml(userSavedJobs, jobSaved)
       }
     }
   }

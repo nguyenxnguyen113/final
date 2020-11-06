@@ -130,17 +130,6 @@ component.profile = `
             </form>
         </div>
     </div>
-
-    <!-- saved jobs -->
-    <div class="jobs" style="padding-top:30px">
-        <div>
-            <span class="fw500 fs24"><i class="far fa-heart" style="font-size:30px; width:40px"></i>Saved
-                jobs</span>
-        </div>
-        <div class="job row" id = "all-job-saved" >
-        </div>
-    </div>
-
 </div>
 `
 component.navTransf = `
@@ -775,94 +764,6 @@ component.savedJob = `
         <h1 style="margin-left:200px ;">You have 2 saved job</h1>
         <div class="savedjobsContainer">
             <div class="col-md-7 jobGroup">
-                <div class="jobContents">
-                    <div class="logo">
-                        <a><img src="imgs/img/fpt.jpg"></a>
-                    </div>
-                    <div class="jobDesciption">
-                        <div class="jobBody">
-                            <div class="titleJob">
-                                <h3>Front-end developer</h3>
-                            </div>
-                            <div class="jobSalary">
-                                <span class="salaryIcon"><i class="fa fa-usd" aria-hidden="true"></i></span>
-                                <span class="salaryNumber">
-                                  2000$
-                                </span>
-                            </div>
-                            <div class="descriptionText">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor....
-
-                                </p>
-                            </div>
-                            <div class="jobBottom">
-                                <div class="jobTagList">
-                                    <a>JS</a>
-                                    <a>HTML</a>
-                                    <a>CSS</a>
-                                </div>
-                            </div>
-
-
-                        </div>
-                    </div>
-                    <div class="jobMoreInformation">
-
-                        <span class="jobTimeExpires">Expires on <span>3</span> days</span>
-                        <div class="jobLocation">
-                            <span>Ha Noi</span>
-                        </div>
-
-
-                    </div>
-
-
-                </div>
-                <div class="jobContents">
-                    <div class="logo">
-                        <a><img src="imgs/img/fpt.jpg"></a>
-                    </div>
-                    <div class="jobDesciption">
-                        <div class="jobBody">
-                            <div class="titleJob">
-                                <h3>Front-end developer</h3>
-                            </div>
-                            <div class="jobSalary">
-                                <span class="salaryIcon"><i class="fa fa-usd" aria-hidden="true"></i></span>
-                                <span class="salaryNumber">
-                                  2000$
-                                </span>
-                            </div>
-                            <div class="descriptionText">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit....
-
-                                </p>
-                            </div>
-                            <div class="jobBottom">
-                                <div class="jobTagList">
-                                    <a>JS</a>
-                                    <a>HTML</a>
-                                    <a>CSS</a>
-                                </div>
-                            </div>
-
-
-                        </div>
-                    </div>
-                    <div class="jobMoreInformation">
-
-                        <span class="jobTimeExpires">Expires on <span>2</span> days</span>
-                        <div class="jobLocation">
-                            <span>Ha Noi</span>
-                        </div>
-
-
-                    </div>
-
-
-                </div>
 
             </div>
             <div class="col-sm-7">

@@ -381,8 +381,7 @@ view.showComponents = async function(name) {
                 if (currentUser.emailVerified) {
                     registCompany.classList.add("disable-employer");
                 }
-                // show saved jobs
-                controller.displaySavedJobs()
+
                 break;
             }
         case 'loading':
@@ -580,6 +579,8 @@ view.showComponents = async function(name) {
             {
                 let app = document.getElementById('app')
                 app.innerHTML = component.navNoTransf + component.savedJob
+                view.ShowNav()
+                console.log(await controller.displaySavedJobs())
                 break;
             }
     }
@@ -1003,7 +1004,7 @@ view.showLastLocation = function(rollbackScreenName) {
 }
 view.getLastLocation = function() {
     let hash = window.location.hash
-    let screenNames = ['register', 'login', 'home', 'companyDetail', 'alljob', 'profile', 'registCompany', 'loginCompany', 'employerScreen', 'allJobOfCompany', 'companyEmployerdetail']
+    let screenNames = ['register', 'login', 'home', 'companyDetail', 'alljob', 'profile', 'registCompany', 'loginCompany', 'employerScreen', 'allJobOfCompany', 'companyEmployerdetail', 'savedJob']
     if (hash && hash.length && hash.startsWith('#')) {
         let lastLocation = hash.substring(1)
         if (screenNames.includes(lastLocation)) {
@@ -1053,6 +1054,9 @@ view.ShowNav = function() {
     registCompany.onclick = function() {
         view.showComponents("registCompany")
     }
+    document.querySelector('#btn-saved-job').addEventListener('click', ()=>{
+        view.showComponents('savedJob')
+    })
     let btnSignOut = document.querySelector('#btn-out')
     btnSignOut.onclick = function() {
         firebase.auth().signOut()
