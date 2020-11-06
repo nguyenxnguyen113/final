@@ -759,6 +759,140 @@ component.companyEmployerdetail = `
 component.detailJobEmployer = `
 
 `
+component.savedJob = `
+<div class="container-fluid " id="clear">
+<div class="row">
+    <div class="col-md-12 col-12 " style="margin: 80px 200px 30px 10px;">
+        <div class="searchContainer col-md-12 col-12">
+            <form class="">
+                <input type="text" placeholder="Search.." name="search">
+                <button><span>Search</span></button>
+            </form>
+
+        </div>
+    </div>
+    <div class="col-md-12 col-12">
+        <h1 style="margin-left:200px ;">You have 2 saved job</h1>
+        <div class="savedjobsContainer">
+            <div class="col-md-7 jobGroup">
+                <div class="jobContents">
+                    <div class="logo">
+                        <a><img src="imgs/img/fpt.jpg"></a>
+                    </div>
+                    <div class="jobDesciption">
+                        <div class="jobBody">
+                            <div class="titleJob">
+                                <h3>Front-end developer</h3>
+                            </div>
+                            <div class="jobSalary">
+                                <span class="salaryIcon"><i class="fa fa-usd" aria-hidden="true"></i></span>
+                                <span class="salaryNumber">
+                                  2000$
+                                </span>
+                            </div>
+                            <div class="descriptionText">
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor....
+
+                                </p>
+                            </div>
+                            <div class="jobBottom">
+                                <div class="jobTagList">
+                                    <a>JS</a>
+                                    <a>HTML</a>
+                                    <a>CSS</a>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="jobMoreInformation">
+
+                        <span class="jobTimeExpires">Expires on <span>3</span> days</span>
+                        <div class="jobLocation">
+                            <span>Ha Noi</span>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+                <div class="jobContents">
+                    <div class="logo">
+                        <a><img src="imgs/img/fpt.jpg"></a>
+                    </div>
+                    <div class="jobDesciption">
+                        <div class="jobBody">
+                            <div class="titleJob">
+                                <h3>Front-end developer</h3>
+                            </div>
+                            <div class="jobSalary">
+                                <span class="salaryIcon"><i class="fa fa-usd" aria-hidden="true"></i></span>
+                                <span class="salaryNumber">
+                                  2000$
+                                </span>
+                            </div>
+                            <div class="descriptionText">
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit....
+
+                                </p>
+                            </div>
+                            <div class="jobBottom">
+                                <div class="jobTagList">
+                                    <a>JS</a>
+                                    <a>HTML</a>
+                                    <a>CSS</a>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="jobMoreInformation">
+
+                        <span class="jobTimeExpires">Expires on <span>2</span> days</span>
+                        <div class="jobLocation">
+                            <span>Ha Noi</span>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+            </div>
+            <div class="col-sm-7">
+                <div class="dataTables_Paginate" id="example_Paginate">
+                    <ul class="pagination">
+                        <li class="paginationButton pageItem active">
+                            <a href="#" data-dt-idx="2" class="pageLink" tabindex="2">1</a>
+                        </li>
+                        <li class="paginationButton">
+                            <a href="#" data-dt-idx="3" class="pageLink" tabindex="3">2</a>
+                        </li>
+                        <li class="paginationButton">
+                            <a href="#" data-dt-idx="4" class="pageLink" tabindex="4">3</a>
+                        </li>
+                        <li class="paginationButton">
+                            <a href="#" data-dt-idx="5" class="pageLink" tabindex="5">Next</a>
+                        </li>
+                        <li class="paginationButton" id="example_Next"></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+</div>
+`
 component.loading = `
 <section>
   Loading...

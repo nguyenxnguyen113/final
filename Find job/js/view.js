@@ -23,7 +23,7 @@ view.showComponents = async function(name) {
                 app.innerHTML = component.navTransf + component.header + component.home
                 let registCompany = document.getElementById('link-employer')
                     // console.log(await controller.getTest())
-                await controller.listenConversation()
+                controller.listenConversation()
                 registCompany.onclick = rC
                 view.onclickNotification()
                 function rC() {
@@ -574,6 +574,12 @@ view.showComponents = async function(name) {
                     model.allConversation = controller.sortByTimeStamp(conversations)
                 }
                 
+                break;
+            }
+        case 'savedJob': 
+            {
+                let app = document.getElementById('app')
+                app.innerHTML = component.navNoTransf + component.savedJob
                 break;
             }
     }

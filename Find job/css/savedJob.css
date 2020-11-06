@@ -1,0 +1,146 @@
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.searchContainer {
+    padding-left: 200px;
+}
+
+.searchContainer form input {
+    width: 500px;
+    height: 50px;
+    border-radius: 5px;
+    border-color: cornflowerblue;
+    color: black;
+    background-color: rgb(243, 247, 246);
+}
+
+.searchContainer form button {
+    width: 100px;
+    height: 50px;
+    margin-left: 100px;
+    background-color: #013B80;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.savedjobsContainer {
+    height: auto;
+    padding-left: 200px;
+}
+
+.jobGroup .jobMoreInformation {
+    font-size: 13px;
+    display: inline-block;
+    margin-right: 20px;
+    margin-left: 10px;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+}
+
+.jobGroup .jobMoreInformation .jobTimeExpires {
+    white-space: nowrap;
+}
+
+.jobGroup .jobContents {
+    display: flex;
+    z-index: 3;
+    position: relative;
+    border-top: 2px solid #e7e7e7;
+    width: 100%;
+}
+
+.jobContents .logo {
+    margin: 4px 30px 0 25px;
+}
+
+.jobContents img {
+    width: 70px;
+    height: 70px;
+}
+
+.jobContents .jobDesciption .jobBody .titleJob h3 {
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 5px;
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.jobContents .jobDesciption .jobBody .jobSalary {
+    display: inline-block;
+    margin: 0;
+    width: 210px;
+}
+
+.jobContents .jobDesciption .jobBody .jobSalary .salaryNumber {
+    top: 3px;
+}
+
+.jobContents .jobDesciption .jobBody .descriptionText {
+    margin-top: 10px;
+    padding-top: 10px;
+    color: #727272;
+    text-align: justify;
+    overflow: hidden;
+    width: 100%;
+    line-height: 1.3em;
+}
+
+.jobContents .jobDesciption .jobBottom {
+    margin-top: 12px;
+    display: inline-block;
+}
+
+.jobContents .jobDesciption .jobBottom .jobTagList a {
+    border: 1px solid #D2D3D3;
+    margin: 0 10px 0 0;
+    padding: 4px 5px;
+    display: inline-block;
+    text-decoration: none;
+    line-height: 100%;
+}
+
+.jobContents .jobDesciption .jobBottom .jobTagList a:hover {
+    background-color: #c5d3d3
+}
+
+div.dataTables_Paginate ul.pagination {
+    margin: 2px 0;
+    white-space: nowrap;
+    justify-content: flex-end;
+}
+
+.pagination {
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+    border-radius: .25rem;
+}
+
+.pagination li a {
+    position: relative;
+    display: block;
+    padding: .5rem .75rem;
+    line-height: 1.25;
+    color: #007bff;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+}
+
+.pagination li a:hover {
+    text-decoration: none;
+    background-color: rgb(236, 225, 225);
+}
+
+.pageItem.active .pageLink {
+    z-index: 1;
+    color: #fff;
+    background-color: #3f6ad8;
+    border-color: #007bff;
+}

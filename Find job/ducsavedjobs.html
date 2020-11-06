@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+    <title>TechFinder - Find your style</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <!-- icon -->
+    <link rel="stylesheet" href="fontawesome-free-5.11.2-web/css/all.css">
+    <!-- icon1 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- star icon-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+
+    <link rel="stylesheet" href="css/main.css">
+    <!--Blog css-->
+    <link rel="stylesheet" href="css/blog.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap" rel="stylesheet">
+</head>
+<header>
+    <style>
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-right: -15px;
+            margin-left: -15px;
+        }
+        
+        .searchContainer {
+            padding-left: 200px;
+        }
+        
+        .searchContainer form input {
+            width: 500px;
+            height: 50px;
+            border-radius: 5px;
+            border-color: cornflowerblue;
+            color: black;
+            background-color: rgb(243, 247, 246);
+        }
+        
+        .searchContainer form button {
+            width: 100px;
+            height: 50px;
+            margin-left: 100px;
+            background-color: #013B80;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        
+        .savedjobsContainer {
+            height: auto;
+            padding-left: 200px;
+        }
+        
+        .jobGroup .jobMoreInformation {
+            font-size: 13px;
+            display: inline-block;
+            margin-right: 20px;
+            margin-left: 10px;
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .jobGroup .jobMoreInformation .jobTimeExpires {
+            white-space: nowrap;
+        }
+        
+        .jobGroup .jobContents {
+            display: flex;
+            z-index: 3;
+            position: relative;
+            border-top: 2px solid #e7e7e7;
+            width: 100%;
+        }
+        
+        .jobContents .logo {
+            margin: 4px 30px 0 25px;
+        }
+        
+        .jobContents img {
+            width: 70px;
+            height: 70px;
+        }
+        
+        .jobContents .jobDesciption .jobBody .titleJob h3 {
+            margin-top: 0;
+            margin-right: 0;
+            margin-bottom: 5px;
+            font-size: 22px;
+            font-weight: 500;
+        }
+        
+        .jobContents .jobDesciption .jobBody .jobSalary {
+            display: inline-block;
+            margin: 0;
+            width: 210px;
+        }
+        
+        .jobContents .jobDesciption .jobBody .jobSalary .salaryNumber {
+            top: 3px;
+        }
+        
+        .jobContents .jobDesciption .jobBody .descriptionText {
+            margin-top: 10px;
+            padding-top: 10px;
+            color: #727272;
+            text-align: justify;
+            overflow: hidden;
+            width: 100%;
+            line-height: 1.3em;
+        }
+        
+        .jobContents .jobDesciption .jobBottom {
+            margin-top: 12px;
+            display: inline-block;
+        }
+        
+        .jobContents .jobDesciption .jobBottom .jobTagList a {
+            border: 1px solid #D2D3D3;
+            margin: 0 10px 0 0;
+            padding: 4px 5px;
+            display: inline-block;
+            text-decoration: none;
+            line-height: 100%;
+        }
+        
+        .jobContents .jobDesciption .jobBottom .jobTagList a:hover {
+            background-color: #c5d3d3
+        }
+        
+        div.dataTables_Paginate ul.pagination {
+            margin: 2px 0;
+            white-space: nowrap;
+            justify-content: flex-end;
+        }
+        
+        .pagination {
+            display: flex;
+            padding-left: 0;
+            list-style: none;
+            border-radius: .25rem;
+        }
+        
+        .pagination li a {
+            position: relative;
+            display: block;
+            padding: .5rem .75rem;
+            line-height: 1.25;
+            color: #007bff;
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+        }
+        
+        .pagination li a:hover {
+            text-decoration: none;
+            background-color: rgb(236, 225, 225);
+        }
+        
+        .pageItem.active .pageLink {
+            z-index: 1;
+            color: #fff;
+            background-color: #3f6ad8;
+            border-color: #007bff;
+        }
+    </style>
+
+
+
+</header>
+
+<body>
+    <nav id="nav-b" class="navbar navbar-expand-sm fixed-top">
+        <a id="logo" href="index.html"><img src="imgs/img/logotrang.png" alt=""></a>
+        <ul id="1" class="navbar-nav justify-content-end">
+
+            <li class="nav-item">
+                <a href="#"><span class="nav-link clw"  id="link-company">HOME</span></a>
+            </li>
+            <li class="nav-item">
+                <a href="#"><span class="nav-link clw"  id="link-company">ALL JOBS</span></a>
+            </li>
+            <li class="nav-item">
+                <a href="#"><span class="nav-link clw"  id="link-company">BLOGS</span></a>
+            </li>
+            <li class="nav-item">
+                <a href="#"><span class="nav-link clw"  id="link-company">CONTACT US</span></a>
+            </li>
+            <div id="dropdown">
+                <div class="dropdown" style="width: 50px; height: 30px;margin: 0px 30px 0px 50px; text-align: center">
+                    <div type="button">
+                        <i style="font-size: 22px" class="fas fa-user-circle"></i><span id="next-login">ACCOUNT</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </ul>
+
+    </nav>
+
+
+
+    <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fas fa-angle-double-up "></i></button>
+
+    <div class="container-fluid " id="clear">
+        <div class="row">
+            <div class="col-md-12 col-12 " style="margin: 80px 200px 30px 10px;">
+                <div class="searchContainer col-md-12 col-12">
+                    <form class="">
+                        <input type="text" placeholder="Search.." name="search">
+                        <button><span>Search</span></button>
+                    </form>
+
+                </div>
+            </div>
+            <div class="col-md-12 col-12">
+                <h1 style="margin-left:200px ;">You have 2 saved job</h1>
+                <div class="savedjobsContainer">
+                    <div class="col-md-7 jobGroup">
+                        <div class="jobContents">
+                            <div class="logo">
+                                <a><img src="imgs/img/fpt.jpg"></a>
+                            </div>
+                            <div class="jobDesciption">
+                                <div class="jobBody">
+                                    <div class="titleJob">
+                                        <h3>Front-end developer</h3>
+                                    </div>
+                                    <div class="jobSalary">
+                                        <span class="salaryIcon"><i class="fa fa-usd" aria-hidden="true"></i></span>
+                                        <span class="salaryNumber">
+                                          2000$
+                                        </span>
+                                    </div>
+                                    <div class="descriptionText">
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor....
+
+                                        </p>
+                                    </div>
+                                    <div class="jobBottom">
+                                        <div class="jobTagList">
+                                            <a>JS</a>
+                                            <a>HTML</a>
+                                            <a>CSS</a>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="jobMoreInformation">
+
+                                <span class="jobTimeExpires">Expires on <span>3</span> days</span>
+                                <div class="jobLocation">
+                                    <span>Ha Noi</span>
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+                        <div class="jobContents">
+                            <div class="logo">
+                                <a><img src="imgs/img/fpt.jpg"></a>
+                            </div>
+                            <div class="jobDesciption">
+                                <div class="jobBody">
+                                    <div class="titleJob">
+                                        <h3>Front-end developer</h3>
+                                    </div>
+                                    <div class="jobSalary">
+                                        <span class="salaryIcon"><i class="fa fa-usd" aria-hidden="true"></i></span>
+                                        <span class="salaryNumber">
+                                          2000$
+                                        </span>
+                                    </div>
+                                    <div class="descriptionText">
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit....
+
+                                        </p>
+                                    </div>
+                                    <div class="jobBottom">
+                                        <div class="jobTagList">
+                                            <a>JS</a>
+                                            <a>HTML</a>
+                                            <a>CSS</a>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="jobMoreInformation">
+
+                                <span class="jobTimeExpires">Expires on <span>2</span> days</span>
+                                <div class="jobLocation">
+                                    <span>Ha Noi</span>
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                    <div class="col-sm-7">
+                        <div class="dataTables_Paginate" id="example_Paginate">
+                            <ul class="pagination">
+                                <li class="paginationButton pageItem active">
+                                    <a href="#" data-dt-idx="2" class="pageLink" tabindex="2">1</a>
+                                </li>
+                                <li class="paginationButton">
+                                    <a href="#" data-dt-idx="3" class="pageLink" tabindex="3">2</a>
+                                </li>
+                                <li class="paginationButton">
+                                    <a href="#" data-dt-idx="4" class="pageLink" tabindex="4">3</a>
+                                </li>
+                                <li class="paginationButton">
+                                    <a href="#" data-dt-idx="5" class="pageLink" tabindex="5">Next</a>
+                                </li>
+                                <li class="paginationButton" id="example_Next"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/controller.js"></script>
+    <script src="js/component.js"></script>
+    <script src="js/view.js"></script>
+    <script src="js/css.js"></script>
+    <script src="js/model.js"></script>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v7.0"></script>
+</body>
+
+<footer class="section bg-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="">
+                    <h6 class="footer-heading text-uppercase text-white">Information</h6>
+                    <ul class="list-unstyled footer-link mt-4">
+                        <li><a href="">Website</a></li>
+                        <li><a href="">Page</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-3">
+                <div class="">
+                    <h6 class="footer-heading text-uppercase text-white">JOBS BY SKILL</h6>
+                    <ul class="list-unstyled footer-link mt-4 fwn">
+                        <li><a href="">JAVA </a></li>
+                        <li><a href="">PHP</a></li>
+                        <li><a href="">Bussines Analyst</a></li>
+                        <li><a href="">QA Manager</a></li>
+                        <li><a href="">SQL</a></li>
+                        <li><a href="">OTHER</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-2">
+                <div class="">
+                    <h6 class="footer-heading text-uppercase text-white">JOBS BY CITY</h6>
+                    <ul class="list-unstyled footer-link mt-4">
+                        <li><a href="">Ha Noi </a></li>
+                        <li><a href="">Da Nang</a></li>
+                        <li><a href="">Ho Chi Minh</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="">
+                    <h6 class="footer-heading text-uppercase text-white">Contact Us</h6>
+                    <p class="contact-info mt-4 cc" style="font-weight: bold;">Email : nguyen016279@gmail.com</p>
+                    <p class="contact-info cc" style="font-weight: bold;">0886430264</p>
+                    <div class="mt-5">
+                        <ul class="list-inline">
+                            <li class="list-inline-item"><a href="#"><i
+                                        class="fab facebook footer-social-icon fa-facebook-f"></i></i></a></li>
+                            <li class="list-inline-item"><a href="#"><i
+                                        class="fab twitter footer-social-icon fa-twitter"></i></i></a></li>
+                            <li class="list-inline-item"><a href="#"><i
+                                        class="fab google footer-social-icon fa-google"></i></i></a></li>
+                            <li class="list-inline-item"><a href="#"><i
+                                        class="fab apple footer-social-icon fa-apple"></i></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="fb-page" data-href="https://www.facebook.com/Techfinfer-112778823768861/?modal=admin_todo_tour" data-tabs="timeline" data-width="700px" data-height="120px" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false"
+            data-show-facepile="true">
+            <blockquote cite="https://www.facebook.com/Techfinfer-112778823768861/?modal=admin_todo_tour" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/Techfinfer-112778823768861/?modal=admin_todo_tour">Techfinfer</a></blockquote>
+        </div>
+    </div>
+
+    <div class="text-center mt-5">
+        <p class="footer-alt mb-0 f-14">2020 © Anup, All Rights Reserved</p>
+    </div>
+</footer>
+
+</html>
