@@ -583,6 +583,9 @@ view.showComponents = async function(name) {
                 let app = document.getElementById('app')
                 app.innerHTML = component.navNoTransf + component.savedJob
                 view.ShowNav()
+                if (!currentUser) {
+                    view.showComponents('home')
+                }
                 console.log(await controller.displaySavedJobs())
                 let registCompany = document.getElementById('link-employer')
                 let job = document.getElementById("link-job")

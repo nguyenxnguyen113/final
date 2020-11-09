@@ -422,6 +422,10 @@ controller.displaySavedJobs = async function () {
 }
   }
   document.querySelector('#number-of-job').innerText = `you have ${numberOfjob.length} saved job`
+  let searchSavedJob = document.querySelector('#search-saved-job')
+  searchSavedJob.addEventListener('keyup',(e)=> {
+
+  })
 }
 
 
