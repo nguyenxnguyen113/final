@@ -351,7 +351,7 @@ controller.displaySavedJobs = async function () {
 
   let currentUser = firebase.auth().currentUser;
   let numberOfjob = []
-  
+  let logoCompany = []
   // doc.data() is never undefined for query doc snapshots
   let jobs = model.jobs
   let companys = model.companys
@@ -364,7 +364,7 @@ controller.displaySavedJobs = async function () {
       if(company.name === job.nameCompany) {
         // display to profile
         numberOfjob.push(job)
-        console.log(numberOfjob)
+        logoCompany.push(company)
         let jobTitle = job.title;
         let jobMoney = job.money;
         let jobDesc = job.description;
@@ -423,7 +423,6 @@ controller.displaySavedJobs = async function () {
 }
   document.querySelector('#number-of-job').innerText = `you have ${numberOfjob.length} saved job`
   let searchSavedJob = document.querySelector('#search-saved-job')
-  console.log(searchSavedJob)
   searchSavedJob.addEventListener('keyup',(e)=> {
     if (searchSavedJob.value.trim() !== "") {
       // let pagniate = document.querySelector('.paginate').style.display = 'none'
@@ -450,7 +449,7 @@ controller.showJobOfUser = (data) =>{
   let jobDesc = data.description;
   let jobAdress = data.address;
   let jobSkill = data.skill;
-  let jobLogo = data.logo
+  let jobLogo = logo.logo
   const jobGroup = document.querySelector('.jobGroup');
   let jobSaved = `
   <div class="jobContents">
@@ -495,7 +494,7 @@ controller.showJobOfUser = (data) =>{
 
 </div>
   `
-  view.appendHtml(jobGroup, jobSaved)
+  jobGroup.innerHTML = jobSaved
 }
 
 controller.resetPass = async function (email) {
