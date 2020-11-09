@@ -444,6 +444,7 @@ controller.displaySavedJobs = async function () {
 }
 
 controller.showJobOfUser = (data) =>{
+  let email = firebase.auth().currentUser;
   let jobTitle = data.title;
   let jobMoney = data.money;
   let jobDesc = data.description;
@@ -490,7 +491,7 @@ controller.showJobOfUser = (data) =>{
 
 
   </div>
-  <button onclick="deleteJob('${job.id}','${email}')" style="padding: 0 10px 0 10px; border-radius: 5px" class="fs18 save" id="job-delete">Delete Job</button>
+  <button onclick="deleteJob('${data.id}','${email}')" style="padding: 0 10px 0 10px; border-radius: 5px" class="fs18 save" id="job-delete">Delete Job</button>
 
 </div>
   `
