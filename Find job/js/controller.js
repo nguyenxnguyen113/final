@@ -420,15 +420,82 @@ controller.displaySavedJobs = async function () {
     }
   }
 }
-  }
+}
   document.querySelector('#number-of-job').innerText = `you have ${numberOfjob.length} saved job`
   let searchSavedJob = document.querySelector('#search-saved-job')
+  console.log(searchSavedJob)
   searchSavedJob.addEventListener('keyup',(e)=> {
-
+    if (searchSavedJob.value.trim() !== "") {
+      // let pagniate = document.querySelector('.paginate').style.display = 'none'
+      const searchString = e.target.value.toLowerCase();
+      const filteredCharacters = numberOfjob.filter((character) => {
+          return (
+              character.skill.toLowerCase().includes(searchString),
+              character.nameCompany.toLowerCase().includes(searchString)
+          );
+      });
+      for (let index = 0; index < numberOfjob.length; index++) {
+        controller.showJobOfUser(filteredCharacters[index])
+      }
+    } else {
+      controller.displaySavedJobs()
+    }
   })
 }
 
+controller.showJobOfUser = (data) =>{
+  let jobTitle = data.title;
+  let jobMoney = data.money;
+  let jobDesc = data.description;
+  let jobAdress = data.address;
+  let jobSkill = data.skill;
+  let jobLogo = data.logo
+  const jobGroup = document.querySelector('.jobGroup');
+  let jobSaved = `
+  <div class="jobContents">
+  <div class="logo">
+      <a><img src='${jobLogo}'/></a>
+  </div>
+  <div class="jobDesciption">
+      <div class="jobBody">
+          <div class="titleJob">
+              <h3>${jobTitle}</h3>
+          </div>
+          <div class="jobSalary">
+              <span class="salaryIcon"><i class="fa fa-usd" aria-hidden="true"></i></span>
+              <span class="salaryNumber">
+              ${jobMoney}
+              </span>
+          </div>
+          <div class="descriptionText">
+              <p>
+              ${jobDesc.substr(0, 200)}...
+              </p>
+          </div>
+          <div class="jobBottom">
+              <div class="jobTagList">
+                  <a>${jobSkill}</a>
+              </div>
+          </div>
 
+
+      </div>
+  </div>
+  <div class="jobMoreInformation">
+
+      <span class="jobTimeExpires">Expires on <span>3</span> days</span>
+      <div class="jobLocation">
+          <span>${jobAdress}</span>
+      </div>
+
+
+  </div>
+  <button onclick="deleteJob('${job.id}','${email}')" style="padding: 0 10px 0 10px; border-radius: 5px" class="fs18 save" id="job-delete">Delete Job</button>
+
+</div>
+  `
+  view.appendHtml(jobGroup, jobSaved)
+}
 
 controller.resetPass = async function (email) {
   view.setText('log-in-error', '')

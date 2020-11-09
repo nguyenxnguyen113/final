@@ -754,7 +754,7 @@ component.savedJob = `
     <div class="col-md-12 col-12 " style="margin: 80px 200px 30px 10px;">
         <div class="searchContainer col-md-12 col-12">
             <form class="">
-                <input type="text" placeholder="Search.." name="search">
+                <input id="search-saved-job" type="text" placeholder="Search.." name="search">
                 <button><span>Search</span></button>
             </form>
 
