@@ -451,7 +451,7 @@ controller.displayAppliedJobs = async function () {
   let companys = model.companys
   document.querySelector(".jobGroup").innerHTML = ""
   for (let job of jobs) {
-    for (let email of job.appliedJob) {
+    for (let email of job.userApplied) {
       for (let company of companys) {
       if (email == currentUser.email) {
       if (company.name === job.nameCompany) {
@@ -514,7 +514,7 @@ controller.displayAppliedJobs = async function () {
   }
 }
 }
-  document.querySelector('#number-of-job').innerText = `you have ${numberOfjob.length} saved job`
+  document.querySelector('#number-of-job').innerText = `you have ${numberOfjob.length} applied job`
   let searchSavedJob = document.querySelector('#search-saved-job')
   searchSavedJob.addEventListener('keyup',(e)=> {
     if (searchSavedJob.value.trim() !== "") {
@@ -531,7 +531,7 @@ controller.displayAppliedJobs = async function () {
         controller.showJobOfUser(filteredCharacters[index])
       }
     } else {
-      controller.displaySavedJobs()
+      controller.displayAppliedJobs()
     }
   })
 }

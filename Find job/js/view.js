@@ -1070,7 +1070,7 @@ view.showLastLocation = function(rollbackScreenName) {
 }
 view.getLastLocation = function() {
     let hash = window.location.hash
-    let screenNames = ['register', 'login', 'home', 'companyDetail', 'alljob', 'profile', 'registCompany', 'loginCompany', 'employerScreen', 'allJobOfCompany', 'companyEmployerdetail', 'savedJob']
+    let screenNames = ['register', 'login', 'home', 'companyDetail', 'alljob', 'profile', 'registCompany', 'loginCompany', 'employerScreen', 'allJobOfCompany', 'companyEmployerdetail', 'savedJob', 'appliedJob']
     if (hash && hash.length && hash.startsWith('#')) {
         let lastLocation = hash.substring(1)
         if (screenNames.includes(lastLocation)) {
