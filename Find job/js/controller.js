@@ -355,7 +355,6 @@ controller.displaySavedJobs = async function () {
   // doc.data() is never undefined for query doc snapshots
   let jobs = model.jobs
   let companys = model.companys
-  console.log(companys)
   document.querySelector(".jobGroup").innerHTML = ""
   for (let job of jobs) {
     for (let email of job.userSaved) {
@@ -428,9 +427,104 @@ controller.displaySavedJobs = async function () {
       // let pagniate = document.querySelector('.paginate').style.display = 'none'
       const searchString = e.target.value.toLowerCase();
       const filteredCharacters = numberOfjob.filter((character) => {
+        let userSavedJobs = document.querySelector(".jobGroup")
+        userSavedJobs.innerHTML = ''
           return (
-              character.skill.toLowerCase().includes(searchString),
-              character.nameCompany.toLowerCase().includes(searchString)
+              character.title.toLowerCase().includes(searchString)
+          );
+      });
+      for (let index = 0; index < numberOfjob.length; index++) {
+        controller.showJobOfUser(filteredCharacters[index])
+      }
+    } else {
+      controller.displaySavedJobs()
+    }
+  })
+}
+controller.displayAppliedJobs = async function () {
+
+  let currentUser = firebase.auth().currentUser;
+  let numberOfjob = []
+  let logoCompany = []
+  // doc.data() is never undefined for query doc snapshots
+  let jobs = model.jobs
+  let companys = model.companys
+  document.querySelector(".jobGroup").innerHTML = ""
+  for (let job of jobs) {
+    for (let email of job.appliedJob) {
+      for (let company of companys) {
+      if (email == currentUser.email) {
+      if (company.name === job.nameCompany) {
+        // display to profile
+        numberOfjob.push(job)
+        logoCompany.push(company)
+        let jobTitle = job.title;
+        let jobMoney = job.money;
+        let jobDesc = job.description;
+        let jobAdress = job.address;
+        let jobSkill = job.skill;
+        let jobLogo = company.logo
+            let jobSaved = `
+            <div class="jobContents">
+            <div class="logo">
+                <a><img src='${jobLogo}'/></a>
+            </div>
+            <div class="jobDesciption">
+                <div class="jobBody">
+                    <div class="titleJob">
+                        <h3>${jobTitle}</h3>
+                    </div>
+                    <div class="jobSalary">
+                        <span class="salaryIcon"><i class="fa fa-usd" aria-hidden="true"></i></span>
+                        <span class="salaryNumber">
+                        ${jobMoney}
+                        </span>
+                    </div>
+                    <div class="descriptionText">
+                        <p>
+                        ${jobDesc.substr(0, 200)}...
+                        </p>
+                    </div>
+                    <div class="jobBottom">
+                        <div class="jobTagList">
+                            <a>${jobSkill}</a>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="jobMoreInformation">
+
+                <span class="jobTimeExpires">Expires on <span>3</span> days</span>
+                <div class="jobLocation">
+                    <span>${jobAdress}</span>
+                </div>
+
+
+            </div>
+            <button onclick="deleteJob('${job.id}','${email}')" style="padding: 0 10px 0 10px; border-radius: 5px" class="fs18 save" id="job-delete">Delete Job</button>
+
+        </div>
+            `
+        let userSavedJobs = document.querySelector(".jobGroup")
+        view.appendHtml(userSavedJobs, jobSaved)
+      }
+    }
+  }
+}
+}
+  document.querySelector('#number-of-job').innerText = `you have ${numberOfjob.length} saved job`
+  let searchSavedJob = document.querySelector('#search-saved-job')
+  searchSavedJob.addEventListener('keyup',(e)=> {
+    if (searchSavedJob.value.trim() !== "") {
+      // let pagniate = document.querySelector('.paginate').style.display = 'none'
+      const searchString = e.target.value.toLowerCase();
+      const filteredCharacters = numberOfjob.filter((character) => {
+        let userSavedJobs = document.querySelector(".jobGroup")
+        userSavedJobs.innerHTML = ''
+          return (
+              character.title.toLowerCase().includes(searchString)
           );
       });
       for (let index = 0; index < numberOfjob.length; index++) {
@@ -443,6 +537,7 @@ controller.displaySavedJobs = async function () {
 }
 
 controller.showJobOfUser = (data) =>{
+  
   let email = firebase.auth().currentUser;
   let jobTitle = data.title;
   let jobMoney = data.money;
@@ -494,7 +589,7 @@ controller.showJobOfUser = (data) =>{
 
 </div>
   `
-  jobGroup.innerHTML = jobSaved
+  view.appendHtml(jobGroup, jobSaved)
 }
 
 controller.resetPass = async function (email) {

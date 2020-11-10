@@ -586,7 +586,7 @@ view.showComponents = async function(name) {
                 if (!currentUser) {
                     view.showComponents('home')
                 }
-                console.log(await controller.displaySavedJobs())
+                await controller.displaySavedJobs()
                 let registCompany = document.getElementById('link-employer')
                 let job = document.getElementById("link-job")
                 job.onclick = function() {
@@ -601,6 +601,42 @@ view.showComponents = async function(name) {
                     email: null
                 }
 
+                if (!currentUser) {
+                    test.emailVerified
+                } else {
+                    test.verified = currentUser.emailVerified
+                }
+                if (test.verified) {
+                    console.log(test.verified)
+                    registCompany.classList.add("disable-employer");
+                    document.querySelector('.notification').style.display = "block"
+                }
+                break;
+            }
+        case 'appliedJob':
+            {
+                let currentUser = firebase.auth().currentUser
+                let app = document.getElementById('app')
+                app.innerHTML = component.navNoTransf + component.appliedJob
+                view.ShowNav()
+                if (!currentUser) {
+                    view.showComponents('home')
+                }
+                await controller.displayAppliedJobs()
+                let registCompany = document.getElementById('link-employer')
+                let job = document.getElementById("link-job")
+                job.onclick = function() {
+                    view.showComponents("alljob")
+                }
+                let home = document.getElementById("link-home")
+                home.onclick = function() {
+                    view.showComponents("home")
+                }
+        
+                let test = {
+                    verified: false,
+                    email: null
+                }
                 if (!currentUser) {
                     test.emailVerified
                 } else {
@@ -1086,6 +1122,9 @@ view.ShowNav = function() {
     }
     document.querySelector('#btn-saved-job').addEventListener('click', ()=>{
         view.showComponents('savedJob')
+    })
+    document.querySelector('#btn-applied-job').addEventListener('click', ()=>{
+        view.showComponents('appliedJob')
     })
     let btnSignOut = document.querySelector('#btn-out')
     btnSignOut.onclick = function() {
