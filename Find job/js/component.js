@@ -750,7 +750,7 @@ component.detailJobEmployer = `
 `
 component.savedJob = `
 <div class="container-fluid " id="clear">
-<div class="row">
+<div class="row-saved-job">
     <div class="col-md-12 col-12 " style="margin: 80px 200px 30px 10px;">
         <div class="searchContainer col-md-12 col-12">
             <form class="">
@@ -800,7 +800,7 @@ component.detailJobEmployer = `
 
 component.appliedJob = `
 <div class="container-fluid " id="clear">
-<div class="row">
+<div class="row-saved-job">
     <div class="col-md-12 col-12 " style="margin: 80px 200px 30px 10px;">
         <div class="searchContainer col-md-12 col-12">
             <form class="">
