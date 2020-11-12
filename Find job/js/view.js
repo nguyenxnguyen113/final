@@ -536,9 +536,10 @@ view.showComponents = async function(name) {
                     view.showComponents('employerScreen')
                 })
                 view.showjobEmployer()
+                controller.listenJobChange()
                 let form = document.getElementById('form-postjob')
                 form.onsubmit = postjobHandler
-            
+                
                 function postjobHandler(event) {
             
                   event.preventDefault()
@@ -1402,7 +1403,7 @@ view.showJobDetailEmployer = async function() {
                         companys = model.companys
                         for (let company of companys) {
                             if (company.name === job.nameCompany) {
-                                console.log(job.userApplied[0])
+                                
 
 
                                 console.log(job.id)

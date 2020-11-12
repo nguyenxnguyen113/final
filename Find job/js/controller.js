@@ -660,8 +660,22 @@ controller.postjob = async function (job) {
   document.getElementById('form-postjob').SandE.value = ''
   document.getElementById('form-postjob').why.value = ''
   // view.enable('btn btn-default')
-
 }
+controller.listenJobChange = async () => {
+  let db = await controller.initFirebaseStore().collection('job').onSnapshot(function(snapshot) {
+    snapshot.docChanges().forEach(async function(change) {
+      if (change.type === "added") {
+        console.log("added");
+        // if (change.doc.data().users.find((item) => item == firebase.auth().currentUser.email)) {
+        //   view.addNotification(change.doc.data(), change.doc.id, friendImg.logo, friendImg.emailCompany)
+        // }
+        // view.showjobEmployer()
+      }
+    })
+    return db
+  })
+}
+
 controller.loadCompany = async function () {
   if (controller.loadedCompany) {
     return
