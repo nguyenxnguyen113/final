@@ -662,14 +662,14 @@ controller.postjob = async function (job) {
   // view.enable('btn btn-default')
 }
 controller.listenJobChange = async () => {
-  let db = await controller.initFirebaseStore().collection('job').onSnapshot(function(snapshot) {
+  let currentUser = await firebase.auth().currentUser
+  let company = await firebase.firestore().collection('company').where("emailCompany", "==", currentUser.email).get()
+  let companyData = transformDocs(company.docs)
+  let db = await controller.initFirebaseStore().collection('job').where("nameCompany", "==",companyData[0].name).orderBy('timestamp', 'desc').onSnapshot(function(snapshot) {
     snapshot.docChanges().forEach(async function(change) {
+      console.log(change.doc.id)
       if (change.type === "added") {
         console.log("added");
-        // if (change.doc.data().users.find((item) => item == firebase.auth().currentUser.email)) {
-        //   view.addNotification(change.doc.data(), change.doc.id, friendImg.logo, friendImg.emailCompany)
-        // }
-        // view.showjobEmployer()
         view.addNewJob(change.doc.id, change.doc.data())
       }
     })
