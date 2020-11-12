@@ -678,50 +678,44 @@ component.allJobOfCompany = `
                         </div>
                         <div class="modal-body">
                             <div class="inputJobForm">
-                                <form>
+                                <form id='form-postjob'>
+                                    <div class="form-group">
+                                       <label for="inputTitle">Name company</label>
+                                       <input type="text" name="nameCompany" class="form-control" id="job-nameCompany-error" aria-describedby="emailHelp" placeholder="">
+                                    </div>
                                     <div class="form-group">
                                         <label for="inputTitle">JOB TITLE</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                        <input type="text" name="title" class="form-control" id="job-title-error" aria-describedby="emailHelp" placeholder="Enter title job">
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputJobType">JOB TYPE</label>
-                                        <div class="selectWrapper">
-                                            <select class="form-control" id="inputJobType">
-                                                <option>JAVA SPRING</option>
-                                                <option>.NET</option>
-                                                <option>FULL STACK JS</option>
-                                                <option>PHP</option>
-                                                <option>OTHER</option>
-                                                <option>JAVA SPRING</option>
-                                                <option>.NET</option>
-                                                <option>FULL STACK JS</option>
-                                                <option>PHP</option>
-                                                <option>OTHER</option>
-                                               
-                                              </select>
-                                        </div>
+                                        <label for="inputTitle">Salary</label>
+                                        <input type="text" name="money" class="form-control" id="job-money-error" aria-describedby="emailHelp" placeholder="Enter title job">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputTitle">Address</label>
+                                        <input type="text" name="address" class="form-control" id="job-address-error" aria-describedby="emailHelp" placeholder="Enter title job">
+                                    </div> 
+                                    <div class="form-group">
+                                        <label for="inputTitle">Skill</label>
+                                        <input type="text" name="skill" class="form-control" id="job-skill-error" aria-describedby="emailHelp" placeholder="Enter title job">
+                                    </div> 
 
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputSalary">SALARY</label>
-                                        <input type="text" class="form-control" id="inputSalary" placeholder="Ex:100$">
-                                    </div>
                                     <div class="form-group">
                                         <label for="inputDueDate">DUE DATE</label>
                                         <input type="date" class="form-control" id="inputDueDate">
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputLocation">Location</label>
-                                        <select class="form-control" id="inputLocation">
-                                          <option>HA NOI</option>
-                                          <option>DA NANG</option>
-                                          <option>HO CHI MINH</option>
-        
-                                        </select>
+                                        <label for="inputDescription">Descriptions</label>
+                                        <textarea class="form-control" name="description" id="job-description-error" rows="3"></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputDescription">Description</label>
-                                        <textarea class="form-control" id="inputDescription" rows="3"></textarea>
+                                        <label for="inputDescription">Requirements</label>
+                                        <textarea class="form-control" name="SandE" id="job-SandE-error" rows="3"></textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="inputDescription">Why You'll Love Working Here</label>
+                                        <textarea class="form-control" name="why" id="why-error" rows="3"></textarea>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </form>

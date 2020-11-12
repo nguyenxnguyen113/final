@@ -536,7 +536,78 @@ view.showComponents = async function(name) {
                     view.showComponents('employerScreen')
                 })
                 view.showjobEmployer()
-
+                let form = document.getElementById('form-postjob')
+                form.onsubmit = postjobHandler
+            
+                function postjobHandler(event) {
+            
+                  event.preventDefault()
+            
+                  let job = {
+                    userSaved: [],
+                    nameCompany: form.nameCompany.value,
+                    title: form.title.value,
+                    money: form.money.value,
+                    address: form.address.value,
+                    skill: form.skill.value,
+                    description: form.description.value,
+                    SandE: form.SandE.value,
+                    why: form.why.value
+                  }
+                  console.log(job);
+            
+            
+                  let validateResult = [
+                    view.validate(
+                      job.nameCompany,
+                      'job-nameCompany-error',
+                      'Invalid title!'
+                    ),
+                    view.validate(
+                      job.title,
+                      'job-title-error',
+                      'Invalid title!'
+                    ),
+                    view.validate(
+                      job.money,
+                      'job-money-error',
+                      'Invalid title!'
+                    ),
+                    view.validate(
+                      !isNaN(job.money),
+                      'job-money-error',
+                      'is not a number!'
+                    ),
+                    view.validate(
+                      job.address,
+                      'job-address-error',
+                      'Invalid address!'
+                    ),
+                    view.validate(
+                      job.skill,
+                      'job-skill-error',
+                      'Invalid employee!'
+                    ),
+                    view.validate(
+                      job.description,
+                      'job-description-error',
+                      'Invalid description!'
+                    ),
+                    view.validate(
+                      job.SandE,
+                      'job-SandE-error',
+                      'Invalid title!'
+                    ),
+                    view.validate(
+                      job.why,
+                      'why-error',
+                      'Invalid title!'
+                    ),
+                  ]
+                  if (allPassed(validateResult)) {
+                    controller.postjob(job)
+                  }
+                }
                 break;
             }
 
