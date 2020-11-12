@@ -1909,3 +1909,20 @@ view.addNotification = async (data, id, friendImg, friendEmail) => {
         }
     });
 };
+view.addNewJob = () =>{
+    let jopWrapper = document.querySelector('#job')
+    let jobCompany = `
+    <tr>
+        <td onclick=linkCompanyEmployerDetail('${job.id}') class="text-center"><a class="tblTitleJob">${job.title}</a></td>
+        <td class="text-center">${job.money}</td>
+        <td class="text-center">${job.skill}</td>
+        <td class="text-center"><span class="tbDueTime">20 December</span></td>
+        <td class="text-center">
+            <div class="btn-group-sm btn-group">
+                <button  onclick= deleteJob('${job.id}') class="removeButton settingButton btn bg-danger"><i class="far fa-trash-alt"></i></button>
+                <button class="editButton settingButton btn bg-primary" style="margin-left: 5px;"><i class="fas fa-edit"></i></button>
+            </div>
+        </td>
+    </tr>`
+    view.appendHtml(jopWrapper, jobCompany)
+}

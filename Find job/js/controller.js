@@ -670,6 +670,7 @@ controller.listenJobChange = async () => {
         //   view.addNotification(change.doc.data(), change.doc.id, friendImg.logo, friendImg.emailCompany)
         // }
         // view.showjobEmployer()
+        view.addNewJob(change.doc.id, change.doc.data())
       }
     })
     return db
