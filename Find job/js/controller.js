@@ -646,7 +646,7 @@ controller.postjob = async function (job) {
       return
     }
   }
-  view.disable('btn-postjob')
+  // view.disable('btn btn-default')
 
   await firebase.firestore().collection('job').add(job)
 
@@ -659,7 +659,7 @@ controller.postjob = async function (job) {
   document.getElementById('form-postjob').description.value = ''
   document.getElementById('form-postjob').SandE.value = ''
   document.getElementById('form-postjob').why.value = ''
-  view.enable('btn-postjob')
+  // view.enable('btn btn-default')
 
 }
 controller.loadCompany = async function () {

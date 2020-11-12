@@ -554,14 +554,14 @@ view.showComponents = async function(name) {
                     SandE: form.SandE.value,
                     why: form.why.value
                   }
-                  console.log(job);
+                //   console.log(job);
             
             
                   let validateResult = [
                     view.validate(
                       job.nameCompany,
                       'job-nameCompany-error',
-                      'Invalid title!'
+                      'Name comany is not empty!'
                     ),
                     view.validate(
                       job.title,
@@ -569,15 +569,15 @@ view.showComponents = async function(name) {
                       'Invalid title!'
                     ),
                     view.validate(
-                      job.money,
+                      job.money && !isNaN(job.money),
                       'job-money-error',
-                      'Invalid title!'
+                      'salary is suitable!'
                     ),
-                    view.validate(
-                      !isNaN(job.money),
-                      'job-money-error',
-                      'is not a number!'
-                    ),
+                    // view.validate(
+                    //   !isNaN(job.money),
+                    //   'job-money-error',
+                    //   'is not a number!'
+                    // ),
                     view.validate(
                       job.address,
                       'job-address-error',
@@ -596,12 +596,12 @@ view.showComponents = async function(name) {
                     view.validate(
                       job.SandE,
                       'job-SandE-error',
-                      'Invalid title!'
+                      'Invalid skill and expeience!'
                     ),
                     view.validate(
                       job.why,
                       'why-error',
-                      'Invalid title!'
+                      'Empty!'
                     ),
                   ]
                   if (allPassed(validateResult)) {

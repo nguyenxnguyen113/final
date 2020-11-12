@@ -681,23 +681,28 @@ component.allJobOfCompany = `
                                 <form id='form-postjob'>
                                     <div class="form-group">
                                        <label for="inputTitle">Name company</label>
-                                       <input type="text" name="nameCompany" class="form-control" id="job-nameCompany-error" aria-describedby="emailHelp" placeholder="">
+                                       <input type="text" name="nameCompany" class="form-control"  aria-describedby="emailHelp" placeholder="">
+                                       <p class="message-error" id="job-nameCompany-error"></p>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputTitle">JOB TITLE</label>
-                                        <input type="text" name="title" class="form-control" id="job-title-error" aria-describedby="emailHelp" placeholder="Enter title job">
+                                        <input type="text" name="title" class="form-control"  aria-describedby="emailHelp" placeholder="Enter title job">
+                                        <p class="message-error" id="job-title-error"></p>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputTitle">Salary</label>
-                                        <input type="text" name="money" class="form-control" id="job-money-error" aria-describedby="emailHelp" placeholder="Enter title job">
+                                        <input type="text" name="money" class="form-control"  aria-describedby="emailHelp" placeholder="Enter salary job">
+                                        <p class="message-error" id="job-money-error"></p>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputTitle">Address</label>
-                                        <input type="text" name="address" class="form-control" id="job-address-error" aria-describedby="emailHelp" placeholder="Enter title job">
+                                        <input type="text" name="address" class="form-control"  aria-describedby="emailHelp" placeholder="Enter title job">
+                                        <p class="message-error" id="job-address-error"></p>
                                     </div> 
                                     <div class="form-group">
                                         <label for="inputTitle">Skill</label>
                                         <input type="text" name="skill" class="form-control" id="job-skill-error" aria-describedby="emailHelp" placeholder="Enter title job">
+                                        <p class="message-error" id="job-skill-error"></p>
                                     </div> 
 
                                     <div class="form-group">
@@ -706,16 +711,19 @@ component.allJobOfCompany = `
                                     </div>
                                     <div class="form-group">
                                         <label for="inputDescription">Descriptions</label>
-                                        <textarea class="form-control" name="description" id="job-description-error" rows="3"></textarea>
+                                        <textarea class="form-control" name="description"  rows="3"></textarea>
+                                        <p class="message-error" id="job-description-error"></p>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputDescription">Requirements</label>
-                                        <textarea class="form-control" name="SandE" id="job-SandE-error" rows="3"></textarea>
+                                        <textarea class="form-control" name="SandE" rows="3"></textarea>
+                                        <p class="message-error" id="job-SandE-error"></p>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="inputDescription">Why You'll Love Working Here</label>
-                                        <textarea class="form-control" name="why" id="why-error" rows="3"></textarea>
+                                        <textarea class="form-control" name="why"  rows="3"></textarea>
+                                        <p class="message-error" id="why-error"></p>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </form>
