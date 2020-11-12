@@ -653,64 +653,155 @@ component.detailEmployer = `
 </div>
 </div> `
 component.allJobOfCompany = `
-<div class="  text-job container ">
-<h2> Nhà Tuyển Dụng </h2>
+<div class="row">
+<div class="col-md-12 col-12 " style="margin: 80px 200px 30px 10px;">
+    <div class="searchBar row">
+        <input type="text" class="searchInput" placeholder="Searching here">
+        <button type="submit" class="searchButton">
+                <i class="fa fa-search"></i>
+            </button>
+        </div>
+
+        <div class="  text-job container " style="display:flex; justify-content: space-between;">
+            <div class="col-sm-3">
+                <h2> Nhà Tuyển Dụng </h2>
+            </div>
+
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="modal-title">Add a new job</h2>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="inputJobForm">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="inputTitle">JOB TITLE</label>
+                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputJobType">JOB TYPE</label>
+                                        <div class="selectWrapper">
+                                            <select class="form-control" id="inputJobType">
+                                                <option>JAVA SPRING</option>
+                                                <option>.NET</option>
+                                                <option>FULL STACK JS</option>
+                                                <option>PHP</option>
+                                                <option>OTHER</option>
+                                                <option>JAVA SPRING</option>
+                                                <option>.NET</option>
+                                                <option>FULL STACK JS</option>
+                                                <option>PHP</option>
+                                                <option>OTHER</option>
+                                               
+                                              </select>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputSalary">SALARY</label>
+                                        <input type="text" class="form-control" id="inputSalary" placeholder="Ex:100$">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputDueDate">DUE DATE</label>
+                                        <input type="date" class="form-control" id="inputDueDate">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputLocation">Location</label>
+                                        <select class="form-control" id="inputLocation">
+                                          <option>HA NOI</option>
+                                          <option>DA NANG</option>
+                                          <option>HO CHI MINH</option>
+        
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputDescription">Description</label>
+                                        <textarea class="form-control" id="inputDescription" rows="3"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-sm-3 addNewArea text-center">
+                <button class="editButton settingButton btn bg-success" style="margin-left: 5px;" data-toggle="modal" data-target="#myModal">Add new</button>
+            </div>
+        </div>
+        <table class="table table-bordered" id="employersTab">
+            <thead>
+                <tr>
+                    <th scope="col" class="tbJobName text-center">Job Title</th>
+                    <th scope="col" class="tbSalary text-center">Salary</th>
+                    <th scope="col" class="tbJobType text-center">Type of Job</th>
+                    <th scope="col" class="tbJobDueTime text-center">Due Date</th>
+                    <th scope="col" class="text-center"><i class="fa fa-gear"></i></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+
+
+                    <td class="text-center"><a class="tblTitleJob">The best job of us company ever, You will like it. Appply to success.The best job of us company ever, You will like it. Ap</a></td>
+                    <td class="text-center">up to 1000$</td>
+                    <td class="text-center">java spring</td>
+                    <td class="text-center"><span class="tbDueTime">20 December</span></td>
+                    <td class="text-center">
+                        <div class="btn-group-sm btn-group">
+
+                            <button class="removeButton settingButton btn bg-danger"><i class="far fa-trash-alt"></i>Remove</button>
+                            <button class="editButton settingButton btn bg-primary" style="margin-left: 5px;"><i class="fas fa-edit"></i>Edit</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="col-sm-12 col-12 row" style="justify-content: space-between;">
+            <div class="col-sm-5">
+                <div class="dataTables_Info" id="example_Info" role="status" aria-live="polite">Showing 1 to 4 of 57 entries</div>
+            </div>
+
+            <div class="col-sm-7">
+                <div class="dataTables_Paginate" id="example_Paginate">
+                    <ul class="pagination">
+                        <li class="paginationButton" id="example_Previous">
+                            <a href="#" data-dt-idx="1" class="pageLink" tabindex="1">Previous</a>
+                        </li>
+                        <li class="paginationButton pageItem active">
+                            <a href="#" data-dt-idx="2" class="pageLink" tabindex="2">1</a>
+                        </li>
+                        <li class="paginationButton">
+                            <a href="#" data-dt-idx="3" class="pageLink" tabindex="3">2</a>
+                        </li>
+                        <li class="paginationButton">
+                            <a href="#" data-dt-idx="4" class="pageLink" tabindex="4">3</a>
+                        </li>
+                        <li class="paginationButton">
+                            <a href="#" data-dt-idx="5" class="pageLink" tabindex="5">Next</a>
+                        </li>
+                        <li class="paginationButton" id="example_Next"></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
 </div>
-<div class="filter container">
-    <div style="display: flex; justify-content: center; padding-top: 46px" class="row">
-        <div style="padding: 0px" class="filter-main col-sm-3">
-        <div style="max-width: 100%; padding: 15px 35px 10px 50px ; border-bottom: 2px solid #013B80">
-        <span style="font-size: 25px">Filter</span>
-    </div>
-
-    <div style="padding: 15px 35px 10px 50px">
-        <div id="option-checkbox" style="border-bottom: 1px solid #cccccc; padding: 10px ">
-            <div style="padding-bottom: 10px">
-                <span style="font-size: 20px">City</span>
-            </div>
-            <div class="form-check">
-                <label class="form-check-label">
-                    <input id="all" type="checkbox" class="form-check-input">All
-                </label>
-            </div>
-            
-        </div>
-        <div style=" padding: 10px ">
-            <div style="padding-bottom: 10px">
-                <span style="font-size: 20px">Salary</span>
-            </div>
-            <div class="form-check">
-                <label class="form-check-label">
-                    <input id="all1" type="checkbox" class="form-check-input">All
-                </label>
-            </div>
-            <div class="form-check">
-                <label class="form-check-label">
-                    <input type="checkbox" name="checkbox1" class="form-check-input" value="duoi1000"><1000$
-                </label>
-            </div>
-            <div class="form-check">
-                <label class="form-check-label">
-                    <input type="checkbox" name="checkbox1" class="form-check-input" value="tu1000den2000">1000$-2000$
-                </label>
-            </div>
-            <div class="form-check">
-                <label class="form-check-label">
-                    <input type="checkbox" name="checkbox1" class="form-check-input" value="tren2000">>2000$
-                </label>
-            </div>
-        </div>
-
-        </div>    
-          <div style="display: flex; justify-content: center; padding: 60px">
-            <button onclick="controller.checkbox()" class="filter-btn">Search</button>
-          </div>
-        </div>
-        <div id="job" style="padding: 0px" class="filter-result col-sm-8">
-            
-        </div>
-    </div>
-</div>`
+`
 component.companyEmployerdetail = ` 
 <div class="container" id="clear">
 <div class="chatBoxArea" id="myChatBox">

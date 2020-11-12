@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TechFinder - Find your style</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <!-- icon -->
+    <link rel="stylesheet" href="fontawesome-free-5.11.2-web/css/all.css">
+    <!-- star icon-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+
+    <link rel="stylesheet" href="css/main.css">
+    <!--Css for message box-->
+    <link rel="stylesheet" href="css/ducviewcv.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap" rel="stylesheet">
+
+</head>
+<script>
+    $(document).ready(function() {
+        $(document).on('change', '.btn-file :file', function() {
+            var input = $(this),
+                label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+            input.trigger('fileselect', [label]);
+        });
+
+        $('.btn-file :file').on('fileselect', function(event, label) {
+
+            var input = $(this).parents('.inputGroup').find(':text'),
+                log = label;
+
+            if (input.length) {
+                input.val(log);
+            } else {
+                if (log) alert(log);
+            }
+
+        });
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    $('#inputShow').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#imgInput").change(function() {
+            readURL(this);
+        });
+
+    });
+</script>
+<style>
+    .fa-gear {
+        font-size: 26px;
+    }
+    
+    .fa-trash-alt {
+        font-size: 26px;
+    }
+    
+    table {
+        border: 1px solid black;
+        width: 100%;
+        position: relative;
+    }
+    
+    td,
+    th {
+        border: 1px solid black;
+        text-align: left;
+        padding: 8px;
+        position: relative;
+    }
+    
+    .settingButton {
+        height: 40px;
+        width: 80px;
+        border: none;
+    }
+    
+    .settingButton i {
+        font-size: 18px;
+        padding-right: 2px;
+    }
+    
+    .tblTitleJob {
+        display: inline-block;
+        text-overflow: ellipsis;
+        width: 200px;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+    
+    .addNewArea {
+        margin: 10px 0 0 50px;
+    }
+    
+    .addNewArea button {
+        width: 100%;
+        height: fit-content;
+    }
+    
+    .searchBar {
+        width: 100%;
+        position: relative;
+        display: inline-block;
+        text-align: center;
+    }
+    
+    .searchButton {
+        color: #333;
+        height: 40px;
+        background-color: white;
+        position: absolute;
+        width: 10%;
+        border: 1px solid #d9d9d9;
+        margin: 0 0 0 -1px;
+        top: 0;
+        border-radius: 0 8px 8px 0;
+        text-align: center;
+        text-decoration: none!important;
+    }
+    
+    .searchButton:hover {
+        background: rgb(247, 244, 244);
+    }
+    
+    .searchInput {
+        border: 1px solid #d9d9d9;
+        width: 50%;
+        border-radius: 8px 0 0 8px;
+        height: 40px;
+        margin: 0px 1px;
+    }
+    
+    .searchInput:hover {
+        background: rgb(247, 244, 244);
+    }
+    
+    div.dataTables_Paginate ul.pagination {
+        margin: 2px 0;
+        white-space: nowrap;
+        justify-content: flex-end;
+    }
+    
+    .pagination {
+        display: flex;
+        padding-left: 0;
+        list-style: none;
+        border-radius: .25rem;
+    }
+    
+    .pagination li a {
+        position: relative;
+        display: block;
+        padding: .5rem .75rem;
+        line-height: 1.25;
+        color: #007bff;
+        background-color: #fff;
+        border: 1px solid #dee2e6;
+    }
+    
+    .pagination li a:hover {
+        text-decoration: none;
+        background-color: rgb(236, 225, 225);
+    }
+    
+    .pageItem.active .pageLink {
+        z-index: 1;
+        color: #fff;
+        background-color: #3f6ad8;
+        border-color: #007bff;
+    }
+    
+    @media only screen and (max-width:576px) {
+        .searchBar {
+            margin-top: 120px;
+        }
+    }
+</style>
+
+
+<body>
+    <nav id="nav-b" class="navbar navbar-expand-sm fixed-top">
+        <a id="logo" href="index.html"><img src="imgs/img/logotrang.png" alt="" /></a>
+        <ul id="1" class="navbar-nav justify-content-end">
+            <li class="nav-item">
+                <a class="nav-link" id="link-home">HOME</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="link-job">ALL JOB</a>
+            </li>
+
+
+            <li class="nav-item">
+                <a class="nav-link" id="link-employer">POST JOBS</a>
+            </li>
+            <div id="dropdown">
+                <div class="dropdown" style="
+              width: 50px;
+              height: 30px;
+              margin: 0px 30px 0px 50px;
+              text-align: center;
+            ">
+                    <div type="button" data-toggle="dropdown">
+                        <i style="font-size: 22px" class="fas fa-user-circle"></i
+              ><span id="next-login">login</span>
+            </div>
+          </div>
+        </div>
+      </ul>
+    </nav>
+    <div class="container" id="clear">
+       
+        <div class="row">
+            <div class="col-md-12 col-12 " style="margin: 80px 200px 30px 10px;">
+                <div class="searchBar row">
+                    <input type="text" class="searchInput" placeholder="Searching here">
+                    <button type="submit" class="searchButton">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <div class="  text-job container " style="display:flex; justify-content: space-between;">
+                        <div class="col-sm-3">
+                            <h2> Nhà Tuyển Dụng </h2>
+                        </div>
+
+                        <div class="modal fade" id="myModal" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h2 class="modal-title">Add a new job</h2>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="inputJobForm">
+                                            <form>
+                                                <div class="form-group">
+                                                    <label for="inputTitle">JOB TITLE</label>
+                                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputJobType">JOB TYPE</label>
+                                                    <div class="selectWrapper">
+                                                        <select class="form-control" id="inputJobType">
+                                                            <option>JAVA SPRING</option>
+                                                            <option>.NET</option>
+                                                            <option>FULL STACK JS</option>
+                                                            <option>PHP</option>
+                                                            <option>OTHER</option>
+                                                            <option>JAVA SPRING</option>
+                                                            <option>.NET</option>
+                                                            <option>FULL STACK JS</option>
+                                                            <option>PHP</option>
+                                                            <option>OTHER</option>
+                                                           
+                                                          </select>
+                                                    </div>
+
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputSalary">SALARY</label>
+                                                    <input type="text" class="form-control" id="inputSalary" placeholder="Ex:100$">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputDueDate">DUE DATE</label>
+                                                    <input type="date" class="form-control" id="inputDueDate">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputLocation">Location</label>
+                                                    <select class="form-control" id="inputLocation">
+                                                      <option>HA NOI</option>
+                                                      <option>DA NANG</option>
+                                                      <option>HO CHI MINH</option>
+                    
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputDescription">Description</label>
+                                                    <textarea class="form-control" id="inputDescription" rows="3"></textarea>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3 addNewArea text-center">
+                            <button class="editButton settingButton btn bg-success" style="margin-left: 5px;" data-toggle="modal" data-target="#myModal">Add new</button>
+                        </div>
+                    </div>
+                    <table class="table table-bordered" id="employersTab">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="tbJobName text-center">Job Title</th>
+                                <th scope="col" class="tbSalary text-center">Salary</th>
+                                <th scope="col" class="tbJobType text-center">Type of Job</th>
+                                <th scope="col" class="tbJobDueTime text-center">Due Date</th>
+                                <th scope="col" class="text-center"><i class="fa fa-gear"></i></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+
+
+                                <td class="text-center"><a class="tblTitleJob">The best job of us company ever, You will like it. Appply to success.The best job of us company ever, You will like it. Ap</a></td>
+                                <td class="text-center">up to 1000$</td>
+                                <td class="text-center">java spring</td>
+                                <td class="text-center"><span class="tbDueTime">20 December</span></td>
+                                <td class="text-center">
+                                    <div class="btn-group-sm btn-group">
+
+                                        <button class="removeButton settingButton btn bg-danger"><i class="far fa-trash-alt"></i>Remove</button>
+                                        <button class="editButton settingButton btn bg-primary" style="margin-left: 5px;"><i class="fas fa-edit"></i>Edit</button>
+
+
+                                    </div>
+
+
+                                </td>
+
+
+                            </tr>
+                            <tr>
+
+
+                                <td class="text-center "><a class="tblTitleJob">Best Job</a></td>
+                                <td class="text-center ">up to 1000$</td>
+                                <td class="text-center ">java spring</td>
+                                <td class="text-center"><span class="tbDueTime">21 December</span></td>
+                                <td class="text-center">
+                                    <div class="btn-group-sm btn-group">
+                                        <button class="removeButton settingButton btn bg-danger">Remove</button>
+                                        <button class="editButton settingButton btn bg-primary" style="margin-left: 5px;">Edit</button>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+                            <tr>
+
+
+                                <td class="text-center "><a class="tblTitleJob">Best Job</a></td>
+                                <td class="text-center">up to 1000$</td>
+                                <td class="text-center">java spring</td>
+                                <td class="text-center"><span class="tbDueTime">22 December</span></td>
+                                <td class="text-center">
+                                    <div class="btn-group-sm btn-group">
+                                        <button class="removeButton settingButton btn bg-danger">Remove</button>
+                                        <button class="editButton settingButton btn bg-primary" style="margin-left: 5px;">Edit</button>
+
+                                    </div>
+
+                                </td>
+
+
+                            </tr>
+                            <tr>
+
+
+                                <td class="text-center "><a class="tblTitleJob">Best Job</a></td>
+                                <td class="text-center ">up to 1000$</td>
+                                <td class="text-center ">java spring</td>
+                                <td class="text-center"><span class="tbDueTime">27 December</span></td>
+                                <td class="text-center">
+                                    <div class="btn-group-sm btn-group">
+                                        <button class="removeButton settingButton btn bg-danger">Remove</button>
+                                        <button class="editButton settingButton btn bg-primary" style="margin-left: 5px;">Edit</button>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+
+
+                    <div class="col-sm-12 col-12 row" style="justify-content: space-between;">
+                        <div class="col-sm-5">
+                            <div class="dataTables_Info" id="example_Info" role="status" aria-live="polite">Showing 1 to 4 of 57 entries</div>
+                        </div>
+
+                        <div class="col-sm-7">
+                            <div class="dataTables_Paginate" id="example_Paginate">
+                                <ul class="pagination">
+                                    <li class="paginationButton" id="example_Previous">
+                                        <a href="#" data-dt-idx="1" class="pageLink" tabindex="1">Previous</a>
+                                    </li>
+                                    <li class="paginationButton pageItem active">
+                                        <a href="#" data-dt-idx="2" class="pageLink" tabindex="2">1</a>
+                                    </li>
+                                    <li class="paginationButton">
+                                        <a href="#" data-dt-idx="3" class="pageLink" tabindex="3">2</a>
+                                    </li>
+                                    <li class="paginationButton">
+                                        <a href="#" data-dt-idx="4" class="pageLink" tabindex="4">3</a>
+                                    </li>
+                                    <li class="paginationButton">
+                                        <a href="#" data-dt-idx="5" class="pageLink" tabindex="5">Next</a>
+                                    </li>
+                                    <li class="paginationButton" id="example_Next"></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+            </div>
+</body>
+<footer class="section bg-footer ">
+    <div class="container ">
+        <div class="row ">
+            <div class="col-lg-3 ">
+                <div class=" ">
+                    <h6 class="footer-heading text-uppercase text-white ">Information</h6>
+                    <ul class="list-unstyled footer-link mt-4 ">
+                        <li><a href=" ">Website</a></li>
+                        <li><a href=" ">Page</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-3 ">
+                <div class=" ">
+                    <h6 class="footer-heading text-uppercase text-white ">JOBS BY SKILL</h6>
+                    <ul class="list-unstyled footer-link mt-4 fwn ">
+                        <li><a href=" ">JAVA </a></li>
+                        <li><a href=" ">PHP</a></li>
+                        <li><a href=" ">Bussines Analyst</a></li>
+                        <li><a href=" ">QA Manager</a></li>
+                        <li><a href=" ">SQL</a></li>
+                        <li><a href=" ">OTHER</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-2 ">
+                <div class=" ">
+                    <h6 class="footer-heading text-uppercase text-white ">JOBS BY CITY</h6>
+                    <ul class="list-unstyled footer-link mt-4 ">
+                        <li><a href=" ">Ha Noi </a></li>
+                        <li><a href=" ">Da Nang</a></li>
+                        <li><a href=" ">Ho Chi Minh</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-4 ">
+                <div class=" ">
+                    <h6 class="footer-heading text-uppercase text-white ">Contact Us</h6>
+                    <p class="contact-info mt-4 cc " style="font-weight: bold; ">Email : nguyen016279@gmail.com</p>
+                    <p class="contact-info cc " style="font-weight: bold; ">0886430264</p>
+                    <div class="mt-5 ">
+                        <ul class="list-inline ">
+                            <li class="list-inline-item "><a href="# "><i
+                                        class="fab facebook footer-social-icon fa-facebook-f "></i></i>
+                        </a>
+                            </li>
+                            <li class="list-inline-item "><a href="# "><i
+                                        class="fab twitter footer-social-icon fa-twitter "></i></i></a></li>
+                            <li class="list-inline-item "><a href="# "><i
+                                        class="fab google footer-social-icon fa-google "></i></i></a></li>
+                            <li class="list-inline-item "><a href="# "><i
+                                        class="fab apple footer-social-icon fa-apple "></i></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="fb-page " data-href="https://www.facebook.com/Techfinfer-112778823768861/?modal=admin_todo_tour " data-tabs="timeline " data-width="700px " data-height="120px " data-small-header="true " data-adapt-container-width="true
+                                            " data-hide-cover="false " data-show-facepile="true ">
+            <blockquote cite="https://www.facebook.com/Techfinfer-112778823768861/?modal=admin_todo_tour " class="fb-xfbml-parse-ignore "><a href="https://www.facebook.com/Techfinfer-112778823768861/?modal=admin_todo_tour ">Techfinfer</a></blockquote>
+        </div>
+    </div>
+
+    <div class="text-center mt-5 ">
+        <p class="footer-alt mb-0 f-14 ">2020 © Anup, All Rights Reserved</p>
+    </div>
+</footer>
+
+</html>

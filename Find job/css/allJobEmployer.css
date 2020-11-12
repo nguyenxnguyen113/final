@@ -1,0 +1,127 @@
+.fa-gear {
+    font-size: 26px;
+}
+
+.fa-trash-alt {
+    font-size: 26px;
+}
+
+table {
+    border: 1px solid black;
+    width: 100%;
+    position: relative;
+}
+
+td,
+th {
+    border: 1px solid black;
+    text-align: left;
+    padding: 8px;
+    position: relative;
+}
+
+.settingButton {
+    height: 40px;
+    width: 80px;
+    border: none;
+}
+
+.settingButton i {
+    font-size: 18px;
+    padding-right: 2px;
+}
+
+.tblTitleJob {
+    display: inline-block;
+    text-overflow: ellipsis;
+    width: 200px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.addNewArea {
+    margin: 10px 0 0 50px;
+}
+
+.addNewArea button {
+    width: 100%;
+    height: fit-content;
+}
+
+.searchBar {
+    width: 100%;
+    position: relative;
+    display: inline-block;
+    text-align: center;
+}
+
+.searchButton {
+    color: #333;
+    height: 40px;
+    background-color: white;
+    position: absolute;
+    width: 10%;
+    border: 1px solid #d9d9d9;
+    margin: 0 0 0 -1px;
+    top: 0;
+    border-radius: 0 8px 8px 0;
+    text-align: center;
+    text-decoration: none!important;
+}
+
+.searchButton:hover {
+    background: rgb(247, 244, 244);
+}
+
+.searchInput {
+    border: 1px solid #d9d9d9;
+    width: 50%;
+    border-radius: 8px 0 0 8px;
+    height: 40px;
+    margin: 0px 1px;
+}
+
+.searchInput:hover {
+    background: rgb(247, 244, 244);
+}
+
+div.dataTables_Paginate ul.pagination {
+    margin: 2px 0;
+    white-space: nowrap;
+    justify-content: flex-end;
+}
+
+.pagination {
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+    border-radius: .25rem;
+}
+
+.pagination li a {
+    position: relative;
+    display: block;
+    padding: .5rem .75rem;
+    line-height: 1.25;
+    color: #007bff;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+}
+
+.pagination li a:hover {
+    text-decoration: none;
+    background-color: rgb(236, 225, 225);
+}
+
+.pageItem.active .pageLink {
+    z-index: 1;
+    color: #fff;
+    background-color: #3f6ad8;
+    border-color: #007bff;
+}
+
+@media only screen and (max-width:576px) {
+    .searchBar {
+        margin-top: 120px;
+    }
+}
