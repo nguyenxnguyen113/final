@@ -750,22 +750,8 @@ component.allJobOfCompany = `
                     <th scope="col" class="text-center"><i class="fa fa-gear"></i></th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
+            <tbody id='job'>
 
-
-                    <td class="text-center"><a class="tblTitleJob">The best job of us company ever, You will like it. Appply to success.The best job of us company ever, You will like it. Ap</a></td>
-                    <td class="text-center">up to 1000$</td>
-                    <td class="text-center">java spring</td>
-                    <td class="text-center"><span class="tbDueTime">20 December</span></td>
-                    <td class="text-center">
-                        <div class="btn-group-sm btn-group">
-
-                            <button class="removeButton settingButton btn bg-danger"><i class="far fa-trash-alt"></i>Remove</button>
-                            <button class="editButton settingButton btn bg-primary" style="margin-left: 5px;"><i class="fas fa-edit"></i>Edit</button>
-                        </div>
-                    </td>
-                </tr>
             </tbody>
         </table>
         <div class="col-sm-12 col-12 row" style="justify-content: space-between;">

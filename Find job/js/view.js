@@ -535,7 +535,7 @@ view.showComponents = async function(name) {
                 document.getElementById('link-home-employer').addEventListener('click', () => {
                     view.showComponents('employerScreen')
                 })
-                controller.getNameCompanyCurrent()
+                view.showjobEmployer()
 
                 break;
             }
@@ -1451,9 +1451,9 @@ view.showJobDetailEmployer = async function() {
         }
     }
 }
-view.showjobEmployer = function(seclecjob) {
+view.showjobEmployer =  async function() {
     let listJob = document.getElementById("job")
-    let jobs = seclecjob
+    let jobs = await controller.getNameCompanyCurrent()
 
     for (let job of jobs) {
         if (model.companys) {
@@ -1462,40 +1462,22 @@ view.showjobEmployer = function(seclecjob) {
                 if (company.name == job.nameCompany) {
                     console.log(job.id)
                     let jobCompany = `
-            <div style="padding: 15px" class="row">
-            <div class="col-sm-3">
-                <div style="width: 100px; height: 100px;">
-                    <img style="max-width: 100%; max-height: 100%" src="${company.logo}" alt="">
-                </div>
-            </div>
-            <div class="col-sm-9">
-                <div>
-                <a onclick=linkCompanyEmployerDetail('${job.id}') >
-                <span class="fw500 fs25">${job.title}
-                </span>
-                </a>
-                </div>
-                <div>
-                    <span style="color: #a50b0b"><i class="fas fa-search-dollar"></i> upto ${job.money}$</span>
-                </div>
-                <div>
-                    <span>${job.description.substr(0, 200)}...</span>
-                </div>
-                <div>
-                    <span style="color: #013B80;" class="fs20"><i class="fas fa-map-marker-alt"></i> ${job.address}
-                        </span>
-                </div>
-                <div class="footer-card">
-                    <div>
-                        <span class="fs18 skill">${job.skill}</span>
-                    </div>
-                    <div class="">
-                    <button onclick= deleteJob('${job.id}') style="padding: 0 30px 0 30px; border-radius: 5px" class="fs18 save">Delete</button>
-                    <button style="padding: 0 30px 0 30px; border-radius: 5px; background-color: blue;" class="fs18 save">Edit</button>
-                    </div>
-                </div>
-            </div>
-        </div>`
+                    <tr onclick=linkCompanyEmployerDetail('${job.id}>
+
+
+                    <td class="text-center"><a class="tblTitleJob">${job.title}</a></td>
+                    <td class="text-center">${job.money}</td>
+                    <td class="text-center">${job.skill}</td>
+                    <td class="text-center"><span class="tbDueTime">20 December</span></td>
+                    <td class="text-center">
+                        <div class="btn-group-sm btn-group">
+
+                            <button  onclick= deleteJob('${job.id}') class="removeButton settingButton btn bg-danger"><i class="far fa-trash-alt"></i>Remove</button>
+                            <button class="editButton settingButton btn bg-primary" style="margin-left: 5px;"><i class="fas fa-edit"></i>Edit</button>
+                        </div>
+                    </td>
+                </tr>
+ `
 
                     view.appendHtml(listJob, jobCompany)
                 }
