@@ -336,6 +336,15 @@ let updateAvatar = async function (link) {
     });
 }
 
+controller.deleteJob = function (id) {
+  var jobskill_query = db.collection('job').where('id','==',id);
+  jobskill_query.get().then(function(querySnapshot) {
+  querySnapshot.forEach(function(doc) {
+    doc.ref.delete();
+  });
+});
+}
+
 // delete job
 async function deleteJob(id, email) {
   // let company = await firebase.firestore().collection('company').doc(id).delete()

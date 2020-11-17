@@ -536,7 +536,6 @@ view.showComponents = async function(name) {
                     view.showComponents('employerScreen')
                 })
                 // view.showjobEmployer()
-                view.ShowNavEmployer()
                 controller.listenJobChange()
                 let form = document.getElementById('form-postjob')
                 form.onsubmit = postjobHandler
@@ -623,7 +622,6 @@ view.showComponents = async function(name) {
                 app.innerHTML = component.headerEmployer + component.companyEmployerdetail
                 await view.showJobDetailEmployer()
                 controller.listenConversation()
-                view.ShowNavEmployer()
                 document.getElementById('link-home-employer').addEventListener('click', () => {
                     view.showComponents('employerScreen')
                 })
@@ -1180,7 +1178,7 @@ view.ShowNavEmployer = function () {
     if (test.verified === false) {
         return
     }
-    view.clearHtml("dropdown")
+     view.clearHtml("dropdown")
     let btnSignOut = document.querySelector('#btn-out')
     link.innerHTML = component.dropdown
     view.setText('text-login', "ACC")
@@ -1547,8 +1545,9 @@ view.showJobDetailEmployer = async function() {
     }
 }
 view.showjobEmployer =  async function() {
-    let listJob = document.getElementById("job")
-    let jobs = await controller.getNameCompanyCurrent()
+    let listJob = document.getElementById("job");
+    listJob.innerHTML = "";
+    let jobs = await controller.getNameCompanyCurrent();
 
     for (let job of jobs) {
         if (model.companys) {
@@ -1564,12 +1563,12 @@ view.showjobEmployer =  async function() {
                     <td class="text-center"><span class="tbDueTime">20 December</span></td>
                     <td class="text-center">
                         <div class="btn-group-sm btn-group">
-                            <button  onclick= deleteJob('${job.id}') class="removeButton settingButton btn bg-danger"><i class="far fa-trash-alt"></i></button>
+                            <button  onclick= controller.deleteJob('${job.id}') class="removeButton settingButton btn bg-danger"><i class="far fa-trash-alt"></i></button>
                             <button class="editButton settingButton btn bg-primary" style="margin-left: 5px;"><i class="fas fa-edit"></i></button>
                         </div>
                     </td>
                 </tr>
- `
+ `              
                     view.appendHtml(listJob, jobCompany)
                 }
             }
