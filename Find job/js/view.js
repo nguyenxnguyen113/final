@@ -535,7 +535,7 @@ view.showComponents = async function(name) {
                 document.getElementById('link-home-employer').addEventListener('click', () => {
                     view.showComponents('employerScreen')
                 })
-                // view.showjobEmployer()
+                view.showjobEmployer()
                 controller.listenJobChange()
                 let form = document.getElementById('form-postjob')
                 form.onsubmit = postjobHandler
@@ -553,7 +553,8 @@ view.showComponents = async function(name) {
                     skill: form.skill.value,
                     description: form.description.value,
                     SandE: form.SandE.value,
-                    why: form.why.value
+                    why: form.why.value,
+                    createdAt: Date().toLocaleString(),
                   }
                 //   console.log(job);
             
