@@ -1941,13 +1941,16 @@ view.addNewJob = (id,data) =>{
     <td class="text-center"><span class="tbDueTime">20 December</span></td>
     <td class="text-center">
         <div class="btn-group-sm btn-group">
-            <button  onclick= deleteJob('${id}') class="removeButton settingButton btn bg-danger"><i class="far fa-trash-alt"></i></button>
+            <button  onclick= "deleteDataFireStore('job', ${id})" class="removeButton settingButton btn bg-danger"><i class="far fa-trash-alt"></i></button>
             <button class="editButton settingButton btn bg-primary" style="margin-left: 5px;"><i class="fas fa-edit"></i></button>
         </div>
     </td>
 `;
-    
-
+    document.querySelector('.removeButton').onclick = deleteDataFireStore('job', id)
     listJob.appendChild(jobWrapper)
     listJob.insertBefore(jobWrapper, listJob.childNodes[0]);
 }
+deleteDataFireStore = (collection, document) => {
+    let db = firebase.firestore()
+    db.collection(collection).doc(document).delete();
+  }

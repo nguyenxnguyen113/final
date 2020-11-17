@@ -687,7 +687,10 @@ controller.listenJobChange = async () => {
     return db
   })
 }
-
+controller.deleteDataFireStore = (document) => {
+  let db = firebase.firestore()
+  db.collection('job').doc(document).delete();
+}
 controller.loadCompany = async function () {
   if (controller.loadedCompany) {
     return
