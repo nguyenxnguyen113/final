@@ -1912,19 +1912,22 @@ view.addNotification = async (data, id, friendImg, friendEmail) => {
     });
 };
 view.addNewJob = (id,data) =>{
-    let jopWrapper = document.getElementById('job')
-    let jobCompany = `
-    <tr>
-        <td onclick=linkCompanyEmployerDetail('${id}') class="text-center"><a class="tblTitleJob">${data.title}</a></td>
-        <td class="text-center">${data.money}</td>
-        <td class="text-center">${data.skill}</td>
-        <td class="text-center"><span class="tbDueTime">20 December</span></td>
-        <td class="text-center">
-            <div class="btn-group-sm btn-group">
-                <button  onclick= deleteJob('${id}') class="removeButton settingButton btn bg-danger"><i class="far fa-trash-alt"></i></button>
-                <button class="editButton settingButton btn bg-primary" style="margin-left: 5px;"><i class="fas fa-edit"></i></button>
-            </div>
-        </td>
-    </tr>`
-    view.appendHtml(jopWrapper, jobCompany)
+    const jobWrapper = document.createElement("tr");
+    let listJob = document.getElementById('job')
+    jobWrapper.innerHTML = `
+    <td onclick=linkCompanyEmployerDetail('${id}') class="text-center"><a class="tblTitleJob">${data.title}</a></td>
+    <td class="text-center">${data.money}</td>
+    <td class="text-center">${data.skill}</td>
+    <td class="text-center"><span class="tbDueTime">20 December</span></td>
+    <td class="text-center">
+        <div class="btn-group-sm btn-group">
+            <button  onclick= deleteJob('${id}') class="removeButton settingButton btn bg-danger"><i class="far fa-trash-alt"></i></button>
+            <button class="editButton settingButton btn bg-primary" style="margin-left: 5px;"><i class="fas fa-edit"></i></button>
+        </div>
+    </td>
+`;
+    
+
+    listJob.appendChild(jobWrapper)
+    listJob.insertBefore(jobWrapper, listJob.childNodes[0]);
 }
