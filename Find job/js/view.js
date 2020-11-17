@@ -535,8 +535,8 @@ view.showComponents = async function(name) {
                 document.getElementById('link-home-employer').addEventListener('click', () => {
                     view.showComponents('employerScreen')
                 })
-                view.showjobEmployer()
-                await controller.listenJobChange()
+                // view.showjobEmployer()
+                controller.listenJobChange()
                 let form = document.getElementById('form-postjob')
                 form.onsubmit = postjobHandler
                 
@@ -1912,7 +1912,7 @@ view.addNotification = async (data, id, friendImg, friendEmail) => {
     });
 };
 view.addNewJob = (id,data) =>{
-    let jopWrapper = document.querySelector('#job')
+    let jopWrapper = document.getElementById('job')
     let jobCompany = `
     <tr>
         <td onclick=linkCompanyEmployerDetail('${id}') class="text-center"><a class="tblTitleJob">${data.title}</a></td>
