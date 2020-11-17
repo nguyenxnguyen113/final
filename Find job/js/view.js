@@ -1563,7 +1563,7 @@ view.showjobEmployer =  async function() {
                     <td class="text-center"><span class="tbDueTime">20 December</span></td>
                     <td class="text-center">
                         <div class="btn-group-sm btn-group">
-                            <button  onclick= "controller.deleteDataFireStore(${id})" class="removeButton settingButton btn bg-danger"><i class="far fa-trash-alt"></i></button>
+                            <button  onclick= "deleteDataFireStore(${id})" class="removeButton settingButton btn bg-danger"><i class="far fa-trash-alt"></i></button>
                             <button class="editButton settingButton btn bg-primary" style="margin-left: 5px;"><i class="fas fa-edit"></i></button>
                         </div>
                     </td>
@@ -1941,11 +1941,15 @@ view.addNewJob = (id,data) =>{
     <td class="text-center"><span class="tbDueTime">20 December</span></td>
     <td class="text-center">
         <div class="btn-group-sm btn-group">
-            <button  onclick= "controller.deleteDataFireStore(${id})" class="removeButton settingButton btn bg-danger"><i class="far fa-trash-alt"></i></button>
+            <button  onclick= "deleteDataFireStore(${id})" class="removeButton settingButton btn bg-danger"><i class="far fa-trash-alt"></i></button>
             <button class="editButton settingButton btn bg-primary" style="margin-left: 5px;"><i class="fas fa-edit"></i></button>
         </div>
     </td>
 `;
     listJob.appendChild(jobWrapper)
     listJob.insertBefore(jobWrapper, listJob.childNodes[0]);
+}
+deleteDataFireStore = (document) => {
+    let db = firebase.firestore()
+    db.collection('job').doc(document).delete();
 }

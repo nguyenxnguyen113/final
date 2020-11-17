@@ -673,8 +673,6 @@ controller.listenJobChange = async () => {
       console.log(change.doc.id)
       if (change.type === "added") {
         view.addNewJob(change.doc.id, change.doc.data())
-      } else {
-        view.showjobEmployer()
       }
     })
     return db
