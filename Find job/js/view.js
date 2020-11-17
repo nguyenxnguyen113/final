@@ -536,7 +536,7 @@ view.showComponents = async function(name) {
                     view.showComponents('employerScreen')
                 })
                 view.showjobEmployer()
-                controller.listenJobChange()
+                await controller.listenJobChange()
                 let form = document.getElementById('form-postjob')
                 form.onsubmit = postjobHandler
                 
@@ -554,7 +554,8 @@ view.showComponents = async function(name) {
                     description: form.description.value,
                     SandE: form.SandE.value,
                     why: form.why.value,
-                    createdAt: Date().toLocaleString(),
+                    createdAt: new Date().toLocaleString(),
+                    timestamp:firebase.firestore.FieldValue.serverTimestamp()
                   }
                 //   console.log(job);
             

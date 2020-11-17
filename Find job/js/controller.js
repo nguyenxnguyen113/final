@@ -665,7 +665,7 @@ controller.listenJobChange = async () => {
   let currentUser = await firebase.auth().currentUser
   let company = await firebase.firestore().collection('company').where("emailCompany", "==", currentUser.email).get()
   let companyData = transformDocs(company.docs)
-  let db = await controller.initFirebaseStore().collection('job').where("nameCompany", "==",companyData[0].name).orderBy('timestamp', 'desc').onSnapshot(function(snapshot) {
+  let db = await controller.initFirebaseStore().collection('job').where("nameCompany", "==",companyData[0].name).orderBy("timestamp", "desc").onSnapshot(function(snapshot) {
     snapshot.docChanges().forEach(async function(change) {
       console.log(change.doc.id)
       if (change.type === "added") {
