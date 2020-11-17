@@ -536,6 +536,7 @@ view.showComponents = async function(name) {
                     view.showComponents('employerScreen')
                 })
                 // view.showjobEmployer()
+                view.ShowNavEmployer()
                 controller.listenJobChange()
                 let form = document.getElementById('form-postjob')
                 form.onsubmit = postjobHandler
@@ -622,6 +623,7 @@ view.showComponents = async function(name) {
                 app.innerHTML = component.headerEmployer + component.companyEmployerdetail
                 await view.showJobDetailEmployer()
                 controller.listenConversation()
+                view.ShowNavEmployer()
                 document.getElementById('link-home-employer').addEventListener('click', () => {
                     view.showComponents('employerScreen')
                 })
@@ -1166,7 +1168,26 @@ view.inputSearch = function() {
     }
 }
 
-
+view.ShowNavEmployer = function () {
+    let link = document.getElementById("dropdown")
+    let test = {
+        verified: false
+    }
+    let currentUser = firebase.auth().currentUser
+    if (currentUser) {
+        test.verified = currentUser.emailVerified
+    }
+    if (test.verified === false) {
+        return
+    }
+    view.clearHtml("dropdown")
+    let btnSignOut = document.querySelector('#btn-out')
+    link.innerHTML = component.dropdown
+    view.setText('text-login', "ACC")
+    btnSignOut.onclick = function() {
+        firebase.auth().signOut()
+    }
+}
 
 // các hàm tiện ích
 view.ShowNav = function() {

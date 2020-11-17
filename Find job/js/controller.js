@@ -667,10 +667,12 @@ controller.listenJobChange = async () => {
   let companyData = transformDocs(company.docs)
   let db = await controller.initFirebaseStore().collection('job').where("nameCompany", "==",companyData[0].name).orderBy("timestamp", "desc").onSnapshot(function(snapshot) {
     snapshot.docChanges().forEach(async function(change) {
+      console.log(change)
       console.log(change.doc.id)
       if (change.type === "added") {
-        console.log("added");
         view.addNewJob(change.doc.id, change.doc.data())
+      } else {
+        view.showjobEmployer()
       }
     })
     return db
@@ -962,7 +964,7 @@ controller.getNameCompanyCurrent = async () => {
   let currentUser = await firebase.auth().currentUser
   let company = await firebase.firestore().collection('company').where("emailCompany", "==", currentUser.email).get()
   let companyData = transformDocs(company.docs)
-  let jobOfCompany = await firebase.firestore().collection('job').where("nameCompany", "==", companyData[0].name).get()
+  let jobOfCompany = await firebase.firestore().collection('job').where("nameCompany", "==", companyData[0].name).orderBy('timestamp','desc').get()
   // model.saveJobsCompany(transformDocs(jobOfCompany.docs))
   return (transformDocs(jobOfCompany.docs))
 }
