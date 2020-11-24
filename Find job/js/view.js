@@ -1946,8 +1946,9 @@ view.addNewJob = (id,data) =>{
         </div>
     </td>
 `;
-    listJob.appendChild(jobWrapper)
     listJob.insertBefore(jobWrapper, listJob.childNodes[0]);
+    listJob.appendChild(jobWrapper)
+    // 
 }
 deleteDataFireStore = (document) => {
     let db = firebase.firestore()
