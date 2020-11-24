@@ -731,6 +731,7 @@ controller.appliedJob = async function (id, email) {
   .update({
     userApplied: firebase.firestore.FieldValue.arrayUnion(email)
   })
+  alert("Apply successfull")
 }
 controller.collectionJobChange = function () {
   let isFirstRun = true
