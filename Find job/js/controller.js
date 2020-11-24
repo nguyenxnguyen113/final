@@ -633,10 +633,12 @@ controller.postcompany = async function (company) {
   view.enable('btn-postcompany')
 
 }
+
 controller.postjob = async function (job) {
   console.log('controller');
   let title = job.title.toLowerCase()
   let alljob = await firebase.firestore().collection('job').get()
+  console.log(alljob.docs)
     //.where('name', '==', name)
   let docs = alljob.docs
   for (let doc of docs) {
@@ -663,6 +665,7 @@ controller.postjob = async function (job) {
   document.getElementById('form-postjob').why.value = ''
   // view.enable('btn btn-default')
 }
+
 controller.listenJobChange = async () => {
   let currentUser = await firebase.auth().currentUser
   let company = await firebase.firestore().collection('company').where("emailCompany", "==", currentUser.email).get()
