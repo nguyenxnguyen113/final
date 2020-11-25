@@ -347,6 +347,14 @@ async function deleteJob(id, email) {
   model.jobs = model.jobs.filter(function (v, i, arr) { return v.id != id; })
   controller.displaySavedJobs();
 }
+async function deleteAppliedJob(id, email) {
+  // let company = await firebase.firestore().collection('company').doc(id).delete()
+  let currentUser = firebase.auth().currentUser;
+  await firebase.firestore().collection('job').doc(id).update({userApplied: firebase.firestore.FieldValue.arrayRemove(email)})
+  console.log("Delete applied job ok")
+  model.jobs = model.jobs.filter(function (v, i, arr) { return v.id != id; })
+  controller.displayAppliedJobs();
+}
 
 // handle saved jobs
 controller.displaySavedJobs = async function () {
@@ -505,7 +513,7 @@ controller.displayAppliedJobs = async function () {
 
 
             </div>
-            <button onclick="deleteJob('${job.id}','${email}')" style="padding: 0 10px 0 10px; border-radius: 5px" class="fs18 save" id="job-delete">Delete Job</button>
+            <button onclick="deleteAppliedJob('${job.id}','${email}')" style="padding: 0 10px 0 10px; border-radius: 5px" class="fs18 save" id="job-delete">Delete Job</button>
 
         </div>
             `
@@ -530,7 +538,7 @@ controller.displayAppliedJobs = async function () {
           );
       });
       for (let index = 0; index < numberOfjob.length; index++) {
-        controller.showJobOfUser(filteredCharacters[index])
+        controller.showJobOfUser(filteredCharacters[index], companys)
       }
     } else {
       controller.displayAppliedJobs()
@@ -538,7 +546,7 @@ controller.displayAppliedJobs = async function () {
   })
 }
 
-controller.showJobOfUser = (data) =>{
+controller.showJobOfUser = (data, companys) =>{
   
   let email = firebase.auth().currentUser;
   let jobTitle = data.title;
@@ -546,8 +554,9 @@ controller.showJobOfUser = (data) =>{
   let jobDesc = data.description;
   let jobAdress = data.address;
   let jobSkill = data.skill;
-  let jobLogo = logo.logo
+  let jobLogo = companys.logo
   const jobGroup = document.querySelector('.jobGroup');
+  if(data.companyName === companys.name) {
   let jobSaved = `
   <div class="jobContents">
   <div class="logo">
@@ -593,7 +602,7 @@ controller.showJobOfUser = (data) =>{
   `
   view.appendHtml(jobGroup, jobSaved)
 }
-
+}
 controller.resetPass = async function (email) {
   view.setText('log-in-error', '')
   view.setText('log-in-success', '')
@@ -731,7 +740,6 @@ controller.appliedJob = async function (id, email) {
   .update({
     userApplied: firebase.firestore.FieldValue.arrayUnion(email)
   })
-  alert("Apply successfull")
 }
 controller.collectionJobChange = function () {
   let isFirstRun = true

@@ -1064,7 +1064,7 @@ view.showJobDetail = async function() {
                                       <p>Upload your CV</p>
                                   </div>
                                   <div class="modal-body btn-modal-apply">
-                                      <button onclick="${test.verified ? await controller.appliedJob(job.id, test.email) : alert('You havent login') }">APPLY</button>
+                                      <button onclick=${test.verified ? await controller.appliedJob(job.id, test.email) : alert('You havent login')}>APPLY</button>
                                   </div>
                               </div>
                               </div>

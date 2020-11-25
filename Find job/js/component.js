@@ -616,9 +616,6 @@ component.headerEmployer = `
     <li class="nav-item">
         <a class="nav-link" id="all-job-employer">ALL JOB</a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link "  id="link-job">POST JOB</a>
-    </li>
     <div id="dropdown">
     <div class="dropdown" style="width: 50px; height: 30px;margin: 0px 30px 0px 50px; text-align: center">
         <div type="button" data-toggle="dropdown">
