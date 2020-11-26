@@ -511,7 +511,6 @@ view.showComponents = async function (name) {
                         alert(err.message)
                     }
                 }
-                view.nextLink()
                 let BgUploadForm = document.getElementById('bg-form-upload')
                 BgUploadForm.onsubmit = async function (e) {
                     e.preventDefault()
@@ -527,6 +526,7 @@ view.showComponents = async function (name) {
                         alert(err.message)
                     }
                 }
+                view.nextLink()
                 break;
             }
         case 'allJobOfCompany':
@@ -1341,7 +1341,7 @@ view.showCompanyDetailEmployer = async function () {
                                     <label style="margin-bottom: 0;">
                                         <a for="imgInput2"><i class="fas fa-camera"
                                                 style="  font-size: 25px;"></i></a>
-                                        <input name="fileChooserLogo" type="file" id="imgInput2"
+                                        <input name="fileChooserBg" type="file" id="imgInput2"
                                             style="display: none;" class="file file-loading "
                                             data-allowed-file-extensions="[&quot;png&quot;, &quot;jpg&quot;]"
                                             onchange="document.getElementById('inputShow2').src=window.URL.createObjectURL(this.files[0])">

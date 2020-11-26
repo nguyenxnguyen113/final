@@ -770,20 +770,25 @@ controller.collectionJobChange = function () {
       }
     })
 }
-controller.updateCompanyDetail = async function (id) {
-  let db = firebase.firestore();
-  db.collection("company").doc(id).update({
-    name: formEdit.companyName.value,
-    address: formEdit.companyAddress.value,
-    employee: formEdit.companyEmployee.value,
-    title: formEdit.companyTitle.value,
-    description: formEdit.companyDesc.value
-  }).then(function () {
-    console.log("Company detail successfully updated!");
-  }).catch(function (error) {
-    // The document probably doesn't exist.
-    console.error("Company detail update error: ", error);
-  });
+controller.updateCompanyDetail = async function (id, formEdit) {
+  try {
+    let db = firebase.firestore();
+    db.collection("company").doc(id).update({
+      name: formEdit.companyName.value,
+      address: formEdit.companyAddress.value,
+      employee: formEdit.companyEmployee.value,
+      title: formEdit.companyTitle.value,
+      description: formEdit.companyDesc.value
+    }).then(function () {
+      console.log("Company detail successfully updated!");
+    }).catch(function (error) {
+      // The document probably doesn't exist.
+      console.error("Company detail update error: ", error);
+    });
+    alert('Update successfull')
+  } catch (error) {
+    alert('failed')
+  }
 }
 controller.inputSearch = async function (search) {
   let a = search.text.toLowerCase()
