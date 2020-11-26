@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+    <title>TechFinder - Find your style</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <!-- icon -->
+    <link rel="stylesheet" href="fontawesome-free-5.11.2-web/css/all.css">
+    <!-- icon1 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- star icon-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+
+    <link rel="stylesheet" href="css/main.css">
+    <!--Blog css-->
+    <link rel="stylesheet" href="css/blog.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap" rel="stylesheet">
+</head>
+<header>
+    <style>
+        /*Table css*/
+        
+        .fa-gear {
+            font-size: 26px;
+        }
+        
+        .fa-trash-alt {
+            font-size: 26px;
+        }
+        
+        table {
+            border: 1px solid black;
+            width: 100%;
+            position: relative;
+        }
+        
+        td,
+        th {
+            border: 1px solid black;
+            text-align: left;
+            padding: 8px;
+            position: relative;
+        }
+        
+        .removeButton {
+            border: none;
+        }
+        
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 24px;
+        }
+        
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+        
+        input:checked+.slider {
+            background-color: #2196F3;
+        }
+        
+        input:focus+.slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+        
+        input:checked+.slider:before {
+            -webkit-transform: translateX(16px);
+            -ms-transform: translateX(16px);
+            transform: translateX(16px);
+        }
+        
+        .slider.round {
+            border-radius: 34px;
+        }
+        
+        .slider.round:before {
+            border-radius: 50%;
+        }
+        /*Search area css*/
+        
+        .searchBar {
+            width: 50%;
+            position: relative;
+            margin-bottom: 20px;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .searchButton {
+            color: #333;
+            height: 40px;
+            background-color: white;
+            position: absolute;
+            width: 10%;
+            border: 1px solid #d9d9d9;
+            margin: 0 0 0 -1px;
+            top: 0;
+            border-radius: 0 8px 8px 0;
+            text-align: center;
+            text-decoration: none!important;
+        }
+        
+        .searchButton:hover {
+            background: rgb(247, 244, 244);
+        }
+        
+        .searchInput {
+            border: 1px solid #d9d9d9;
+            width: 50%;
+            border-radius: 8px 0 0 8px;
+            height: 40px;
+            margin: 0px 1px;
+        }
+        
+        .searchInput:hover {
+            background: rgb(247, 244, 244);
+        }
+        
+        div.dataTableLength select {
+            width: auto;
+            display: inline-block;
+        }
+        /*Switch form button*/
+        
+        .switchButton {
+            width: auto;
+            position: relative;
+            top: 10px;
+            max-width: 400px;
+            margin-bottom: 20px;
+        }
+        
+        .switchButton a {
+            display: inline-block;
+            padding-left: 10px;
+        }
+        /*Popup add coin css*/
+        
+        .myPopupCoin {
+            position: fixed;
+            left: 40%;
+            right: 40%;
+            top: 40%;
+            height: 200px;
+            width: 350px;
+            max-width: 400px;
+            z-index: 1054;
+            background-color: #ddd;
+            display: none;
+            border-radius: 5px;
+        }
+        
+        .myPopupCoin .popupCoinHead {
+            display: flex;
+            height: 50%;
+        }
+        
+        .popupCoinHead .popupInfor {
+            position: absolute;
+            left: 100px;
+        }
+        
+        .popupCoinHead .popupInfor #companyEmail {
+            display: flex;
+        }
+        
+        .popupCoinHead .popupInfor #companyEmail p {
+            margin-left: 5px;
+        }
+        
+        .popupCoinHead .popupInfor #companyName {
+            display: block;
+            font-size: larger;
+            font-weight: bold;
+        }
+        
+        .myPopupCoin .popupCoinBody {
+            height: 50%;
+        }
+        
+        .myPopupCoin .popupCoinBody .popupForm {
+            display: flex;
+            text-align: center;
+            justify-content: space-around;
+        }
+        
+        .popupCoinBody button {
+            margin: 5px 10px;
+            padding: 5px 5px;
+            border-radius: 5px;
+        }
+        
+        .popupCoinBody .popupFormButton {
+            padding-left: 120px;
+        }
+        
+        div.dataTables_Paginate ul.pagination {
+            margin: 2px 0;
+            white-space: nowrap;
+            justify-content: flex-end;
+        }
+        /*Pagination css*/
+        
+        .pagination {
+            display: flex;
+            padding-left: 0;
+            list-style: none;
+            border-radius: .25rem;
+        }
+        
+        .pagination li a {
+            position: relative;
+            display: block;
+            padding: .5rem .75rem;
+            line-height: 1.25;
+            color: #007bff;
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+        }
+        
+        .pagination li a:hover {
+            text-decoration: none;
+            background-color: rgb(236, 225, 225);
+        }
+        
+        .pageItem.active .pageLink {
+            z-index: 1;
+            color: #fff;
+            background-color: #3f6ad8;
+            border-color: #007bff;
+        }
+        /*Report table css*/
+        
+        .no-shadow {
+            box-shadow: 0 0 0 transparent !important;
+        }
+        
+        .portfolioContainer .cardItem {
+            border-width: 0 !important;
+            flex-direction: row;
+            align-items: center;
+        }
+        
+        .cardItem .iconWrapper {
+            width: 54px;
+            height: 54px;
+            margin: 0 1rem 0 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .iconWrapper {
+            display: flex;
+            align-content: center;
+            align-items: center;
+            min-width: 54px;
+        }
+        
+        .iconWrapper .iconWrapperBg {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            opacity: 1 !important;
+            z-index: 3
+        }
+        
+        .iconWrapper i {
+            margin: 14px auto;
+            font-size: 1.7rem;
+            position: relative;
+            z-index: 5;
+            color: #fff !important;
+        }
+        
+        .cardItem .contentWrapper {
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            flex: 1;
+            position: relative;
+        }
+        
+        .cardItem .contentWrapper .contentHeading {
+            margin-top: 0;
+            opacity: .6;
+        }
+        
+        .contentWrapper .contentNumber {
+            margin: 0.5rem auto 1rem 0;
+            font-weight: bold;
+            font-size: 2.5rem;
+            display: block;
+            line-height: 1;
+        }
+        
+        @media only screen and (min-width:600px) {
+            .col-sm-1 {
+                width: 8.33%;
+            }
+            .col-sm-2 {
+                width: 16.66%;
+            }
+            .col-sm-3 {
+                width: 25%;
+            }
+            .col-sm-4 {
+                width: 33.33%;
+            }
+            .col-sm-5 {
+                width: 41.66%;
+            }
+            .col-sm-6 {
+                width: 50%;
+            }
+            .col-sm-7 {
+                width: 58.33%;
+            }
+            .col-sm-8 {
+                width: 66.66%;
+            }
+            .col-sm-9 {
+                width: 75%;
+            }
+            .col-sm-10 {
+                width: 83.33%;
+            }
+            .col-sm-11 {
+                width: 91.66%;
+            }
+            .col-sm-12 {
+                width: 100%;
+            }
+        }
+        
+        @media only screen and (max-width:600px) {
+            .myPopupCoin {
+                left: 20%;
+                right: 40%;
+                top: 40%;
+            }
+        }
+    </style>
+
+
+
+</header>
+<script>
+</script>
+
+<body>
+    <nav id="nav-b" class="navbar navbar-expand-sm fixed-top">
+        <a id="logo" href="index.html"><img src="imgs/img/logotrang.png" alt=""></a>
+        <ul id="1" class="navbar-nav justify-content-end">
+
+
+            <li class="nav-item">
+                <a href="#"><span class="nav-link clw"  id="link-company">MANAGE ACCOUNTS</span></a>
+            </li>
+
+
+            <div id="dropdown">
+                <div class="dropdown" style="width: 50px; height: 30px;margin: 0px 30px 0px 50px; text-align: center">
+                    <div type="button">
+                        <i style="font-size: 22px" class="fas fa-user-circle"></i><span id="next-login">ACCOUNT</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </ul>
+
+    </nav>
+
+
+
+    <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fas fa-angle-double-up "></i></button>
+
+    <div class="container" id="clear">
+        <div class="row">
+            <div class="col-md-12 col-12 " style="margin: 80px 200px 30px 10px;">
+
+                <div class="row">
+
+                    <div class="searchBar">
+                        <input type="text" class="searchInput" placeholder="Searching here">
+                        <button type="submit" class="searchButton">
+                                <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                    <div class="switchButton">
+                        <a href="#" class="switchEmployers" onclick="buttonfunction1()" id="buttonEmployers" style="text-decoration: underline;">Employers</a> /
+                        <a href="#" class="switchUsers" onclick="buttonfunction2()" id="buttonUsers">Users</a>
+                    </div>
+
+                </div>
+                <div class="mb-3 card" style="height: unset; width: unset;">
+                    <div class="portfolioContainer no-gutters row " style="margin-right: 0;
+                    margin-left: 0;">
+                        <div class="col-sm-6 col-md-4 col-xl-4" style="margin-top: 0;">
+                            <div class="cardItem text-left card no-shadow rm-border bg-transparent widget-chart">
+                                <div class="iconWrapper icon-wrapper rounded-circle bg-warning">
+                                    <div class="iconWrapperBg"></div>
+                                    <i class="fas fa-briefcase"></i>
+                                </div>
+                                <div class="contentWrapper">
+                                    <div class="contentHeading">
+                                        JOBS
+                                    </div>
+                                    <div class="contentNumber">
+                                        1500
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-4 col-xl-4" style="margin-top: 0;">
+                            <div class="cardItem text-left card no-shadow rm-border bg-transparent widget-chart">
+                                <div class="iconWrapper icon-wrapper rounded-circle bg-success">
+                                    <div class="iconWrapperBg"></div>
+                                    <i class="fas fa-wallet"></i>
+                                </div>
+                                <div class="contentWrapper">
+                                    <div class="contentHeading">
+                                        COINS
+                                    </div>
+                                    <div class="contentNumber">
+                                        $2500
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-4 col-xl-4" style="margin-top: 0;">
+                            <div class="cardItem text-left card no-shadow rm-border bg-transparent widget-chart">
+                                <div class="iconWrapper icon-wrapper rounded-circle bg-success">
+                                    <div class="iconWrapperBg"></div>
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="contentWrapper">
+                                    <div class="contentHeading">
+                                        ACCOUNTS
+                                    </div>
+                                    <div class="contentNumber">
+                                        100
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 col-12">
+                        <div class="dataTableLength" id="exampleLength">
+                            <label style="display: flex; align-items:center;">Show
+                                <select name="exampleSelect" class="custom-select custom-select-sm form-control form-control-sm">
+                                  <option value="10">10</option>
+                                  <option value="20">20</option>
+                                  <option value="25">25</option>
+                                  <option value="30">30</option>
+                                </select>
+                                Entries
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="myPopupCoin col-md-6" id="myPopup">
+                    <div class="popupCoinHead">
+                        <img style="width: 80px; height: 80px; border-radius: 50%; position: relative;" src="imgs/img/fpt-software-logo.png" alt="logocompany" />
+                        <div class="popupInfor">
+                            <span id="companyName">Fpt software</span>
+                            <span id="companyEmail">Email:<p>Fpt123@gmail.com</p></span>
+
+                        </div>
+                    </div>
+                    <div class="popupCoinBody">
+                        <form>
+                            <div class="popupForm">
+                                <button><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                <p id="" style=" margin-bottom: 0;">2000</p>
+                                <button><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                            </div>
+                            <div class="popupFormButton">
+                                <button type="submit" id="">Submit</button>
+                                <button type="submit" id="" class="close">Canncel</button>
+                            </div>
+
+
+                        </form>
+
+                    </div>
+
+
+                </div>
+                <div class="col-md-12 col-12 ">
+                    <table class="table table-bordered" id="employersTab">
+                        <thead>
+                            <tr>
+                                <th scope="col"><i class="fa fa-gear"></i></th>
+                                <th scope="col" class="tbName">Company name</th>
+                                <th scope="col" class="tbEmail">Email
+
+                                </th>
+                                <th scope="col" class="tbCoin">Coin</th>
+                                <th scope="col" class="tbStatus">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row"><button class="removeButton"><i class="fas fa-trash-alt"></i></button></th>
+
+                                <td><a>Fpt software</a></td>
+                                <td>Fpt123@gmail.com</td>
+                                <td><a id="popupLink">2000 coin</a></td>
+                                <td>
+
+                                    <label class="switch">
+                                       <input type="checkbox">
+                                       <span class="slider round"></span>
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><button class="removeButton"><i class="fas fa-trash-alt"></i></button></th>
+                                <td><a>Fpt software</a></td>
+                                <td>Fpt123@gmail.com</td>
+                                <td>2000 coin</td>
+                                <td>
+
+                                    <label class="switch">
+                                       <input type="checkbox">
+                                       <span class="slider round"></span>
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><button class="removeButton"><i class="fas fa-trash-alt"></i></button></th>
+                                <td><a>Fpt software</a></td>
+                                <td>Fpt123@gmail.com</td>
+                                <td>2000 coin</td>
+                                <td>
+
+                                    <label class="switch">
+                                       <input type="checkbox">
+                                       <span class="slider round"></span>
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><button class="removeButton"><i class="fas fa-trash-alt"></i></button></th>
+
+                                <td><a>Fpt software</a></td>
+                                <td>Fpt123@gmail.com</td>
+                                <td>2000 coin</td>
+                                <td>
+
+                                    <label class="switch">
+                                       <input type="checkbox">
+                                       <span class="slider round"></span>
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><button class="removeButton"><i class="fas fa-trash-alt"></i></button></th>
+
+                                <td><a>Fpt software</a></td>
+                                <td>Fpt123@gmail.com</td>
+                                <td>2000 coin</td>
+                                <td>
+
+                                    <label class="switch">
+                                       <input type="checkbox">
+                                       <span class="slider round"></span>
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><button class="removeButton"><i class="fas fa-trash-alt"></i></button></th>
+
+                                <td><a>Fpt software</a></td>
+                                <td>Fpt123@gmail.com</td>
+                                <td>2000 coin</td>
+                                <td>
+
+                                    <label class="switch">
+                                       <input type="checkbox">
+                                       <span class="slider round"></span>
+                                    </label>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-bordered" id="usersTab" style="display: none;">
+                        <thead>
+                            <tr>
+                                <th scope="col"><i class="fa fa-gear"></i></th>
+                                <th scope="col" class="tbName">Username </th>
+                                <th scope="col" class="tbEmail">Email
+
+                                </th>
+                                <th scope="col" class="tbStatus">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row"><button class="removeButton"><i class="fas fa-trash-alt"></i></button></th>
+
+                                <td><a>Nguyen Xuan Nguyen</a></td>
+                                <td>nguyen016279@gmail.com</td>
+                                <td>
+
+                                    <label class="switch">
+                                       <input type="checkbox">
+                                       <span class="slider round"></span>
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><button class="removeButton"><i class="fas fa-trash-alt"></i></button></th>
+                                <td><a>Dang Hieu Duc</a></td>
+                                <td>hieuduc2029@gmail.com</td>
+                                <td>
+
+                                    <label class="switch">
+                                       <input type="checkbox">
+                                       <span class="slider round"></span>
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><button class="removeButton"><i class="fas fa-trash-alt"></i></button></th>
+                                <td><a>Vu Hong Quan</a></td>
+                                <td>hongquan20000@gmail.com</td>
+                                <td>
+
+                                    <label class="switch">
+                                       <input type="checkbox">
+                                       <span class="slider round"></span>
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><button class="removeButton"><i class="fas fa-trash-alt"></i></button></th>
+
+                                <td><a>Dao Xuan Quang</a></td>
+                                <td>quang1111@gmail.com</td>
+                                <td>
+
+                                    <label class="switch">
+                                       <input type="checkbox">
+                                       <span class="slider round"></span>
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><button class="removeButton"><i class="fas fa-trash-alt"></i></button></th>
+
+                                <td><a>Nguyen Trung Duc Anh</a></td>
+                                <td>ducanhtrung123@gmail.com</td>
+                                <td>
+
+                                    <label class="switch">
+                                       <input type="checkbox">
+                                       <span class="slider round"></span>
+                                    </label>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-5">
+                        <div class="dataTables_Info" id="example_Info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div>
+                    </div>
+                    <div class="col-sm-7">
+                        <div class="dataTables_Paginate" id="example_Paginate">
+                            <ul class="pagination">
+                                <li class="paginationButton" id="example_Previous">
+                                    <a href="#" data-dt-idx="1" class="pageLink" tabindex="1">Previous</a>
+                                </li>
+                                <li class="paginationButton pageItem active">
+                                    <a href="#" data-dt-idx="2" class="pageLink" tabindex="2">1</a>
+                                </li>
+                                <li class="paginationButton">
+                                    <a href="#" data-dt-idx="3" class="pageLink" tabindex="3">2</a>
+                                </li>
+                                <li class="paginationButton">
+                                    <a href="#" data-dt-idx="4" class="pageLink" tabindex="4">3</a>
+                                </li>
+                                <li class="paginationButton">
+                                    <a href="#" data-dt-idx="5" class="pageLink" tabindex="5">Next</a>
+                                </li>
+                                <li class="paginationButton" id="example_Next"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/controller.js"></script>
+    <script src="js/component.js"></script>
+    <script src="js/view.js"></script>
+    <script src="js/css.js"></script>
+    <script src="js/model.js"></script>
+    <script>
+        var x = document.getElementById("buttonEmployers");
+        var y = document.getElementById("buttonUsers");
+
+        var tableEmployer = document.getElementById("employersTab");
+        var tableUser = document.getElementById("usersTab");
+
+
+
+        function buttonfunction1() {
+
+
+            x.style.textDecoration = "underline";
+            y.style.textDecoration = "";
+            tableEmployer.style.display = "table";
+            tableUser.style.display = "none";
+        }
+
+        function buttonfunction2() {
+
+            y.style.textDecoration = "underline";
+            x.style.textDecoration = "";
+            tableEmployer.style.display = "none";
+            tableUser.style.display = "table";
+        }
+    </script>
+    <script>
+        var a = document.getElementById("popupLink");
+        var modal = document.getElementById("myPopup");
+        var btn = document.getElementsByClassName("close")[0];
+        a.onclick = function() {
+            modal.style.display = "block";
+        }
+        btn.onclick = function() {
+            modal.style.display = "none";
+        }
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v7.0"></script>
+</body>
+
+<footer class="section bg-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="">
+                    <h6 class="footer-heading text-uppercase text-white">Information</h6>
+                    <ul class="list-unstyled footer-link mt-4">
+                        <li><a href="">Website</a></li>
+                        <li><a href="">Page</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-3">
+                <div class="">
+                    <h6 class="footer-heading text-uppercase text-white">JOBS BY SKILL</h6>
+                    <ul class="list-unstyled footer-link mt-4 fwn">
+                        <li><a href="">JAVA </a></li>
+                        <li><a href="">PHP</a></li>
+                        <li><a href="">Bussines Analyst</a></li>
+                        <li><a href="">QA Manager</a></li>
+                        <li><a href="">SQL</a></li>
+                        <li><a href="">OTHER</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-2">
+                <div class="">
+                    <h6 class="footer-heading text-uppercase text-white">JOBS BY CITY</h6>
+                    <ul class="list-unstyled footer-link mt-4">
+                        <li><a href="">Ha Noi </a></li>
+                        <li><a href="">Da Nang</a></li>
+                        <li><a href="">Ho Chi Minh</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="">
+                    <h6 class="footer-heading text-uppercase text-white">Contact Us</h6>
+                    <p class="contact-info mt-4 cc" style="font-weight: bold;">Email : nguyen016279@gmail.com</p>
+                    <p class="contact-info cc" style="font-weight: bold;">0886430264</p>
+                    <div class="mt-5">
+                        <ul class="list-inline">
+                            <li class="list-inline-item"><a href="#"><i
+                                        class="fab facebook footer-social-icon fa-facebook-f"></i></i></a></li>
+                            <li class="list-inline-item"><a href="#"><i
+                                        class="fab twitter footer-social-icon fa-twitter"></i></i></a></li>
+                            <li class="list-inline-item"><a href="#"><i
+                                        class="fab google footer-social-icon fa-google"></i></i></a></li>
+                            <li class="list-inline-item"><a href="#"><i
+                                        class="fab apple footer-social-icon fa-apple"></i></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="fb-page" data-href="https://www.facebook.com/Techfinfer-112778823768861/?modal=admin_todo_tour" data-tabs="timeline" data-width="700px" data-height="120px" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false"
+            data-show-facepile="true">
+            <blockquote cite="https://www.facebook.com/Techfinfer-112778823768861/?modal=admin_todo_tour" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/Techfinfer-112778823768861/?modal=admin_todo_tour">Techfinfer</a></blockquote>
+        </div>
+    </div>
+
+    <div class="text-center mt-5">
+        <p class="footer-alt mb-0 f-14">2020 © Anup, All Rights Reserved</p>
+    </div>
+</footer>
+
+</html>

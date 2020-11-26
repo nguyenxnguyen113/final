@@ -547,16 +547,23 @@ controller.displayAppliedJobs = async function () {
 }
 
 controller.showJobOfUser = (data, companys) =>{
-  
+  console.log(data)
+  console.log(companys)
   let email = firebase.auth().currentUser;
+  let jobNameCompany = data.nameCompany
   let jobTitle = data.title;
   let jobMoney = data.money;
   let jobDesc = data.description;
   let jobAdress = data.address;
   let jobSkill = data.skill;
   let jobLogo = companys.logo
+  for(let company of companys) {
+    if (jobNameCompany === company.name) {
+      jobLogo = company.logo
+    }
+  }
   const jobGroup = document.querySelector('.jobGroup');
-  if(data.companyName === companys.name) {
+
   let jobSaved = `
   <div class="jobContents">
   <div class="logo">
@@ -602,7 +609,7 @@ controller.showJobOfUser = (data, companys) =>{
   `
   view.appendHtml(jobGroup, jobSaved)
 }
-}
+
 controller.resetPass = async function (email) {
   view.setText('log-in-error', '')
   view.setText('log-in-success', '')
