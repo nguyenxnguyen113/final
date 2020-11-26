@@ -960,7 +960,7 @@ let updateBg = async function (link) {
   let currentUser = firebase.auth().currentUser
   let user = await firebase.firestore().collection('company').where("emailCompany", "==", currentUser.email).get()
   let u = transformDocs(user.docs)
-  let userBg = document.getElementById('bg-test')
+  let userBg = document.getElementById('inputShow2')
   userBg.src = `${link}`
 
   db.collection("company").doc(u[0].id).set({
