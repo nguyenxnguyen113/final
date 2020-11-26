@@ -4,7 +4,7 @@ const view = {
     pastScreen: null,
 }
 
-view.showComponents = async function(name) {
+view.showComponents = async function (name) {
     view.currentScreen = name
     view.saveLastLocation(name)
 
@@ -21,10 +21,10 @@ view.showComponents = async function(name) {
                 model.saveCurrentJobs(model.jobs)
                 let app = document.getElementById('app')
                 app.innerHTML = component.navTransf + component.header + component.home
-                
-                    // console.log(await controller.getTest())
+
+                // console.log(await controller.getTest())
                 controller.listenConversation()
-                
+
                 view.onclickNotification()
                 let registCompany = document.getElementById('link-employer')
                 registCompany.onclick = rC
@@ -80,7 +80,7 @@ view.showComponents = async function(name) {
                     model.allConversation = controller.sortByTimeStamp(conversations)
                 }
                 view.showNotification()
-                
+
                 break;
             }
         case 'login':
@@ -348,7 +348,7 @@ view.showComponents = async function(name) {
                 // handle avatar 
                 let avatarUploadForm = document.getElementById('avatar-form-upload')
                 console.log(avatarUploadForm)
-                avatarUploadForm.onsubmit = async function(e) {
+                avatarUploadForm.onsubmit = async function (e) {
                     e.preventDefault()
                     try {
                         let files = avatarUploadForm.fileChooserAvatar.files
@@ -365,7 +365,7 @@ view.showComponents = async function(name) {
 
                 // handld CV
                 let cvUploadForm = document.getElementById('cv-form-upload')
-                cvUploadForm.onsubmit = async function(e) {
+                cvUploadForm.onsubmit = async function (e) {
                     e.preventDefault()
                     try {
                         let files = cvUploadForm.fileChooser.files
@@ -496,10 +496,11 @@ view.showComponents = async function(name) {
                 let LogoUploadForm = document.getElementById('logo-form-upload')
                 console.log(LogoUploadForm)
                 await controller.getNameCompanyCurrent()
-                LogoUploadForm.onsubmit = async function(e) {
+                LogoUploadForm.onsubmit = async function (e) {
                     e.preventDefault()
                     try {
                         let files = LogoUploadForm.fileChooserLogo.files
+                        console.log(files)
                         let file = files[0]
                         if (!file) {
                             throw new Error('Choose a file!')
@@ -512,7 +513,7 @@ view.showComponents = async function(name) {
                 }
                 view.nextLink()
                 let BgUploadForm = document.getElementById('bg-form-upload')
-                BgUploadForm.onsubmit = async function(e) {
+                BgUploadForm.onsubmit = async function (e) {
                     e.preventDefault()
                     try {
                         let files = BgUploadForm.fileChooserBg.files
@@ -539,77 +540,77 @@ view.showComponents = async function(name) {
                 controller.listenJobChange()
                 let form = document.getElementById('form-postjob')
                 form.onsubmit = postjobHandler
-                
+
                 function postjobHandler(event) {
-            
-                  event.preventDefault()
-            
-                  let job = {
-                    userSaved: [],
-                    nameCompany: form.nameCompany.value,
-                    title: form.title.value,
-                    money: form.money.value,
-                    address: form.address.value,
-                    skill: form.skill.value,
-                    description: form.description.value,
-                    SandE: form.SandE.value,
-                    why: form.why.value,
-                    createdAt: new Date().toLocaleString(),
-                    timestamp:firebase.firestore.FieldValue.serverTimestamp()
-                  }
-                //   console.log(job);
-            
-            
-                  let validateResult = [
-                    view.validate(
-                      job.nameCompany,
-                      'job-nameCompany-error',
-                      'Name comany is not empty!'
-                    ),
-                    view.validate(
-                      job.title,
-                      'job-title-error',
-                      'Invalid title!'
-                    ),
-                    view.validate(
-                      job.money && !isNaN(job.money),
-                      'job-money-error',
-                      'salary is suitable!'
-                    ),
-                    // view.validate(
-                    //   !isNaN(job.money),
-                    //   'job-money-error',
-                    //   'is not a number!'
-                    // ),
-                    view.validate(
-                      job.address,
-                      'job-address-error',
-                      'Invalid address!'
-                    ),
-                    view.validate(
-                      job.skill,
-                      'job-skill-error',
-                      'Invalid employee!'
-                    ),
-                    view.validate(
-                      job.description,
-                      'job-description-error',
-                      'Invalid description!'
-                    ),
-                    view.validate(
-                      job.SandE,
-                      'job-SandE-error',
-                      'Invalid skill and expeience!'
-                    ),
-                    view.validate(
-                      job.why,
-                      'why-error',
-                      'Empty!'
-                    ),
-                  ]
-                  if (allPassed(validateResult)) {
-                    controller.postjob(job)
-                  }
+
+                    event.preventDefault()
+
+                    let job = {
+                        userSaved: [],
+                        nameCompany: form.nameCompany.value,
+                        title: form.title.value,
+                        money: form.money.value,
+                        address: form.address.value,
+                        skill: form.skill.value,
+                        description: form.description.value,
+                        SandE: form.SandE.value,
+                        why: form.why.value,
+                        createdAt: new Date().toLocaleString(),
+                        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                    }
+                    //   console.log(job);
+
+
+                    let validateResult = [
+                        view.validate(
+                            job.nameCompany,
+                            'job-nameCompany-error',
+                            'Name comany is not empty!'
+                        ),
+                        view.validate(
+                            job.title,
+                            'job-title-error',
+                            'Invalid title!'
+                        ),
+                        view.validate(
+                            job.money && !isNaN(job.money),
+                            'job-money-error',
+                            'salary is suitable!'
+                        ),
+                        // view.validate(
+                        //   !isNaN(job.money),
+                        //   'job-money-error',
+                        //   'is not a number!'
+                        // ),
+                        view.validate(
+                            job.address,
+                            'job-address-error',
+                            'Invalid address!'
+                        ),
+                        view.validate(
+                            job.skill,
+                            'job-skill-error',
+                            'Invalid employee!'
+                        ),
+                        view.validate(
+                            job.description,
+                            'job-description-error',
+                            'Invalid description!'
+                        ),
+                        view.validate(
+                            job.SandE,
+                            'job-SandE-error',
+                            'Invalid skill and expeience!'
+                        ),
+                        view.validate(
+                            job.why,
+                            'why-error',
+                            'Empty!'
+                        ),
+                    ]
+                    if (allPassed(validateResult)) {
+                        controller.postjob(job)
+                    }
                 }
                 break;
             }
@@ -648,10 +649,10 @@ view.showComponents = async function(name) {
                     console.log(conversations);
                     model.allConversation = controller.sortByTimeStamp(conversations)
                 }
-                
+
                 break;
             }
-        case 'savedJob': 
+        case 'savedJob':
             {
                 let currentUser = firebase.auth().currentUser
                 let app = document.getElementById('app')
@@ -663,11 +664,11 @@ view.showComponents = async function(name) {
                 await controller.displaySavedJobs()
                 let registCompany = document.getElementById('link-employer')
                 let job = document.getElementById("link-job")
-                job.onclick = function() {
+                job.onclick = function () {
                     view.showComponents("alljob")
                 }
                 let home = document.getElementById("link-home")
-                home.onclick = function() {
+                home.onclick = function () {
                     view.showComponents("home")
                 }
                 let test = {
@@ -699,14 +700,14 @@ view.showComponents = async function(name) {
                 await controller.displayAppliedJobs()
                 let registCompany = document.getElementById('link-employer')
                 let job = document.getElementById("link-job")
-                job.onclick = function() {
+                job.onclick = function () {
                     view.showComponents("alljob")
                 }
                 let home = document.getElementById("link-home")
-                home.onclick = function() {
+                home.onclick = function () {
                     view.showComponents("home")
                 }
-        
+
                 let test = {
                     verified: false,
                     email: null
@@ -725,7 +726,7 @@ view.showComponents = async function(name) {
             }
     }
 }
-view.showCompany = function() {
+view.showCompany = function () {
     let listCompany = document.getElementById("listComponys")
 
     if (model.companys) {
@@ -754,7 +755,7 @@ view.showCompany = function() {
     }
 
 }
-view.showCompanyDetail = function() {
+view.showCompanyDetail = function () {
     let abc = localStorage.getItem('companyId');
     if (!model.companyId) {
         model.saveId(abc)
@@ -803,7 +804,7 @@ view.showCompanyDetail = function() {
         }
     }
 }
-view.showJob = function() {
+view.showJob = function () {
 
     let listJob = document.getElementById("listJob")
     let test = {
@@ -872,7 +873,7 @@ view.showJob = function() {
         }
     }
 }
-view.showJobLong = function(seclecjob) {
+view.showJobLong = function (seclecjob) {
 
     let showAlljob = document.getElementById('all-job')
     let test = {
@@ -958,7 +959,7 @@ function userSavedHandler(id) {
     }
     controller.saveJob(id, email)
 }
-view.showJobDetail = async function() {
+view.showJobDetail = async function () {
     let jobdetail = document.getElementById("clear")
     let test = {
         verified: false,
@@ -1123,18 +1124,18 @@ function jobSkill() {
     for (let i = 0; i < skills.length; i++) {
         let skill = skills[i];
         let skillTag = document.getElementById(`skill-${i}`)
-        skillTag.onclick = function(e) {
+        skillTag.onclick = function (e) {
             console.log('click ', skill)
             e.preventDefault()
             linkJobDetail(skill)
         }
     }
 }
-view.saveLastLocation = function(screenName) {
+view.saveLastLocation = function (screenName) {
     view.lastScreen = screenName
     window.location.hash = `#${screenName}`
 }
-view.showLastLocation = function(rollbackScreenName) {
+view.showLastLocation = function (rollbackScreenName) {
     let lastLocation = view.getLastLocation()
     if (lastLocation) {
         view.showComponents(lastLocation)
@@ -1142,7 +1143,7 @@ view.showLastLocation = function(rollbackScreenName) {
         view.showComponents(rollbackScreenName)
     }
 }
-view.getLastLocation = function() {
+view.getLastLocation = function () {
     let hash = window.location.hash
     let screenNames = ['register', 'login', 'home', 'companyDetail', 'alljob', 'profile', 'registCompany', 'loginCompany', 'employerScreen', 'allJobOfCompany', 'companyEmployerdetail', 'savedJob', 'appliedJob']
     if (hash && hash.length && hash.startsWith('#')) {
@@ -1153,7 +1154,7 @@ view.getLastLocation = function() {
     }
     return null
 }
-view.inputSearch = function() {
+view.inputSearch = function () {
     let adr = []
     let optionAddress = document.getElementById('option-address')
     for (let job of model.jobs) {
@@ -1178,17 +1179,17 @@ view.ShowNavEmployer = function () {
     if (test.verified === false) {
         return
     }
-     view.clearHtml("dropdown")
+    view.clearHtml("dropdown")
     let btnSignOut = document.querySelector('#btn-out')
     link.innerHTML = component.dropdown
     view.setText('text-login', "ACC")
-    btnSignOut.onclick = function() {
+    btnSignOut.onclick = function () {
         firebase.auth().signOut()
     }
 }
 
 // các hàm tiện ích
-view.ShowNav = function() {
+view.ShowNav = function () {
     let link = document.getElementById("dropdown")
     let test = {
         verified: false
@@ -1206,25 +1207,25 @@ view.ShowNav = function() {
     view.setText('text-login', "ACC")
 
     let profile = document.getElementById("btn-profile")
-    profile.onclick = function() {
+    profile.onclick = function () {
         view.showComponents("profile")
     }
     let registCompany = document.getElementById("link-employer")
-    registCompany.onclick = function() {
+    registCompany.onclick = function () {
         view.showComponents("registCompany")
     }
-    document.querySelector('#btn-saved-job').addEventListener('click', ()=>{
+    document.querySelector('#btn-saved-job').addEventListener('click', () => {
         view.showComponents('savedJob')
     })
-    document.querySelector('#btn-applied-job').addEventListener('click', ()=>{
+    document.querySelector('#btn-applied-job').addEventListener('click', () => {
         view.showComponents('appliedJob')
     })
     let btnSignOut = document.querySelector('#btn-out')
-    btnSignOut.onclick = function() {
+    btnSignOut.onclick = function () {
         firebase.auth().signOut()
     }
 }
-view.nextLink = function() {
+view.nextLink = function () {
     if (view.currentScreen == 'home' || view.currentScreen == 'alljob') {
         let bgChange = document.getElementById(`${view.currentScreen}`)
         bgChange.style.color = "#2F76CA"
@@ -1236,24 +1237,24 @@ view.nextLink = function() {
         view.showComponents("login")
     }
     let job = document.getElementById("link-job")
-    job.onclick = function() {
+    job.onclick = function () {
         view.showComponents("alljob")
     }
     let home = document.getElementById("link-home")
-    home.onclick = function() {
+    home.onclick = function () {
         view.showComponents("home")
     }
 }
-view.clearHtml = function(id) {
+view.clearHtml = function (id) {
     document.getElementById(id).innerHTML = ""
 }
-view.appendHtml = function(element, html) {
+view.appendHtml = function (element, html) {
     element.innerHTML += html
 }
-view.setText = function(id, text) {
+view.setText = function (id, text) {
     document.getElementById(id).innerText = text
 }
-view.validate = function(condition, idErrorTag, messageError) {
+view.validate = function (condition, idErrorTag, messageError) {
     if (condition) {
         view.setText(idErrorTag, '')
         return true
@@ -1271,56 +1272,101 @@ function allPassed(validateResult) {
     }
     return true
 }
-view.showCompanyDetailEmployer = async function() {
+view.showCompanyDetailEmployer = async function () {
     let companydetail = document.getElementById("detail")
     let currentUser = firebase.auth().currentUser
     let user = await firebase.firestore().collection('company').where("emailCompany", "==", currentUser.email).get()
     let u = transformDocs(user.docs)
     console.log(u[0].id)
     let companyDetail = ` 
+
+    <div id="companyDetail" class="detail row">
         <div style="margin-right: 10px" class="logo-cty col-sm-3">
             <div>
-                <img id="logo-test" style="max-width: 100%" src="${u[0].logo}" alt="">
-                <form id = "logo-form-upload"> 
-                    <input name="fileChooserLogo" type="file" class="file file-loading " 
-                    data-allowed-file-extensions='["png", "jpg"]'> 
-                    <button class="btn-submit-profile">Submit logo</button> 
-                </form> 
-                <div>
-                    <div style="text-align: center; padding-bottom: 20px"><span class="fw500 fs20">${u[0].name}</span></div>
-                    <div style="padding-bottom: 10px"><i class="fas fa-map-marker-alt"></i><span>&nbsp;${u[0].address}</span>
+                <form id="logo-form-upload">
+
+                    <div class="companyImageProfile">
+                        <img id="inputShow" style="width: 100%; height: 170px; position: relative;"
+                            src="${u[0].logo}" alt="" data-toggle="modal"
+                            data-target="#logo-upload-popup"></img>
+
+                        <div class="companyImgBg" style="top: 145px;
+        right: 10px;">
+                            <label style="margin-bottom: 0;">
+                                <a for="imgInput"><i class="fas fa-camera" style="  font-size: 25px;"></i></a>
+
+
+                                <input name="fileChooserLogo" type="file" id="imgInput" style="display: none;"
+                                    class="file file-loading "
+                                    data-allowed-file-extensions="[&quot;png&quot;, &quot;jpg&quot;]"
+                                    onchange="document.getElementById('inputShow').src=window.URL.createObjectURL(this.files[0])">
+
+
+                            </label>
+
+
+                        </div>
+
                     </div>
-                    <div style="padding-top: 20px"><i class="fas fa-users"></i><span>&nbsp;${u[0].employee}+</span></div>
+                    <button class="btnImgSubmit">Submit Image</button>
+                </form>
+
+
+                <div>
+
+                    <div style="text-align: center; padding-bottom: 20px">
+                        <span class="fw500 fs20">${u[0].name}</span>
+                    </div>
+
+                    <div style="padding-bottom: 10px">
+                        <i class="fas fa-map-marker-alt"></i><span>&nbsp;${u[0].address}</span>
+                    </div>
+                    <div style="padding-top: 20px">
+                        <i class="fas fa-users"></i><span>&nbsp;${u[0].employee}+</span>
+                    </div>
+
                 </div>
             </div>
         </div>
         <div class="about col-sm-8">
-        <div class="row">
-        <div class="col-md-10">
-            <div class="img-jd">
-                <img id="bg-test" style="max-width: 100%; border: 5px solid #C4C4C4;" src="${u[0].bg}" alt="">
-                <form id = "bg-form-upload"> 
-                  <input name="fileChooserBg" type="file" class="file file-loading" data-allowed-file-extensions='["png", "jpg"]'> 
-                  <button class="btn-submit-profile">Submit</button> 
-                </form> 
-            </div>
-            <div class="pt0">
-
-                <div style="text-align: center">
-                    <span class="fw500 fs20">${u[0].title}</span>
-                
+            <div class="row">
+                <div class="col-md-10">
+                    <div class="img-jd">
+                        <form id="bg-form-upload">
+                            <div class="companyImageProfile" style="position: relative;">
+                                <img id="inputShow2"
+                                    style="width: 100%;; height: 500px; border: 5px solid #c4c4c4;" src="${u[0].bg}"
+                                    alt="" />
+                                <div class="companyImgBg" style="bottom: -20px; right: -20px;">
+                                    <label style="margin-bottom: 0;">
+                                        <a for="imgInput2"><i class="fas fa-camera"
+                                                style="  font-size: 25px;"></i></a>
+                                        <input name="fileChooserLogo" type="file" id="imgInput2"
+                                            style="display: none;" class="file file-loading "
+                                            data-allowed-file-extensions="[&quot;png&quot;, &quot;jpg&quot;]"
+                                            onchange="document.getElementById('inputShow2').src=window.URL.createObjectURL(this.files[0])">
+                                    </label>
+                                </div>
+                            </div>
+                            <button class="btnImgSubmit">Submit Image</button>
+                        </form>
+                        <div class="pt0">
+                            <div style="text-align: center">
+                                <span class="fw500 fs20">${u[0].title}</span>
+                            </div>
+                            <div>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp; ${u[0].description}</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <div>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp; ${u[0].description}</p>
+                <div class="col-md-2">
+                <button class="btn-sj" data-toggle="modal" data-target="#exampleModal" id="btn-edit-company-detail">EDIT COMPANY</button>
                 </div>
             </div>
-            </div>
-            <div class="col-md-2">
-            <button class="btn-sj" data-toggle="modal" data-target="#exampleModal" id="btn-edit-company-detail">EDIT COMPANY</button>
-           </div>
 
-<!-- Modal -->
+
+    <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -1388,8 +1434,7 @@ view.showCompanyDetailEmployer = async function() {
   </div>
 </div>
 <!-- End modal -->
-
-        </div>`
+`
     view.appendHtml(companydetail, companyDetail)
 }
 
@@ -1398,7 +1443,7 @@ function linkCompanyEmployerDetail(id) {
     localStorage.setItem('companyId', model.companyId);
     view.showComponents("companyEmployerdetail")
 }
-view.showJobDetailEmployer = async function() {
+view.showJobDetailEmployer = async function () {
     model.companyId = localStorage.getItem("companyId")
     let jobdetail = document.getElementById("clear")
     let listCv = document.querySelector(".about")
@@ -1424,7 +1469,7 @@ view.showJobDetailEmployer = async function() {
                         companys = model.companys
                         for (let company of companys) {
                             if (company.name === job.nameCompany) {
-                                
+
 
 
                                 console.log(job.id)
@@ -1544,7 +1589,7 @@ view.showJobDetailEmployer = async function() {
         }
     }
 }
-view.showjobEmployer =  async function() {
+view.showjobEmployer = async function () {
     let listJob = document.getElementById("job");
     listJob.innerHTML = "";
     let jobs = await controller.getNameCompanyCurrent();
@@ -1568,17 +1613,17 @@ view.showjobEmployer =  async function() {
                         </div>
                     </td>
                 </tr>
- `              
+ `
                     view.appendHtml(listJob, jobCompany)
                 }
             }
         }
     }
 }
-view.disable = function(id) {
+view.disable = function (id) {
     document.getElementById(id).setAttribute('disabled', true)
 }
-view.enable = function(id) {
+view.enable = function (id) {
     document.getElementById(id).removeAttribute('disabled')
 }
 function submitEditCompanyForm(id) {
@@ -1587,7 +1632,7 @@ function submitEditCompanyForm(id) {
     console.log(formEdit)
     controller.updateCompanyDetail(companyId, formEdit)
 }
-view.sendMessages = async  (id) => {
+view.sendMessages = async (id) => {
     let chatBox = document.querySelector('.chatBoxArea')
     chatBox.style.display = "block";
     let a = await controller.sendMessages(id)
@@ -1642,7 +1687,7 @@ view.sendMessages = async  (id) => {
             }
             let chatTitle = document.querySelector(".showHeadLeft");
             chatTitle.innerHTML = `${friend.email}`;
-            
+
         }
         model.currentConversation = {
             id: data.id,
@@ -1708,7 +1753,7 @@ view.sendMessages = async  (id) => {
 }
 view.showNotification = () => {
     let messageInput = document.getElementById("status_message");
-    messageInput.addEventListener('click',()=>{
+    messageInput.addEventListener('click', () => {
         if (model.currentConversation !== null) {
             let a = document.getElementById(`${model.currentConversation.id}`)
             a.style.fontWeight = "300";
@@ -1746,7 +1791,7 @@ view.showNotification = () => {
 view.addFriendMessage = (content, photoURL, date) => {
     let html = "";
 
-        html = `
+    html = `
         <div class="messagesList">
         <div class="messagesListInfor">
             <span class="inforName senderName">Duc</span>
@@ -1773,7 +1818,7 @@ view.addYourMessage = (content, date) => {
     <span class="messagesTimeStamp receiverTimeRight">${date}</span>
 </div>
     `;
-    
+
     return html;
 };
 view.addListConversation = (data, isActive = false) => {
@@ -1861,7 +1906,7 @@ view.addNotification = async (data, id, friendImg, friendEmail) => {
                 icon.style.display = "block";
             } else if (
                 id == model.currentConversation.id &&
-                data.check == false 
+                data.check == false
             ) {
                 let font = document.getElementById(`${id}`);
                 let icon = document.querySelector(".icon-notification");
@@ -1887,13 +1932,13 @@ view.addNotification = async (data, id, friendImg, friendEmail) => {
         };
         let chatBox = document.querySelector('.chatBoxArea')
         let messageBox = document.querySelector(".showMessagesDirect");
-        
+
         console.log(messageBox)
         let html = "";
         controller.updateCheckConversation("conversations", id, true);
         for (let x of data.messages) {
             if (x.owner == firebase.auth().currentUser.email) {
-                html += view.addYourMessage(x.content,x.createdAt);
+                html += view.addYourMessage(x.content, x.createdAt);
             } else {
                 html += view.addFriendMessage(x.content, friendImg, x.createdAt);
             }
@@ -1931,7 +1976,7 @@ view.addNotification = async (data, id, friendImg, friendEmail) => {
         }
     });
 };
-view.addNewJob = (id,data) =>{
+view.addNewJob = (id, data) => {
     const jobWrapper = document.createElement("tr");
     let listJob = document.getElementById('job')
     jobWrapper.innerHTML = `

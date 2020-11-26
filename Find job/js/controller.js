@@ -930,7 +930,7 @@ let updateLogo = async function (link) {
   let currentUser = firebase.auth().currentUser
   let user = await firebase.firestore().collection('company').where("emailCompany", "==", currentUser.email).get()
   let u = transformDocs(user.docs)
-  let userLogo = document.getElementById('logo-test')
+  let userLogo = document.getElementById('inputShow')
   userLogo.src = `${link}`
 
   db.collection("company").doc(u[0].id).set({
