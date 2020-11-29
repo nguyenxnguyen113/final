@@ -1,5 +1,6 @@
 
 const model = {
+  pagination: [],
   companys: null,
   companyId: null,
   jobs: null,

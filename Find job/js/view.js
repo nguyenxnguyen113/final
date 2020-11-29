@@ -2000,3 +2000,56 @@ deleteDataFireStore = (document) => {
     db.collection('job').doc(document).delete();
     alert("Delete successfull")
 }
+view.adddDevidePageBtn = () => {
+    let pageBnt = "";
+    view.allPages=0;
+    for (let i = 1; i <= Math.ceil(model.pagination.length / 3); i++) {
+        pageBnt += ` 
+        <button class="number${i}"  onclick = "nextBnt(${i})" class="nextButton">
+        ${i}
+        </button>`;
+        view.allPages++ 
+    }
+    document.querySelector(".Pagination").innerHTML = pageBnt;
+    document.querySelector(".number1").classList.add("isActive");
+};
+async function moveDown() {
+    if (view.viewPage === 1) {
+        return;
+    } else {
+        nextBnt(view.viewPage - 1);
+    }
+}
+
+async function moveUp() {
+    if(view.viewPage == view.allPages){
+        return;
+    }
+    nextBnt(view.viewPage + 1);
+}
+async function nextBnt(x) {
+    if (view.viewPage == x) {
+        return;
+    }
+    let currentActive = document.querySelector(".isActive");
+    currentActive.classList.remove("isActive");
+    document.querySelector(".number" + x).classList.add("isActive");
+    const list = (document.querySelector("#job").innerHTML = "");
+    let end = 3 * x;
+    let start = end - 3;
+
+    // roomW.id = data.fireBaseID
+    for (let i = 0; i <= 3; i++) {
+        if (start >= end || start >= model.pagination.length) {
+            break;
+        } else {
+            view.addNewJob(model.pagination[start].id, model.pagination[start]);
+        }
+        start++;
+    }
+    view.viewPage = x;
+
+    if (start >= end || start >= model.jobs.length) {
+        return;
+    }
+}

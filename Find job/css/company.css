@@ -23,3 +23,31 @@
 .btnImgSubmit:hover {
     background-color: #2375e0dc;
 }
+.paginate {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .paginate button {
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin: 0 15px;
+    font-size: 25px;
+    font-weight: 500;
+    color: rgb(153, 153, 153);
+    cursor: pointer;
+    transition: all 0.2s linear;
+  }
+  
+  .paginate button:hover {
+    color: #08aeea;
+    font-weight: bold;
+  }
+  
+  .isActive {
+    color: #08aeea !important     ;
+    font-weight: bold !important;
+  }
+  

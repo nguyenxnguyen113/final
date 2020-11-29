@@ -758,27 +758,11 @@ component.allJobOfCompany = `
                 <div class="dataTables_Info" id="example_Info" role="status" aria-live="polite">Showing 1 to 4 of 57 entries</div>
             </div>
 
-            <div class="col-sm-7">
-                <div class="dataTables_Paginate" id="example_Paginate">
-                    <ul class="pagination">
-                        <li class="paginationButton" id="example_Previous">
-                            <a href="#" data-dt-idx="1" class="pageLink" tabindex="1">Previous</a>
-                        </li>
-                        <li class="paginationButton pageItem active">
-                            <a href="#" data-dt-idx="2" class="pageLink" tabindex="2">1</a>
-                        </li>
-                        <li class="paginationButton">
-                            <a href="#" data-dt-idx="3" class="pageLink" tabindex="3">2</a>
-                        </li>
-                        <li class="paginationButton">
-                            <a href="#" data-dt-idx="4" class="pageLink" tabindex="4">3</a>
-                        </li>
-                        <li class="paginationButton">
-                            <a href="#" data-dt-idx="5" class="pageLink" tabindex="5">Next</a>
-                        </li>
-                        <li class="paginationButton" id="example_Next"></li>
-                    </ul>
-                </div>
+            <div class = "paginate">
+            <button id="move-down" onclick = "moveDown()"> < </button>
+            <div class="Pagination"></div>
+            <button id="move-up" onclick = "moveUp()"> > </button>
+    
             </div>
         </div>
 

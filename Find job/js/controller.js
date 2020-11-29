@@ -688,10 +688,29 @@ controller.listenJobChange = async () => {
   let companyData = transformDocs(company.docs)
   let db = await controller.initFirebaseStore().collection('job').where("nameCompany", "==",companyData[0].name).orderBy("timestamp", "desc").onSnapshot(function(snapshot) {
     snapshot.docChanges().forEach(async function(change) {
-      console.log(change)
-      console.log(change.doc.id)
+      // console.log(change)
+      // console.log(change.doc.id)
       if (change.type === "added") {
-        view.addNewJob(change.doc.id, change.doc.data())
+        model.pagination.push({
+          id: change.doc.id,
+          why: change.doc.data().why,
+          createdAt: change.doc.data().createdAt,
+          nameCompany: change.doc.data().nameCompany,
+          skill: change.doc.data().skill,
+          money: change.doc.data().money,
+          description: change.doc.data().description,
+          title: change.doc.data().title,
+          timeStamp: change.doc.data().timeStamp,
+          userApplied: change.doc.data().userApplied,
+          userSaved: change.doc.data().userSaved,
+        })
+        
+        if (model.pagination.length <= 3) {
+          console.log('abc')
+          console.log(model.pagination)
+          view.addNewJob(change.doc.id, change.doc.data())
+        }
+        view.adddDevidePageBtn()
       }
     })
     return db
