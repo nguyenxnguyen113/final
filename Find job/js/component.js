@@ -210,6 +210,16 @@ component.dropdown = `
 <a class="dropdown-item"  style="font-size: 20px" id="btn-out" >Log out</a>
 </div>
 </div> `
+component.dropdownEmployer = ` 
+<div class="dropdown" style="width: 50px; height: 30px;margin: 0px 30px 0px 50px; text-align: center">
+<div type="button" data-toggle="dropdown">
+    <i style="font-size: 22px" class="fas fa-user-circle"></i><span id="text-login">login</span>
+</div>
+<div class="dropdown-menu dropdown-menu-right">
+
+<a class="dropdown-item"  style="font-size: 20px" id="btn-out" >Log out</a>
+</div>
+</div> `
 
 component.login = `
 <div class="container">

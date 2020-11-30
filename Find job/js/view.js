@@ -543,6 +543,7 @@ view.showComponents = async function (name) {
                 let currentUser = await firebase.auth().currentUser
                 let company = await firebase.firestore().collection('company').where("emailCompany", "==", currentUser.email).get()
                 let companyData = transformDocs(company.docs)
+                view.ShowNavEmployer()
                 function postjobHandler(event) {
 
                     event.preventDefault()
@@ -1177,8 +1178,9 @@ view.ShowNavEmployer = function () {
         return
     }
     view.clearHtml("dropdown")
-    let btnSignOut = document.querySelector('#btn-out')
-    link.innerHTML = component.dropdown
+    let btnSignOut = document.getElementById('btn-out')
+    console.log(btnSignOut)
+    link.innerHTML = component.dropdownEmployer
     view.setText('text-login', "ACC")
     btnSignOut.onclick = function () {
         firebase.auth().signOut()
