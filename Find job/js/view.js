@@ -487,6 +487,7 @@ view.showComponents = async function (name) {
                 let app = document.getElementById('app')
                 app.innerHTML = component.headerEmployer + component.detailEmployer
                 await view.showCompanyDetailEmployer()
+                view.ShowNavEmployer()
                 document.getElementById('link-home-employer').addEventListener('click', () => {
                     view.showComponents('employerScreen')
                 })
@@ -621,6 +622,7 @@ view.showComponents = async function (name) {
                 app.innerHTML = component.headerEmployer + component.companyEmployerdetail
                 await view.showJobDetailEmployer()
                 controller.listenConversation()
+                
                 document.getElementById('link-home-employer').addEventListener('click', () => {
                     view.showComponents('employerScreen')
                 })
@@ -1178,12 +1180,13 @@ view.ShowNavEmployer = function () {
         return
     }
     view.clearHtml("dropdown")
-    let btnSignOut = document.getElementById('btn-out')
-    console.log(btnSignOut)
+
     link.innerHTML = component.dropdownEmployer
     view.setText('text-login', "ACC")
+    let btnSignOut = document.querySelector('#btn-out-admin')
     btnSignOut.onclick = function () {
         firebase.auth().signOut()
+        view.showComponents('loginCompany')
     }
 }
 

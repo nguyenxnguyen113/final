@@ -217,7 +217,7 @@ component.dropdownEmployer = `
 </div>
 <div class="dropdown-menu dropdown-menu-right">
 
-<a class="dropdown-item"  style="font-size: 20px" id="btn-out" >Log out</a>
+<a class="dropdown-item"  style="font-size: 20px" id="btn-out-admin" >Log out</a>
 </div>
 </div> `
 
