@@ -1282,7 +1282,6 @@ view.showCompanyDetailEmployer = async function () {
     console.log(u[0].id)
     let companyDetail = ` 
 
-    <div id="companyDetail" class="detail row">
         <div style="margin-right: 10px" class="logo-cty col-sm-3">
             <div>
                 <form id="logo-form-upload">
@@ -1364,7 +1363,6 @@ view.showCompanyDetailEmployer = async function () {
                 </div>
                 <div class="col-md-2">
                 <button class="btn-sj" data-toggle="modal" data-target="#exampleModal" id="btn-edit-company-detail">EDIT COMPANY</button>
-                </div>
             </div>
 
 
@@ -1418,7 +1416,8 @@ view.showCompanyDetailEmployer = async function () {
               <div class="form-group">
               <label class="col-xs-3 form-control-label" for="companyDesc">Description</label>
               <div class="col-xs-9">
-              <input type="text" class="form-control" name="companyDesc" placeholder="${u[0].description}" value="${u[0].description}">
+              
+              <textarea class="form-control" placeholder="${u[0].description}" id="exampleFormControlTextarea1" rows="3">${u[0].description}</textarea>
               </div>
               </div>
 
