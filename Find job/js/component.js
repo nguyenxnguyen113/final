@@ -676,11 +676,7 @@ component.allJobOfCompany = `
                         <div class="modal-body">
                             <div class="inputJobForm">
                                 <form id='form-postjob'>
-                                    <div class="form-group">
-                                       <label for="inputTitle">Name company</label>
-                                       <input type="text" name="nameCompany" class="form-control"  aria-describedby="emailHelp" placeholder="">
-                                       <p class="message-error" id="job-nameCompany-error"></p>
-                                    </div>
+
                                     <div class="form-group">
                                         <label for="inputTitle">JOB TITLE</label>
                                         <input type="text" name="title" class="form-control"  aria-describedby="emailHelp" placeholder="Enter title job">

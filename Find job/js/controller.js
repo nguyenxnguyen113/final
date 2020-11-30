@@ -12,7 +12,7 @@ controller.register = async function (registerInfo) {
   let email = registerInfo.email
   let password = registerInfo.password
   let displayName = registerInfo.fullname
- 
+
   view.setText('register-error', '')
   view.setText('register-success', '')
   view.disable('btn-register')
@@ -49,16 +49,16 @@ controller.logIn = async function (logInInfo) {
     } else {
       alert('oke')
     }
-    
+
     console.log(result)
     if (!result.user.emailVerified) {
       throw new Error('You must verify email!')
     }
 
-   if(view.pastScreen){
-     view.showComponents(view.pastScreen)
-   }else{
-     view.showComponents('home')
+    if (view.pastScreen) {
+      view.showComponents(view.pastScreen)
+    } else {
+      view.showComponents('home')
     }
 
   } catch (err) {
@@ -80,7 +80,7 @@ controller.loginEmployer = async function (logInInfo) {
     } else {
       alert('oke')
     }
-    
+
     console.log(result)
     if (!result.user.emailVerified) {
       throw new Error('You must verify email!')
@@ -342,7 +342,7 @@ let updateAvatar = async function (link) {
 async function deleteJob(id, email) {
   // let company = await firebase.firestore().collection('company').doc(id).delete()
   let currentUser = firebase.auth().currentUser;
-  await firebase.firestore().collection('job').doc(id).update({userSaved: firebase.firestore.FieldValue.arrayRemove(email)})
+  await firebase.firestore().collection('job').doc(id).update({ userSaved: firebase.firestore.FieldValue.arrayRemove(email) })
   console.log("Delete saved job ok")
   model.jobs = model.jobs.filter(function (v, i, arr) { return v.id != id; })
   controller.displaySavedJobs();
@@ -350,7 +350,7 @@ async function deleteJob(id, email) {
 async function deleteAppliedJob(id, email) {
   // let company = await firebase.firestore().collection('company').doc(id).delete()
   let currentUser = firebase.auth().currentUser;
-  await firebase.firestore().collection('job').doc(id).update({userApplied: firebase.firestore.FieldValue.arrayRemove(email)})
+  await firebase.firestore().collection('job').doc(id).update({ userApplied: firebase.firestore.FieldValue.arrayRemove(email) })
   console.log("Delete applied job ok")
   model.jobs = model.jobs.filter(function (v, i, arr) { return v.id != id; })
   controller.displayAppliedJobs();
@@ -369,17 +369,17 @@ controller.displaySavedJobs = async function () {
   for (let job of jobs) {
     for (let email of job.userSaved) {
       for (let company of companys) {
-      if (email == currentUser.email) {
-      if(company.name === job.nameCompany) {
-        // display to profile
-        numberOfjob.push(job)
-        logoCompany.push(company)
-        let jobTitle = job.title;
-        let jobMoney = job.money;
-        let jobDesc = job.description;
-        let jobAdress = job.address;
-        let jobSkill = job.skill;
-        let jobLogo = company.logo
+        if (email == currentUser.email) {
+          if (company.name === job.nameCompany) {
+            // display to profile
+            numberOfjob.push(job)
+            logoCompany.push(company)
+            let jobTitle = job.title;
+            let jobMoney = job.money;
+            let jobDesc = job.description;
+            let jobAdress = job.address;
+            let jobSkill = job.skill;
+            let jobLogo = company.logo
             let jobSaved = `
             <div class="jobContents">
             <div class="logo">
@@ -423,25 +423,25 @@ controller.displaySavedJobs = async function () {
 
         </div>
             `
-        let userSavedJobs = document.querySelector(".jobGroup")
-        view.appendHtml(userSavedJobs, jobSaved)
+            let userSavedJobs = document.querySelector(".jobGroup")
+            view.appendHtml(userSavedJobs, jobSaved)
+          }
+        }
       }
     }
   }
-}
-}
   document.querySelector('#number-of-job').innerText = `you have ${numberOfjob.length} saved job`
   let searchSavedJob = document.querySelector('#search-saved-job')
-  searchSavedJob.addEventListener('keyup',(e)=> {
+  searchSavedJob.addEventListener('keyup', (e) => {
     if (searchSavedJob.value.trim() !== "") {
       // let pagniate = document.querySelector('.paginate').style.display = 'none'
       const searchString = e.target.value.toLowerCase();
       const filteredCharacters = numberOfjob.filter((character) => {
         let userSavedJobs = document.querySelector(".jobGroup")
         userSavedJobs.innerHTML = ''
-          return (
-              character.title.toLowerCase().includes(searchString)
-          );
+        return (
+          character.title.toLowerCase().includes(searchString)
+        );
       });
       for (let index = 0; index < numberOfjob.length; index++) {
         controller.showJobOfUser(filteredCharacters[index])
@@ -451,6 +451,7 @@ controller.displaySavedJobs = async function () {
     }
   })
 }
+
 controller.displayAppliedJobs = async function () {
 
   let currentUser = firebase.auth().currentUser;
@@ -463,17 +464,17 @@ controller.displayAppliedJobs = async function () {
   for (let job of jobs) {
     for (let email of job.userApplied) {
       for (let company of companys) {
-      if (email == currentUser.email) {
-      if (company.name === job.nameCompany) {
-        // display to profile
-        numberOfjob.push(job)
-        logoCompany.push(company)
-        let jobTitle = job.title;
-        let jobMoney = job.money;
-        let jobDesc = job.description;
-        let jobAdress = job.address;
-        let jobSkill = job.skill;
-        let jobLogo = company.logo
+        if (email == currentUser.email) {
+          if (company.name === job.nameCompany) {
+            // display to profile
+            numberOfjob.push(job)
+            logoCompany.push(company)
+            let jobTitle = job.title;
+            let jobMoney = job.money;
+            let jobDesc = job.description;
+            let jobAdress = job.address;
+            let jobSkill = job.skill;
+            let jobLogo = company.logo
             let jobSaved = `
             <div class="jobContents">
             <div class="logo">
@@ -517,25 +518,25 @@ controller.displayAppliedJobs = async function () {
 
         </div>
             `
-        let userSavedJobs = document.querySelector(".jobGroup")
-        view.appendHtml(userSavedJobs, jobSaved)
+            let userSavedJobs = document.querySelector(".jobGroup")
+            view.appendHtml(userSavedJobs, jobSaved)
+          }
+        }
       }
     }
   }
-}
-}
   document.querySelector('#number-of-job').innerText = `you have ${numberOfjob.length} applied job`
   let searchSavedJob = document.querySelector('#search-saved-job')
-  searchSavedJob.addEventListener('keyup',(e)=> {
+  searchSavedJob.addEventListener('keyup', (e) => {
     if (searchSavedJob.value.trim() !== "") {
       // let pagniate = document.querySelector('.paginate').style.display = 'none'
       const searchString = e.target.value.toLowerCase();
       const filteredCharacters = numberOfjob.filter((character) => {
         let userSavedJobs = document.querySelector(".jobGroup")
         userSavedJobs.innerHTML = ''
-          return (
-              character.title.toLowerCase().includes(searchString)
-          );
+        return (
+          character.title.toLowerCase().includes(searchString)
+        );
       });
       for (let index = 0; index < numberOfjob.length; index++) {
         controller.showJobOfUser(filteredCharacters[index], companys)
@@ -546,7 +547,7 @@ controller.displayAppliedJobs = async function () {
   })
 }
 
-controller.showJobOfUser = (data, companys) =>{
+controller.showJobOfUser = (data, companys) => {
   console.log(data)
   console.log(companys)
   let email = firebase.auth().currentUser;
@@ -557,7 +558,7 @@ controller.showJobOfUser = (data, companys) =>{
   let jobAdress = data.address;
   let jobSkill = data.skill;
   let jobLogo = companys.logo
-  for(let company of companys) {
+  for (let company of companys) {
     if (jobNameCompany === company.name) {
       jobLogo = company.logo
     }
@@ -655,7 +656,7 @@ controller.postjob = async function (job) {
   let title = job.title.toLowerCase()
   let alljob = await firebase.firestore().collection('job').get()
   console.log(alljob.docs)
-    //.where('name', '==', name)
+  //.where('name', '==', name)
   let docs = alljob.docs
   for (let doc of docs) {
     let data = transformDoc(doc)
@@ -686,8 +687,8 @@ controller.listenJobChange = async () => {
   let currentUser = await firebase.auth().currentUser
   let company = await firebase.firestore().collection('company').where("emailCompany", "==", currentUser.email).get()
   let companyData = transformDocs(company.docs)
-  let db = await controller.initFirebaseStore().collection('job').where("nameCompany", "==",companyData[0].name).orderBy("timestamp", "desc").onSnapshot(function(snapshot) {
-    snapshot.docChanges().forEach(async function(change) {
+  let db = await controller.initFirebaseStore().collection('job').where("nameCompany", "==", companyData[0].name).orderBy("timestamp", "desc").onSnapshot(function (snapshot) {
+    snapshot.docChanges().forEach(async function (change) {
       // console.log(change)
       // console.log(change.doc.id)
       if (change.type === "added") {
@@ -704,10 +705,7 @@ controller.listenJobChange = async () => {
           userApplied: change.doc.data().userApplied,
           userSaved: change.doc.data().userSaved,
         })
-        
         if (model.pagination.length <= 3) {
-          console.log('abc')
-          console.log(model.pagination)
           view.addNewJob(change.doc.id, change.doc.data())
         }
         view.adddDevidePageBtn()
@@ -760,12 +758,12 @@ controller.saveJob = async function (id, email) {
 }
 controller.appliedJob = async function (id, email) {
   await firebase
-  .firestore()
-  .collection('job')
-  .doc(id)
-  .update({
-    userApplied: firebase.firestore.FieldValue.arrayUnion(email)
-  })
+    .firestore()
+    .collection('job')
+    .doc(id)
+    .update({
+      userApplied: firebase.firestore.FieldValue.arrayUnion(email)
+    })
 }
 controller.collectionJobChange = function () {
   let isFirstRun = true
@@ -819,8 +817,8 @@ controller.inputSearch = async function (search) {
   for (let job of jobs) {
     let address = job.address.toLowerCase().includes(b)
     let name = job.nameCompany.toLowerCase().includes(a)
-    let skill=job.skill.toLowerCase().includes(a)
-    if (name && address|| skill&&address) {
+    let skill = job.skill.toLowerCase().includes(a)
+    if (name && address || skill && address) {
       selecjob.push(job)
     }
   }
@@ -923,16 +921,16 @@ function add() {
   var name = document.getElementById("name").value;
   var age = document.getElementById("age").value;
   var country = document.getElementById("country").value;
-  
+
   if (name == "" || age == "" || country == "") {
     alert("Please fill all fields.")
   } else {
     document.getElementById("popup").style.display = "none";
     var newdiv = document.createElement("div");
     newdiv.className += "cont";
-    newdiv.innerHTML = "Name: "+ name + "<br>Age: " + age + "<br>Country: " + country;
+    newdiv.innerHTML = "Name: " + name + "<br>Age: " + age + "<br>Country: " + country;
     document.getElementById("results").appendChild(newdiv);
-    
+
     document.getElementById("name").value = "";
     document.getElementById("age").value = "";
     document.getElementById("country").value = "";
@@ -1010,7 +1008,7 @@ controller.getNameCompanyCurrent = async () => {
   let currentUser = await firebase.auth().currentUser
   let company = await firebase.firestore().collection('company').where("emailCompany", "==", currentUser.email).get()
   let companyData = transformDocs(company.docs)
-  let jobOfCompany = await firebase.firestore().collection('job').where("nameCompany", "==", companyData[0].name).orderBy('timestamp','desc').get()
+  let jobOfCompany = await firebase.firestore().collection('job').where("nameCompany", "==", companyData[0].name).orderBy('timestamp', 'desc').get()
   // model.saveJobsCompany(transformDocs(jobOfCompany.docs))
   return (transformDocs(jobOfCompany.docs))
 }
@@ -1023,17 +1021,17 @@ controller.sendMessages = async (email) => {
   let db = firebase.firestore()
   let data = await db.collection('users').where("email", "==", email).get()
   if (data.docs[0] !== undefined)
-      return data.docs[0].data()
+    return data.docs[0].data()
   else return null
 }
-controller.findConversation = async(collection, find, email) => {
+controller.findConversation = async (collection, find, email) => {
   let db = firebase.firestore()
   let data = await db.collection(`${collection}`)
-      .where(`${find}`, "in", [
-          [`${email}`, `${firebase.auth().currentUser.email}`],
-          [`${firebase.auth().currentUser.email}`, `${email}`]
-      ])
-      .get()
+    .where(`${find}`, "in", [
+      [`${email}`, `${firebase.auth().currentUser.email}`],
+      [`${firebase.auth().currentUser.email}`, `${email}`]
+    ])
+    .get()
   if (data.docs[0] == undefined) return undefined
   return data.docs[0]
 }
@@ -1048,24 +1046,24 @@ controller.getDate = () => {
 controller.addFireStore = (collection, data) => {
   var db = firebase.firestore();
   db.collection(collection).add(data)
-      .then(function(docRef) {
-          console.log("Document written with ID: ", docRef.id);
-          model.key = docRef.id
-          return docRef.id
-      })
-      .catch(function(error) {
-          console.error("Error adding document: ", error);
-      });
+    .then(function (docRef) {
+      console.log("Document written with ID: ", docRef.id);
+      model.key = docRef.id
+      return docRef.id
+    })
+    .catch(function (error) {
+      console.error("Error adding document: ", error);
+    });
 }
 controller.firestoreArryUnion = (collection, document, data) => {
   let db = firebase.firestore()
   db.collection(collection).doc(document).update({
-      check: false,
-      messages: firebase.firestore.FieldValue.arrayUnion({
-          content: data,
-          createdAt: controller.getDate(),
-          owner: firebase.auth().currentUser.email
-      })
+    check: false,
+    messages: firebase.firestore.FieldValue.arrayUnion({
+      content: data,
+      createdAt: controller.getDate(),
+      owner: firebase.auth().currentUser.email
+    })
   })
 }
 controller.initFirebaseStore = () => {
@@ -1075,28 +1073,28 @@ controller.initFirebaseStore = () => {
 controller.updateCheckConversation = (collection, document, data) => {
   let db = firebase.firestore()
   db.collection(collection).doc(document).update({
-      check: data
+    check: data
   })
 }
-controller.getInfoUser = async(email) => {
+controller.getInfoUser = async (email) => {
   let db = firebase.firestore()
   let data = await db.collection('company').where("emailCompany", "==", email).get()
   if (data.docs[0] !== undefined)
-      return data.docs[0].data()
+    return data.docs[0].data()
   else return null
 }
-controller.getDataFireStore = async(collection, find, check = null) => {
+controller.getDataFireStore = async (collection, find, check = null) => {
   let db = firebase.firestore()
   if (check == null) {
-      let data = await db.collection(`${collection}`)
-          .where(`${find}`, "==", firebase.auth().currentUser.email)
-          .get()
-      return data.docs[0].data()
+    let data = await db.collection(`${collection}`)
+      .where(`${find}`, "==", firebase.auth().currentUser.email)
+      .get()
+    return data.docs[0].data()
   } else {
-      let data = await db.collection(`${collection}`)
-          .where(`${find}`, `${check}`, firebase.auth().currentUser.email)
-          .get()
-      return data.docs
+    let data = await db.collection(`${collection}`)
+      .where(`${find}`, `${check}`, firebase.auth().currentUser.email)
+      .get()
+    return data.docs
   }
 }
 // controller.listenNotification = () => {
@@ -1117,8 +1115,8 @@ controller.getDataFireStore = async(collection, find, check = null) => {
 //   return db
 // }
 controller.listenConversation = async () => {
-  let db = await controller.initFirebaseStore().collection('conversations').onSnapshot(function(snapshot) {
-    snapshot.docChanges().forEach(async function(change) {
+  let db = await controller.initFirebaseStore().collection('conversations').onSnapshot(function (snapshot) {
+    snapshot.docChanges().forEach(async function (change) {
       if (change.type === "added") {
         let friendImg = await controller.getInfoUser(change.doc.data().users.find((user) => user !== firebase.auth().currentUser.email))
         console.log(friendImg);
@@ -1133,30 +1131,30 @@ controller.listenConversation = async () => {
         let box = document.querySelector('.showMessagesDirect')
         let friendImg = await controller.getInfoUser(change.doc.data().users.find((user) => user !== firebase.auth().currentUser.email))
         console.log(friendImg)
-        let modelConversation = model.allConversation.find((item)=>item.id == change.doc.id)
+        let modelConversation = model.allConversation.find((item) => item.id == change.doc.id)
         let messageData = change.doc.data().messages
         console.log(change.doc.id)
         if (model.currentConversation !== null) {
-            if (change.doc.id == model.currentConversation.id && messageData.length !== modelConversation.messages.length) {
-                let messages = change.doc.data().messages
-                let html = ''
-                let messageBox = document.querySelector('.showMessages')
-                if (messages[messages.length - 1].owner == firebase.auth().currentUser.email)
-                    html += view.addYourMessage(messages[messages.length - 1].content,messages[messages.length - 1].createdAt)
-                else html += view.addFriendMessage(messages[messages.length - 1].content, friendImg.photoURL)
-                
-                console.log(messageBox)
-                messageBox.innerHTML += html
-                box.scrollTop = box.scrollHeight                
-            }
+          if (change.doc.id == model.currentConversation.id && messageData.length !== modelConversation.messages.length) {
+            let messages = change.doc.data().messages
+            let html = ''
+            let messageBox = document.querySelector('.showMessages')
+            if (messages[messages.length - 1].owner == firebase.auth().currentUser.email)
+              html += view.addYourMessage(messages[messages.length - 1].content, messages[messages.length - 1].createdAt)
+            else html += view.addFriendMessage(messages[messages.length - 1].content, friendImg.photoURL)
+
+            console.log(messageBox)
+            messageBox.innerHTML += html
+            box.scrollTop = box.scrollHeight
+          }
         }
-        model.allConversation.find((item,index) => {
-            if(item.id == change.doc.id){
-                model.allConversation[index].messages = change.doc.data().messages
-                return item
-            }
+        model.allConversation.find((item, index) => {
+          if (item.id == change.doc.id) {
+            model.allConversation[index].messages = change.doc.data().messages
+            return item
+          }
         });
-        if(modelConversation !== undefined){
+        if (modelConversation !== undefined) {
           let font = document.getElementById(`${change.doc.id}`)
           font.remove()
           view.addNotification(change.doc.data(), change.doc.id, friendImg.logo, friendImg.emailCompany)
@@ -1179,22 +1177,22 @@ controller.sortByTimeStamp = (data) => {
   });
   return arrAfterSort;
 };
-controller.updateModelConversation = async(imgLink) => {
+controller.updateModelConversation = async (imgLink) => {
   let allconversation = await controller.getDataFireStore('conversations', 'users', 'array-contains')
   model.allConversation = []
   let conversations = []
   if (allconversation.length !== 0) {
-      for (let x of allconversation) {
-          let friendImg = await controller.sendMessages(x.data().users.find((user) => user !== firebase.auth().currentUser.email))
-          conversations.push({
-              createdAt: controller.convertToTimeStamp(x.data().messages[x.data().messages.length - 1]['createdAt']),
-              messages: x.data().messages,
-              id: x.id,
-              users: x.data().users,
-              friendImg: await controller.sendMessages(x.data().users.find((user) => user !== firebase.auth().currentUser.email)).avatarUrl,
-              friendEmail: x.data().users.find((item) => item !== firebase.auth().currentUser.email)
-          })
-      }
-      model.allConversation = controller.sortByTimeStamp(conversations)
+    for (let x of allconversation) {
+      let friendImg = await controller.sendMessages(x.data().users.find((user) => user !== firebase.auth().currentUser.email))
+      conversations.push({
+        createdAt: controller.convertToTimeStamp(x.data().messages[x.data().messages.length - 1]['createdAt']),
+        messages: x.data().messages,
+        id: x.id,
+        users: x.data().users,
+        friendImg: await controller.sendMessages(x.data().users.find((user) => user !== firebase.auth().currentUser.email)).avatarUrl,
+        friendEmail: x.data().users.find((item) => item !== firebase.auth().currentUser.email)
+      })
+    }
+    model.allConversation = controller.sortByTimeStamp(conversations)
   }
 }

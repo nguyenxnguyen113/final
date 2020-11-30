@@ -540,14 +540,16 @@ view.showComponents = async function (name) {
                 controller.listenJobChange()
                 let form = document.getElementById('form-postjob')
                 form.onsubmit = postjobHandler
-
+                let currentUser = await firebase.auth().currentUser
+                let company = await firebase.firestore().collection('company').where("emailCompany", "==", currentUser.email).get()
+                let companyData = transformDocs(company.docs)
                 function postjobHandler(event) {
 
                     event.preventDefault()
 
                     let job = {
                         userSaved: [],
-                        nameCompany: form.nameCompany.value,
+                        nameCompany: companyData[0].name,
                         title: form.title.value,
                         money: form.money.value,
                         address: form.address.value,
@@ -562,11 +564,6 @@ view.showComponents = async function (name) {
 
 
                     let validateResult = [
-                        view.validate(
-                            job.nameCompany,
-                            'job-nameCompany-error',
-                            'Name comany is not empty!'
-                        ),
                         view.validate(
                             job.title,
                             'job-title-error',
