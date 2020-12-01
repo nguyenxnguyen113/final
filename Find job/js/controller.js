@@ -444,7 +444,7 @@ controller.displaySavedJobs = async function () {
         );
       });
       for (let index = 0; index < numberOfjob.length; index++) {
-        controller.showJobOfUser(filteredCharacters[index])
+        controller.showJobOfUser(filteredCharacters[index],numberOfjob)
       }
     } else {
       controller.displaySavedJobs()
@@ -548,8 +548,6 @@ controller.displayAppliedJobs = async function () {
 }
 
 controller.showJobOfUser = (data, companys) => {
-  console.log(data)
-  console.log(companys)
   let email = firebase.auth().currentUser;
   let jobNameCompany = data.nameCompany
   let jobTitle = data.title;
@@ -557,9 +555,11 @@ controller.showJobOfUser = (data, companys) => {
   let jobDesc = data.description;
   let jobAdress = data.address;
   let jobSkill = data.skill;
-  let jobLogo = companys.logo
+  let jobLogo 
   for (let company of companys) {
+    console.log(company)
     if (jobNameCompany === company.name) {
+      
       jobLogo = company.logo
     }
   }
